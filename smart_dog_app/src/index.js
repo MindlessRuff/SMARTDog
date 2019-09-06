@@ -1,12 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class CustomerForm extends React.Component  
+{
+    constructor(props)
+    {
+        super(props);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+        this.state = 
+        {
+            value: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event)
+    {
+        this.setState({value: event.target.value});
+    }
+
+    handleSubmit(event)
+    {
+        alert('Fuck you ' + this.state.value);
+        event.preventDefault();
+    }
+
+    render()
+    {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <br />
+                <label>
+                    First Name:
+                </label>
+                <input type='text' value={this.state.value}
+            onChange={this.handleChange} />
+                <input type='submit' value='Submit' />
+            </form>
+        );
+    }
+}
+
+ReactDOM.render(
+    <CustomerForm />,
+    document.getElementById('root'),
+);
