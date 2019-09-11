@@ -7,8 +7,9 @@ import './index.css';
 class App extends Component {
     render() {
         return (
-            <div className='col-md-4'>
+            <div className='container'>
                 <h4> Temporary Example Sign-Up Form</h4>
+                
                 <CustomerFormContainer/>
             </div>
         );
