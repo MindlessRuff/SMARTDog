@@ -130,8 +130,7 @@ class CustomerFormContainer extends Component {
                     name={'firstName'}
                     value={this.state.newUser.firstName}
                     placeholder={''}
-                    handlechange={this.handleFirstName}
-                    
+                    handlechange={this.handleFirstName}              
                 />
                 <Input
                     inputtype={'text'}
