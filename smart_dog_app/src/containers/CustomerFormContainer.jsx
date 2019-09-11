@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Input from '../components/Input';
 import Button from '../components/Button';
 
+
 class CustomerFormContainer extends Component {
     constructor(props) {
         super(props);
@@ -14,16 +15,16 @@ class CustomerFormContainer extends Component {
                 dogBreed: '',
             },
         };
-        this.handleFirstName = this.handleFirstName.bind(this);
-        this.handleLastName = this.handleLastName.bind(this);
-        this.handleEmail = this.handleEmail.bind(this);
-        this.handleDogName = this.handleDogName.bind(this);
-        this.handleDogBreed = this.handleDogBreed.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        this.handleFormClear = this.handleFormClear.bind(this);
+        
     }
-    
-    handleFirstName(event) {
+
+    /* Use this format '= (event) => {}'
+    rather than '(function(event) {}' for autobinding
+    This avoids having to include 
+    this.handleFirstName = this.handleFirstName.bind(this)
+    for each handle.
+    */ 
+    handleFirstName = (event) => {
         let value = event.target.value;
         this.setState (function(prevState) {
             return {
@@ -38,7 +39,7 @@ class CustomerFormContainer extends Component {
         });
     }
 
-    handleLastName(event) {
+    handleLastName = (event) => {
         let value = event.target.value;
         this.setState (function(prevState) {
             return {
@@ -53,7 +54,7 @@ class CustomerFormContainer extends Component {
         });
     }
 
-    handleEmail(event) {
+    handleEmail = (event) => {
         let value = event.target.value;
         this.setState (function(prevState) {
             return {
@@ -68,7 +69,7 @@ class CustomerFormContainer extends Component {
         });
     }
 
-    handleDogName(event) {
+    handleDogName = (event) => {
         let value = event.target.value;
         this.setState (function(prevState) {
             return {
@@ -83,7 +84,7 @@ class CustomerFormContainer extends Component {
         });
     }
 
-    handleDogBreed(event) {
+    handleDogBreed = (event) => {
         let value = event.target.value;
         this.setState (function(prevState) {
             return {
@@ -98,13 +99,13 @@ class CustomerFormContainer extends Component {
         });
     }
 
-    handleFormSubmit(event) {
+    handleFormSubmit = (event) => {
         event.preventDefault();
         let userData = this.state.newUser;
         console.log(userData);
     }
 
-    handleFormClear(event) {
+    handleFormClear = (event) => {
         event.preventDefault();
         this.setState(
             {
@@ -129,7 +130,7 @@ class CustomerFormContainer extends Component {
                     name={'firstName'}
                     value={this.state.newUser.firstName}
                     placeholder={''}
-                    handleChange={this.handleFirstName}
+                    handlechange={this.handleFirstName}              
                 />
                 <Input
                     inputtype={'text'}
@@ -137,7 +138,7 @@ class CustomerFormContainer extends Component {
                     name={'lastName'}
                     value={this.state.newUser.lastName}
                     placeholder={''}
-                    handleChange={this.handleLastName}
+                    handlechange={this.handleLastName}
                 />
                 <Input
                     inputtype={'email'}
@@ -145,7 +146,7 @@ class CustomerFormContainer extends Component {
                     name={'email'}
                     value={this.state.newUser.email}
                     placeholder={''}
-                    handleChange={this.handleEmail}
+                    handlechange={this.handleEmail}
                 />
                 <Input
                     inputtype={'text'}
@@ -153,7 +154,7 @@ class CustomerFormContainer extends Component {
                     name={'dogName'}
                     value={this.state.newUser.dogName}
                     placeholder={''}
-                    handleChange={this.handleDogName}
+                    handlechange={this.handleDogName}
                 />
                 <Input
                     inputtype={'text'}
@@ -161,7 +162,7 @@ class CustomerFormContainer extends Component {
                     name={'dogBreed'}
                     value={this.state.newUser.dogBreed}
                     placeholder={''}
-                    handleChange={this.handleDogBreed}
+                    handlechange={this.handleDogBreed}
                 />
                 <Button
                     action={this.handleFormSubmit}
