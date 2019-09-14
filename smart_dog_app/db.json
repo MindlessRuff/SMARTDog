@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Post 1",
+      "lastName": "arg",
+      "email": "asfd",
+      "dogName": "dff",
+      "dogBreed": "ddfaefw"
+    },
+    {
+      "chormoz@sdsu.edu": {
+        "firstName": "Carlo",
+        "lastName": "Hormoz",
+        "dogName": "Ken",
+        "dogBreed": "Terrier"
+      },
+      "id": 2
+    }
+  ]
+}

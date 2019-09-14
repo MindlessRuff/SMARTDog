@@ -29,8 +29,11 @@ class SignupFormContainer extends Component {
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        let userData = this.state;
-        console.log(userData);
+        let email = this.state.email;
+        let postData = {
+            [email]: this.state,
+        }
+        delete(postData[this.state.email]['email']);
         this.setState( {
             firstName: '',
             lastName: '',
@@ -38,11 +41,7 @@ class SignupFormContainer extends Component {
             dogName: '',
             dogBreed: '',
         });
-        axios.post(`http://jsonplaceholder.typicode.com/users`, { userData })
-        .then(res => {
-            console.log(res);
-            console.log(res.data);
-        })
+        axios.post('http://localhost:3000/users', postData);
     }
 
     handleFormClear = (event) => {
