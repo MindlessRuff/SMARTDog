@@ -63,6 +63,7 @@ class CustomerLogin extends Component {
                     placeholder={''}
                     handlechange={this.handlePassWord}              
                 />
+                
         </form>
       );
     }
