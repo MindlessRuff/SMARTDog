@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^4.0.0-alpha.6",
+    "csstools": "^0.1.5",
     "eslint": "^6.3.0",
     "json-server": "^0.15.1",
     "react": "^16.9.0",
@@ -14,7 +15,7 @@
     "react-scripts": "3.1.1"
   },
   "scripts": {
-    "start": "set PORT=3005 && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
