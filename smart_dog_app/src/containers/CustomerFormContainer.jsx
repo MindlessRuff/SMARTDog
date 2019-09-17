@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import axios from 'axios';
 
 
 class CustomerFormContainer extends Component {
@@ -102,7 +103,12 @@ class CustomerFormContainer extends Component {
     handleFormSubmit = (event) => {
         event.preventDefault();
         let userData = this.state.newUser;
-        console.log(userData);
+        axios.post('https://my-json-server.typicode.com/kdsprigg/smartdogdata/posts',userData)
+        .then((response) => {
+            console.log(response);
+          }, (error) => {
+            console.log(error);
+          });
     }
 
     handleFormClear = (event) => {
