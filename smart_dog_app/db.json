@@ -1,19 +1,21 @@
 {
-  "posts": [
+  "users": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "firstName": "Post 1",
+      "lastName": "arg",
+      "email": "asfd",
+      "dogName": "dff",
+      "dogBreed": "ddfaefw"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "chormoz@sdsu.edu": {
+        "firstName": "Carlo",
+        "lastName": "Hormoz",
+        "dogName": "Ken",
+        "dogBreed": "Terrier"
+      },
+      "id": 2
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

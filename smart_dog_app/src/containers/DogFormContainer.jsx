@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Input from '../components/Input';
 import PropTypes from 'prop-types';
 
-class CustomerFormContainer extends Component {
+class DogFormContainer extends Component {
 
     render() {
         // Grab the user values passed in from 
@@ -15,35 +15,26 @@ class CustomerFormContainer extends Component {
             <div className='col-md-6'>
                 <Input
                     type={'text'}
-                    title={'First Name'}
-                    name={'firstName'}
-                    value={values.firstName}
+                    title={'Dog\'s Name'}
+                    name={'dogName'}
+                    value={values.dogName}
                     placeholder={''}
                     // Pass the parent handleInputChange method
                     // to update parent state anytime fields
                     // are changed.
-                    handlechange={this.props.handleInputChange}             
-                />
-                <Input
-                    type={'text'}
-                    title={'Last Name'}
-                    name={'lastName'}
-                    value={values.lastName}
-                    placeholder={''}
                     handlechange={this.props.handleInputChange}
                 />
                 <Input
-                    type={'email'}
-                    title={'Email'}
-                    name={'email'}
-                    value={values.email}
+                    type={'text'}
+                    title={'Dog\'s Breed'}
+                    name={'dogBreed'}
+                    value={values.dogBreed}
                     placeholder={''}
                     handlechange={this.props.handleInputChange}
                 />
             </div>
         )
     }
-
 }
 
-export default CustomerFormContainer;
+export default DogFormContainer;
