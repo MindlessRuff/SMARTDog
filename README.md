@@ -1,4 +1,12 @@
 # SMARTDog
+```
+cd smart_dog_app
+npm install
+npm start
+
+git remote add upstream https://github.com/bveltre/SMARTDog.git
+git fetch upstream
+```
 Pull from upstream/master (brandon's) into your local repository
 
 Do your work
