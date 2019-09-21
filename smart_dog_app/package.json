@@ -5,16 +5,18 @@
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
+    "csstools": "^0.1.5",
     "eslint": "^6.3.0",
     "json-server": "^0.15.1",
+    "package.json": "^2.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-router": "^5.0.1",
+    "react-mdl": "^1.11.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1"
   },
   "scripts": {
-    "start": "set PORT=3005 && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
