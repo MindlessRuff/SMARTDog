@@ -4,8 +4,7 @@ import './index.css';
 import SignupFormContainer from './containers/SignupFormContainer';
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
-import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
-
+import {Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
 
 // Top level app to instantiate any containers
 class App extends Component {
@@ -30,11 +29,11 @@ class App extends Component {
                         </Navigation>
                     </Drawer>
                     <Content>
-                        <div className="page-content" />
+                        <div className='container'><SignupFormContainer /></div>/>
+                        
                     </Content>
                 </Layout>
-            </div>
-             
+            </div>         
         );
     }
 }

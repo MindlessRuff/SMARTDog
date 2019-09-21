@@ -33,6 +33,9 @@ class SignupFormContainer extends Component {
         let postData = {
             [email]: this.state,
         }
+        // Create an object with email as the primary key,
+        // then remove email from the post data to avoid
+        // double saving the key.
         delete(postData[this.state.email]['email']);
         this.setState( {
             firstName: '',
@@ -41,6 +44,8 @@ class SignupFormContainer extends Component {
             dogName: '',
             dogBreed: '',
         });
+        // Post to REST (json.db), must npm install json-server
+        // and npm install axios -> 'npm run json:server --watch db.json'
         axios.post('http://localhost:3000/users', postData);
     }
 
