@@ -14,10 +14,10 @@ class App extends Component {
                 <Layout>
                     <Header title="Title" scroll>
                         <Navigation>
+                            <a href="#">Home</a>
+                            <a href="#">About</a>
                             <a href="#">Link</a>
-                            <a href="#">Link</a>
-                            <a href="#">Link</a>
-                            <a href="#">Link</a>
+                            <a href="#">Log In</a>
                         </Navigation>
                     </Header>
                     <Drawer title="Title">
@@ -29,7 +29,7 @@ class App extends Component {
                         </Navigation>
                     </Drawer>
                     <Content>
-                        <div className='container'><SignupFormContainer /></div>/>
+                        <div className='container'><SignupFormContainer/></div>
                         
                     </Content>
                 </Layout>
