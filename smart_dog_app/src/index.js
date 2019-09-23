@@ -5,6 +5,9 @@ import SignupFormContainer from './containers/SignupFormContainer';
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
 import {Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
+import {BrowserRouter} from 'react-router-dom';
+import Main from './components/main';
+import { Link } from 'react-router-dom';
 
 // Top level app to instantiate any containers
 class App extends Component {
@@ -12,30 +15,29 @@ class App extends Component {
         return (
             <div className="demo-big-content">
                 <Layout>
-                    <Header title="Title" scroll>
+                    <Header title="SMARTDog" scroll>
                         <Navigation>
-                            <a href="#">Link</a>
-                            <a href="#">Link</a>
-                            <a href="#">Link</a>
-                            <a href="#">Link</a>
+                            <Link to="/about">About</Link>
+                            <Link to="/product">Product</Link>
+                            <Link to="/works">How It Works</Link>
+                            <Link to="/login">Log In</Link>
                         </Navigation>
                     </Header>
-                    <Drawer title="Title">
+                    <Drawer title="SMARTDog">
                         <Navigation>
-                            <a href="#">Link</a>
-                            <a href="#">Link</a>
-                            <a href="#">Link</a>
-                            <a href="#">Link</a>
+                            <Link to="/about">About</Link>
+                            <Link to="/product">Product</Link>
+                            <Link to="/works">How It Works</Link>
+                            <Link to="/login">Log In</Link>
                         </Navigation>
                     </Drawer>
                     <Content>
-                        <div className='container'><SignupFormContainer /></div>/>
-                        
+                        <Main/>
+                        {/* <div className='container'><SignupFormContainer /></div>/> */}
                     </Content>
                 </Layout>
             </div>         
         );
     }
 }
-
-render(<App />, document.getElementById('root'));
+render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
