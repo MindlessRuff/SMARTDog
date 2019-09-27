@@ -10,6 +10,7 @@
       "id": 2
     },
     {
+<<<<<<< HEAD
       "": {
         "firstName": "",
         "lastName": "",
@@ -17,6 +18,24 @@
         "dogBreed": ""
       },
       "id": 3
+=======
+      "something@something.com": {
+        "firstName": "Kevin",
+        "lastName": "Sprigg",
+        "dogName": "Fritz",
+        "dogBreed": "Malamute"
+      },
+      "id": 3
+    },
+    {
+      "something@something.com": {
+        "firstName": "kevin",
+        "lastName": "sprigg",
+        "dogName": "Farrah",
+        "dogBreed": "hold"
+      },
+      "id": 4
+>>>>>>> 1fefa3c31bdeb35b29add0d60f51ab175cc8f858
     }
   ]
 }
