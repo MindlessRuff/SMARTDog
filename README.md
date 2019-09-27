@@ -1,5 +1,5 @@
 # SMARTDog
-```
+
 cd smart_dog_app
 npm install
 npm start
@@ -20,3 +20,4 @@ Resolve any merge conflicts
 Commit (check-mark) again
 
 Sync from the menu (the three dots)
+
