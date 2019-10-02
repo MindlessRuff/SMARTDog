@@ -31,7 +31,7 @@ class App extends Component {
                     </Drawer>
                     <Content>
                         <Main/>
-                        {<div className='container'><SignupFormContainer /></div>}
+                        {/*{<div className='container'><SignupFormContainer /></div>}*/}
                     </Content>
                 </Layout>
             </div>         

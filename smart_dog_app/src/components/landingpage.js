@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, Cell } from 'react-mdl';
-import { View, Text } from 'rea';
-
 
 class LandingPage extends Component {
     render(){
@@ -15,9 +13,18 @@ class LandingPage extends Component {
                             className="landing-img"
                         />
                         <div className= "banner-header">
-                            <h1>Introducing SMARTDog</h1>
+                            <h1>WOW SMARTDog</h1>
+                            <p className='banner-text'>Enter some text here (slogan maybe?) about SMARTDog</p>
                         </div>
                     </Cell>
+                    <div>
+                        <img
+                            src="https://tinyurl.com/yykufexl"
+                            alt="landing2"
+                            className="gps-dog-img"
+                        />
+                        <p className='gps-dog-text'>Enter some brief text here about what the smartdog collar does</p>
+                    </div>
                 </Grid>
             </div>
         )

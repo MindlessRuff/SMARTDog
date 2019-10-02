@@ -4,18 +4,21 @@
     background: linear-gradient(to right, #2F80ED, #56CCF2); 
 }
 
+.tab-img { 
+    height: 400px;
+}
+
 .landing-img { 
     height: auto;
     width: 100%;
 }
 
-.tab-img { 
-    height: 400px;
+.banner-header {
+    width: 100%;
+    text-align: center;
+    overflow: auto;
 }
 
-.banner-header {
-text-align: center;
-}
 label {
     display: table-cell;
     padding: 200px 0 10px 0;
@@ -31,15 +34,10 @@ button {
     display: flex;
     color: white;
   }
-  
-  .App__Aside {
-    width: 50%;
-    background-color: #2F80ED;
-  }
-  
+
   .App__Form {
-    width: 50%;
-    background-color: #56CCF2;
+    width: 100%;
+    background-color:	#A9A9A9;
     padding: 25px 40px;
     overflow: auto;
   }
@@ -63,7 +61,7 @@ button {
   }
   
   .PageSwitcher__Item--Active {
-    background-color: #5ED0C0;
+    background-color: #56CCF2;
     color: white;
   }
   
@@ -89,3 +87,11 @@ button {
     color: white;
     border-bottom: 1px solid #199087;
   }
+
+  .paragraph_text {
+    color: blue;
+    text-align: center;
+    font-size: 2.3em;
+    word-spacing: 10px;
+  }
+
