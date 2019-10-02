@@ -23,4 +23,4 @@ Sync from the menu (the three dots)
 
 Pull from origin (Your own github)
 
-Go to your github, hit the new pull request button then 
+Go to your github & hit the new pull request button
