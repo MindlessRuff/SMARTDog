@@ -21,6 +21,6 @@ Commit (check-mark) again
 
 Sync from the menu (the three dots)
 
-Pull from origin (Your own github)
+Pull from origin (Your own github) >> master
 
 Go to your github & hit the new pull request button
