@@ -14,11 +14,10 @@ class App extends Component {
     render() {
         return (
             <div className="demo-big-content">
-                <Layout>
-                    <Header title="SMARTDog" scroll>
+                <Layout fixedHeader>
+                    <Header className="header-color" title="SMARTDog" scroll>
                         <Navigation>
                             <Link to="/about">About</Link>
-                            <Link to="/product">Product</Link>
                             <Link to="/works">How It Works</Link>
                             <Link to="/login">Log In</Link>
                         </Navigation>
@@ -26,14 +25,13 @@ class App extends Component {
                     <Drawer title="SMARTDog">
                         <Navigation>
                             <Link to="/about">About</Link>
-                            <Link to="/product">Product</Link>
                             <Link to="/works">How It Works</Link>
                             <Link to="/login">Log In</Link>
                         </Navigation>
                     </Drawer>
                     <Content>
                         <Main/>
-                        {<div className='container'><SignupFormContainer /></div>}
+                        {/*{<div className='container'><SignupFormContainer /></div>}*/}
                     </Content>
                 </Layout>
             </div>         
