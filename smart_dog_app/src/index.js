@@ -11,8 +11,11 @@ import { Link } from 'react-router-dom';
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import {Auth0Provider} from "./auth0-wrapper";
-import config from "./auth_config.json";
 import App from "./App";
+import dotenv from 'dotenv';
+
+require('dotenv').config();
+
 
 const onRedirectCallback = appState => {
     window.history.replaceState(
@@ -26,8 +29,8 @@ const onRedirectCallback = appState => {
   
   ReactDOM.render(
     <Auth0Provider
-      domain={config.domain}
-      client_id={config.clientId}
+      domain={process.env.REACT_APP_DOMAIN}
+      client_id={process.env.REACT_APP_CLIENTID}
       redirect_uri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
   >

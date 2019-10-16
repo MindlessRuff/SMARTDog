@@ -6,9 +6,12 @@ class SignUpForm extends Component {
         super();
 
         this.state = {
-            email: '',
-            password: '',
-            name: '',
+            First: '',
+            Last: '',
+            Adress: '',
+            City: '',
+            State: '',
+            ZipCode: '',
             hasAgreed: false
         };
 
