@@ -3,6 +3,7 @@ import LandingPage from './landingpage';
 import About from './about';
 import Works from './works';
 import Login from './login';
+import SignUp from "./containers/SignUpForm.js"
 
 import { Switch, Route } from 'react-router-dom';
 
