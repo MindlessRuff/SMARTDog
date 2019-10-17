@@ -20,14 +20,14 @@ function App() {
                     <Navigation>
                         <Link to="/about">About</Link>
                         <Link to="/works">How It Works</Link>
-                        <Login/>
+                        <Login className="login-button"/>
                     </Navigation>
                 </Header>
                 <Drawer title="SMARTDog">
                     <Navigation>
                         <Link to="/about">About</Link>
                         <Link to="/works">How It Works</Link>
-                        <Login/>
+                        <Login className="login-button"/>
                     </Navigation>
                 </Drawer>
                 <Content>
@@ -36,7 +36,6 @@ function App() {
                 </Content>
             </Layout>
         </div>         
-    );
-    
+    );  
 }
 export default App;
