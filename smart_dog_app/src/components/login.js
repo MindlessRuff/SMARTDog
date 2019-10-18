@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
-import CustomerLogin from '../containers/CustomerLogin';
-import SignupFormContainer from '../containers/SignupFormContainer';
 import {useAuth0} from "../auth0-wrapper";
 
 

@@ -4,8 +4,7 @@ import {Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
 import { Link } from 'react-router-dom';
 import Main from './components/main';
 import Login from "./components/login";
-import SignupFormContainer from './containers/SignUpForm.js';
-require('dotenv').config();
+
 function App() {
     const {loading} = useAuth0;
 
