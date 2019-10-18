@@ -13,11 +13,12 @@ class SignupFormContainer extends Component {
     // to keep those boxes populated with this top-level state.
     
     state = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        dogName: '',
-        dogBreed: '',
+        First: '',
+        Last: '',
+        Adress: '',
+        City: '',
+        State: '',
+        ZipCode: '',
     };
 
     // Input change event is passed to all children in render
@@ -38,11 +39,12 @@ class SignupFormContainer extends Component {
         // double saving the key.
         delete(postData[this.state.email]['email']);
         this.setState( {
-            firstName: '',
-            lastName: '',
-            email: '',
-            dogName: '',
-            dogBreed: '',
+            First: '',
+            Last: '',
+            Adress: '',
+            City: '',
+            State: '',
+            ZipCode: '',
         });
         // Post to REST (json.db), must npm install json-server
         // and npm install axios -> 'npm run json:server --watch db.json'
@@ -52,11 +54,12 @@ class SignupFormContainer extends Component {
     handleFormClear = (event) => {
         event.preventDefault();
         this.setState( {
-            firstName: '',
-            lastName: '',
-            email: '',
-            dogName: '',
-            dogBreed: '',
+            First: '',
+            Last: '',
+            Adress: '',
+            City: '',
+            State: '',
+            ZipCode: '',
         });
     }
 
@@ -65,11 +68,9 @@ class SignupFormContainer extends Component {
         // This will keep the child component textboxes populated with
         // the parent's variables. It also will change child component
         // state anytime a parent function is called, like clear or submit.
-        const {firstName, lastName, email, 
-        dogName, dogBreed} = this.state;
+        const {First, Last, Adress, City, State, ZipCode} = this.state;
 
-        const userValues = {firstName, lastName, email};
-        const dogValues = {dogName, dogBreed};
+        const userValues = {First, Last, Adress, City, State, ZipCode};
 
         return (
             <form className='container-fluid'
@@ -78,10 +79,6 @@ class SignupFormContainer extends Component {
                     <CustomerFormContainer 
                         handleInputChange={this.handleInputChange}
                         values={userValues}
-                    />
-                    <DogFormContainer
-                        handleInputChange={this.handleInputChange}
-                        values={dogValues}
                     />
                 </div>
                 <div className='container'>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Main from "./components/main";
 import Login from "./components/login";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import SignupFormContainer from "./containers/SignUpForm.js";
 require("dotenv").config();
 =======
@@ -12,6 +13,9 @@ require("dotenv").config();
 require("dotenv").config();
 
 >>>>>>> Updated Bootstrap Version,  Removed imports, Changed label and Button.Jsx styling in index.css. Changed auth0 login and logout buttons to React JSX Button Components and changed style.  Changed landingpage and track page to const (functional components) isntead of class.  Added auth0 authentication check to track page.
+=======
+
+>>>>>>> h
 function App() {
   const { loading } = useAuth0;
 
