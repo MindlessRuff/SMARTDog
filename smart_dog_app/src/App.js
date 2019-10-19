@@ -4,8 +4,9 @@ import {Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
 import { Link } from 'react-router-dom';
 import Main from './components/main';
 import Login from "./components/login";
-import SignupFormContainer from './containers/SignUpForm.js';
+
 require('dotenv').config();
+
 function App() {
     const {loading} = useAuth0;
 
@@ -14,6 +15,7 @@ function App() {
             <div>Loading...</div>
         )
     }
+
     return (
         <div className="demo-big-content">
             <Layout fixedHeader>
@@ -21,7 +23,7 @@ function App() {
                     <Navigation>
                         <Link to="/about">About</Link>
                         <Link to="/works">How It Works</Link>
-                        <Link to="/track">Tracking</Link>
+                        <Link to="/track">Track</Link>
                         <Login/>
                     </Navigation>
                 </Header>
@@ -29,7 +31,7 @@ function App() {
                     <Navigation>
                         <Link to="/about">About</Link>
                         <Link to="/works">How It Works</Link>
-                        <Link to="/track">Tracking</Link>
+                        <Link to="/track">Track</Link>
                         <Login/>
                     </Navigation>
                 </Drawer>
