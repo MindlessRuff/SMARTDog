@@ -32,15 +32,26 @@ button {
     padding: 20px 0 10px 0;
 }
 
-/* For the Button.Jsx styling */
-Button {   
-    /* Up Right Down Left 
+/* For the Button.Jsx styling, has to use .btn (the bootstrap class) instead of Button to overwrite any bootstrap options. */
+.btn {   
+    /* Up Right Down Left margin
     If only one value does it for all 4 sides. */
     margin: 4px 0 4px 40px;
+<<<<<<< HEAD
     width: 150px;
 >>>>>>> Updated Bootstrap Version,  Removed imports, Changed label and Button.Jsx styling in index.css. Changed auth0 login and logout buttons to React JSX Button Components and changed style.  Changed landingpage and track page to const (functional components) isntead of class.  Added auth0 authentication check to track page.
 }
 
+=======
+	width: 150px;
+	transition-duration: 0;	/* Get rid of the weird color transition */
+	-webkit-transition-duration: 0s; /* Safari */
+	box-shadow: 0 4	px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+	
+>>>>>>> Fixed the color transition on the buttons.
 .App {
 <<<<<<< HEAD
   height: 100vh;
