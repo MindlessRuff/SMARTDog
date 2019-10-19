@@ -21,6 +21,7 @@ function App() {
                     <Navigation>
                         <Link to="/about">About</Link>
                         <Link to="/works">How It Works</Link>
+                        <Link to="/track">Tracking</Link>
                         <Login/>
                     </Navigation>
                 </Header>
@@ -28,6 +29,7 @@ function App() {
                     <Navigation>
                         <Link to="/about">About</Link>
                         <Link to="/works">How It Works</Link>
+                        <Link to="/track">Tracking</Link>
                         <Login/>
                     </Navigation>
                 </Drawer>
