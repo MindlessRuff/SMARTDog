@@ -12,10 +12,10 @@ console.log("LoRa Packet Tracking Script Initiated...")
 ttn.data(appID, accessKey)
   .then(function (client) {
     // When an uplink packet is received by the gateway
-    client.on("uplink", function (devID, payload) {
+    client.on("uplink", function (devID, message) {
         // Print out the Device ID and the contents of the payload
       console.log("Received uplink from ", devID)
-      console.log(payload)
+      console.log(message)
     })
   })
   .catch(function (error) {
