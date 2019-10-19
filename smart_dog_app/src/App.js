@@ -1,42 +1,42 @@
 import React from "react";
-import {useAuth0} from "./auth0-wrapper";
-import {Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
-import { Link } from 'react-router-dom';
-import Main from './components/main';
+import { useAuth0 } from "./auth0-wrapper";
+import { Layout, Header, Navigation, Drawer, Content } from "react-mdl";
+import { Link } from "react-router-dom";
+import Main from "./components/main";
 import Login from "./components/login";
-import SignupFormContainer from './containers/SignUpForm.js';
-require('dotenv').config();
+import SignupFormContainer from "./containers/SignUpForm.js";
+require("dotenv").config();
 function App() {
-    const {loading} = useAuth0;
+  const { loading } = useAuth0;
 
-    if(loading){
-        return(
-            <div>Loading...</div>
-        )
-    }
-    return (
-        <div className="demo-big-content">
-            <Layout fixedHeader>
-                <Header className="header-color" title="SMARTDog" scroll>
-                    <Navigation>
-                        <Link to="/about">About</Link>
-                        <Link to="/works">How It Works</Link>
-                        <Login className="login-button"/>
-                    </Navigation>
-                </Header>
-                <Drawer title="SMARTDog">
-                    <Navigation>
-                        <Link to="/about">About</Link>
-                        <Link to="/works">How It Works</Link>
-                        <Login className="login-button"/>
-                    </Navigation>
-                </Drawer>
-                <Content>
-                    <Main/>
-                    {/*{<div className='container'><SignupFormContainer /></div>}*/}
-                </Content>
-            </Layout>
-        </div>         
-    );  
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <div className="demo-big-content">
+      <Layout fixedHeader>
+        <Header className="header-color" title="SMARTDog" scroll>
+          <Navigation>
+            <Link to="/about">About</Link>
+            <Link to="/works">How It Works</Link>
+            <Link to="/track">Tracking</Link>
+            <Login />
+          </Navigation>
+        </Header>
+        <Drawer title="SMARTDog">
+          <Navigation>
+            <Link to="/about">About</Link>
+            <Link to="/works">How It Works</Link>
+            <Link to="/track">Tracking</Link>
+            <Login />
+          </Navigation>
+        </Drawer>
+        <Content>
+          <Main />
+          {/*{<div className='container'><SignupFormContainer /></div>}*/}
+        </Content>
+      </Layout>
+    </div>
+  );
 }
 export default App;
