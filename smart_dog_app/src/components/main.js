@@ -2,7 +2,9 @@ import React from 'react';
 import LandingPage from './landingpage';
 import About from './about';
 import Works from './works';
-import Account from "./account"
+import Login from './login';
+import SignupFormContainer from "../containers/SignupFormContainer"
+//import Account from './account';
 
 import { Switch, Route } from 'react-router-dom';
 

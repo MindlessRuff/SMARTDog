@@ -19,10 +19,10 @@
     overflow: auto;
 }
 
-label {
+ label {
     display: table-cell;
-    padding: 200px 0 10px 0;
-}
+    padding: 20px 0 10px 0;
+} 
 
 button {
     margin: 15px;

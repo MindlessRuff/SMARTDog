@@ -33,9 +33,33 @@ class CustomerFormContainer extends Component {
                     handlechange={this.props.handleInputChange}
                 />
                 <Input
-                    type={'email'}
-                    title={'Email'}
-                    name={'email'}
+                    type={'text'}
+                    title={'Address'}
+                    name={'address'}
+                    value={values.email}
+                    placeholder={''}
+                    handlechange={this.props.handleInputChange}
+                />
+                <Input
+                   type={'text'}
+                   title={'City'}
+                   name={'city'}
+                   value={values.email}
+                   placeholder={''}
+                   handlechange={this.props.handleInputChange}
+                />
+                <Input
+                    type={'text'}
+                    title={'State'}
+                    name={'state'}
+                    value={values.email}
+                    placeholder={''}
+                    handlechange={this.props.handleInputChange}
+                />
+                <Input
+                    type={'text'}
+                    title={'Zip Code'}
+                    name={'zip_code'}
                     value={values.email}
                     placeholder={''}
                     handlechange={this.props.handleInputChange}
