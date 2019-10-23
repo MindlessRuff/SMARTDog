@@ -18,13 +18,15 @@
     "react-mdl": "^1.11.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "ttn": "^2.3.3"
   },
   "scripts": {
-    "start": "react-scripts -r dotenv/config start",
+    "start": "react-scripts -r dotenv/config start && npm run track",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "track": "node ./src/server/track_script.js",
     "json:server": "json-server --watch db.json"
   },
   "eslintConfig": {

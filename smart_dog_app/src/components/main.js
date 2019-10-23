@@ -3,8 +3,8 @@ import LandingPage from './landingpage';
 import About from './about';
 import Works from './works';
 import Login from './login';
-import SignupFormContainer from "../containers/SignupFormContainer"
-//import Account from './account';
+import Track from './track';
+//import SignUp from "./containers/SignUpForm.js"
 
 import { Switch, Route } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ const Main = () => (
         <Route exact path ="/" component= {LandingPage} />
         <Route path ="/about" component= {About} />
         <Route path ="/works" component= {Works} />
+        <Route path ="/track" component= {Track} />
     </Switch>
 )
 

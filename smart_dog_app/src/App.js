@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import Main from './components/main';
 import Login from "./components/login";
 
+require('dotenv').config();
+
 function App() {
     const {loading} = useAuth0;
 
@@ -13,6 +15,7 @@ function App() {
             <div>Loading...</div>
         )
     }
+
     return (
         <div className="demo-big-content">
             <Layout fixedHeader>
@@ -20,6 +23,7 @@ function App() {
                     <Navigation>
                         <Link to="/about">About</Link>
                         <Link to="/works">How It Works</Link>
+                        <Link to="/track">Track</Link>
                         <Login/>
                     </Navigation>
                 </Header>
@@ -27,7 +31,7 @@ function App() {
                     <Navigation>
                         <Link to="/about">About</Link>
                         <Link to="/works">How It Works</Link>
-                        <Link to="/account">Account</Link>
+                        <Link to="/track">Track</Link>
                         <Login/>
                     </Navigation>
                 </Drawer>
