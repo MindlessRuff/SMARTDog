@@ -70,34 +70,41 @@ class SignupFormContainer extends Component {
 
         const userValues = {firstName, lastName, email};
         const dogValues = {dogName, dogBreed};
-
-        return (
-            <form className='container-fluid'
-            onSubmit={this.handleFormSubmit}>
-                <div className='container'>
-                    <CustomerFormContainer 
-                        handleInputChange={this.handleInputChange}
-                        values={userValues}
-                    />
-                    <DogFormContainer
-                        handleInputChange={this.handleInputChange}
-                        values={dogValues}
-                    />
-                </div>
-                <div className='container'>
-                    <Button
-                        action={this.handleFormSubmit}
-                        type={'primary'}
-                        title={'Submit'}
-                    />
-                    <Button
-                        action={this.handleFormClear}
-                        type={'secondary'}
-                        title={'Clear Form'}
-                    />  
-                </div>
-            </form>
-        )
+        const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+        if (isAuthenticated) {
+            return (
+                <form className='container-fluid'
+                onSubmit={this.handleFormSubmit}>
+                    <div className='container'>
+                        <CustomerFormContainer 
+                            handleInputChange={this.handleInputChange}
+                            values={userValues}
+                        />
+                        <DogFormContainer
+                            handleInputChange={this.handleInputChange}
+                            values={dogValues}
+                        />
+                    </div>
+                    <div className='container'>
+                        <Button
+                            action={this.handleFormSubmit}
+                            type={'primary'}
+                            title={'Submit'}
+                        />
+                        <Button
+                            action={this.handleFormClear}
+                            type={'secondary'}
+                            title={'Clear Form'}
+                        />  
+                    </div>
+                </form>
+            )
+        }
+        else {
+            return (
+                <div><h1>Log in</h1></div>
+            )
+        }
     }
 }
 

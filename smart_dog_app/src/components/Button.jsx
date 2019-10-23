@@ -6,7 +6,7 @@ const Button = function(props) {
         <button
             className = {props.type}    // Bootstrap 4 has built-in button styles.
             onClick={props.action}>
-            {props.title}
+            {props.title}              {/* title = Text of the button */}
         </button>
     );
 };

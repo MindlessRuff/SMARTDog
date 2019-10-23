@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
-import {useAuth0} from "../auth0-wrapper";
+import React from 'react';
+import { useAuth0 } from "../auth0-wrapper";
 
 const Track = () => {
-    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-    if (isAuthenticated) {
-        return(
-            <div><h1>Tracking Page</h1></div>
-        )
+    const { loading, isAuthenticated, loginWithRedirect} = useAuth0();
+    if (!loading && !isAuthenticated) {
+        loginWithRedirect();
     }
-    else {
-        return(
-            <div><h1>Log In to Track</h1></div>
-        )
-    }
+
+    return (
+        <div><h1>Tracking Page</h1></div>
+    )
+
 }
 
 export default Track;

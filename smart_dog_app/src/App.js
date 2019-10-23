@@ -37,7 +37,6 @@ function App() {
                 </Drawer>
                 <Content>
                     <Main/>
-                    {/*{<div className='container'><SignupFormContainer /></div>}*/}
                 </Content>
             </Layout>
         </div>         
