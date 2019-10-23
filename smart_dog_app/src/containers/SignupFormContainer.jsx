@@ -13,12 +13,12 @@ class SignupFormContainer extends Component {
     // to keep those boxes populated with this top-level state.
     
     state = {
-        First: '',
-        Last: '',
-        Adress: '',
-        City: '',
-        State: '',
-        ZipCode: '',
+        first: '',
+        last: '',
+        adress: '',
+        zity: '',
+        state: '',
+        zipCode: '',
     };
 
     // Input change event is passed to all children in render
@@ -39,12 +39,12 @@ class SignupFormContainer extends Component {
         // double saving the key.
         delete(postData[this.state.email]['email']);
         this.setState( {
-            First: '',
-            Last: '',
-            Adress: '',
-            City: '',
-            State: '',
-            ZipCode: '',
+            first: '',
+            last: '',
+            address: '',
+            city: '',
+            state: '',
+            zipCode: '',
         });
         // Post to REST (json.db), must npm install json-server
         // and npm install axios -> 'npm run json:server --watch db.json'
@@ -54,12 +54,12 @@ class SignupFormContainer extends Component {
     handleFormClear = (event) => {
         event.preventDefault();
         this.setState( {
-            First: '',
-            Last: '',
-            Adress: '',
-            City: '',
-            State: '',
-            ZipCode: '',
+            first: '',
+            last: '',
+            address: '',
+            city: '',
+            state: '',
+            zipCode: '',
         });
     }
 
@@ -68,9 +68,9 @@ class SignupFormContainer extends Component {
         // This will keep the child component textboxes populated with
         // the parent's variables. It also will change child component
         // state anytime a parent function is called, like clear or submit.
-        const {First, Last, Adress, City, State, ZipCode} = this.state;
+        const {first, last, address, city, state, zipCode} = this.state;
 
-        const userValues = {First, Last, Adress, City, State, ZipCode};
+        const userValues = {first, last, address, city, state, zipCode};
 
         return (
             <form className='container-fluid'
