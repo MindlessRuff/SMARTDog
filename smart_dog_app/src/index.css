@@ -19,7 +19,7 @@
     overflow: auto;
 }
 
-label {
+ label {
     display: table-cell;
     padding: 20px 0 10px 0;
 }
