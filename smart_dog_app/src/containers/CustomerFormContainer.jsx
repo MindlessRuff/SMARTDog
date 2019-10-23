@@ -17,7 +17,7 @@ class CustomerFormContainer extends Component {
                     type={'text'}
                     title={'First Name'}
                     name={'firstName'}
-                    value={values.firstName}
+                    value={values.first}
                     placeholder={''}
                     // Pass the parent handleInputChange method
                     // to update parent state anytime fields
@@ -28,15 +28,39 @@ class CustomerFormContainer extends Component {
                     type={'text'}
                     title={'Last Name'}
                     name={'lastName'}
-                    value={values.lastName}
+                    value={values.last}
                     placeholder={''}
                     handlechange={this.props.handleInputChange}
                 />
                 <Input
-                    type={'email'}
-                    title={'Email'}
-                    name={'email'}
-                    value={values.email}
+                    type={'text'}
+                    title={'Address'}
+                    name={'address'}
+                    value={values.address}
+                    placeholder={''}
+                    handlechange={this.props.handleInputChange}
+                />
+                <Input
+                   type={'text'}
+                   title={'City'}
+                   name={'city'}
+                   value={values.city}
+                   placeholder={''}
+                   handlechange={this.props.handleInputChange}
+                />
+                <Input
+                    type={'text'}
+                    title={'State'}
+                    name={'state'}
+                    value={values.state}
+                    placeholder={''}
+                    handlechange={this.props.handleInputChange}
+                />
+                <Input
+                    type={'text'}
+                    title={'Zip Code'}
+                    name={'zip_code'}
+                    value={values.zipCode}
                     placeholder={''}
                     handlechange={this.props.handleInputChange}
                 />
