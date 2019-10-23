@@ -5,6 +5,7 @@ import Works from './works';
 <<<<<<< HEAD
 import Login from './login';
 import Track from './track';
+import PrivateRoute from './Private';
 //import SignUp from "./containers/SignUpForm.js"
 =======
 import Account from "./account"
@@ -18,7 +19,7 @@ const Main = () => (
         <Route exact path ="/" component= {LandingPage} />
         <Route path ="/about" component= {About} />
         <Route path ="/works" component= {Works} />
-        <Route path ="/track" component= {Track} />
+        <PrivateRoute path ="/track" component= {Track} />
     </Switch>
 )
 
