@@ -4,6 +4,7 @@ import About from './about';
 import Works from './works';
 import Login from './login';
 import Track from './track';
+import {useAuth0} from '../auth0-wrapper';
 import PrivateRoute from './Private';
 //import SignUp from "./containers/SignUpForm.js"
 

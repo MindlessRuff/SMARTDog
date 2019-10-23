@@ -9,12 +9,17 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
     if (loading || isAuthenticated) {
       return;
     }
-    const fn = async () => {
+    /*Using async will cause the login screen to continuously 
+      show up when hitting the backspace in the browser until
+      the user logs in. */
+    /*const fn = async () => {
       await loginWithRedirect({
         appState: { targetUrl: path }
       });
     };
-    fn();
+    fn();*/
+    else
+      loginWithRedirect();
   }, [loading, isAuthenticated, loginWithRedirect, path]);
 
   const render = props => isAuthenticated === true ? <Component {...props} /> : null;
