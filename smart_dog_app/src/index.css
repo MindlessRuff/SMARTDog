@@ -19,26 +19,6 @@
   overflow: auto;
 }
 
-<<<<<<< HEAD
-label {
-  display: table-cell;
-  padding: 20px 0 10px 0;
-}
-
-/* For the Button.Jsx styling, has to use .btn (the bootstrap class) instead of Button to overwrite any bootstrap options. */
-.btn {
-  /* Up Right Down Left margin
-    If only one value does it for all 4 sides. */
-  margin: 4px 0 4px 40px;
-  width: 150px;
-  transition-duration: 0; /* Get rid of the weird color transition */
-  -webkit-transition-duration: 0s; /* Safari */
-  box-shadow: 0 4 px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-
-=======
->>>>>>> b39242b3f668f0a01bc7323638c0afe17f29aaec
 .App {
   height: 100vh;
   display: flex;
@@ -106,18 +86,18 @@ label {
 }
 
 label {
-    display: table-cell;
-    padding: 20px 0 10px 0;  
+  display: table-cell;
+  padding: 20px 0 10px 0;
 }
 
- /* For the Button.Jsx styling, has to use .btn (the bootstrap class) instead of Button to overwrite any bootstrap options. */
-.btn {   
-    /* Up Right Down Left margin
+/* For the Button.Jsx styling, has to use .btn (the bootstrap class) instead of Button to overwrite any bootstrap options. */
+.btn {
+  /* Up Right Down Left margin
     If only one value does it for all 4 sides. */
-    margin: 4px 0 4px 40px;
-	width: 150px;
-	transition-duration: 0;	/* Get rid of the weird color transition */
-	-webkit-transition-duration: 0s; /* Safari */ 
-	box-shadow: 0 4	px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  margin: 4px 0 4px 40px;
+  width: 150px;
+  transition-duration: 0; /* Get rid of the weird color transition */
+  -webkit-transition-duration: 0s; /* Safari */
+  box-shadow: 0 4 px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-	
