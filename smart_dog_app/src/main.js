@@ -8,7 +8,6 @@ import { Switch, Route } from "react-router-dom";
 
 const Main = () => (
   <Switch>
-    W
     <Route exact path="/" component={LandingPage} />
     <Route path="/about" component={About} />
     <Route path="/works" component={Works} />
