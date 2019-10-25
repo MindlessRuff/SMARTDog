@@ -19,24 +19,6 @@
     overflow: auto;
 }
 
- label {
-    display: table-cell;
-    padding: 20px 0 10px 0;
-}
-
-/* For the Button.Jsx styling, has to use .btn (the bootstrap class) instead of Button to overwrite any bootstrap options. */
-.btn {   
-    /* Up Right Down Left margin
-    If only one value does it for all 4 sides. */
-    margin: 4px 0 4px 40px;
-	width: 150px;
-	transition-duration: 0;	/* Get rid of the weird color transition */
-	-webkit-transition-duration: 0s; /* Safari */
-	box-shadow: 0 4	px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-
-	
 .App {
 	height: 100vh;
 	display: flex;
@@ -102,3 +84,20 @@
     font-size: 2.3em;
     word-spacing: 10px;
 }
+
+label {
+    display: table-cell;
+    padding: 20px 0 10px 0;  
+}
+
+ /* For the Button.Jsx styling, has to use .btn (the bootstrap class) instead of Button to overwrite any bootstrap options. */
+.btn {   
+    /* Up Right Down Left margin
+    If only one value does it for all 4 sides. */
+    margin: 4px 0 4px 40px;
+	width: 150px;
+	transition-duration: 0;	/* Get rid of the weird color transition */
+	-webkit-transition-duration: 0s; /* Safari */ 
+	box-shadow: 0 4	px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+	

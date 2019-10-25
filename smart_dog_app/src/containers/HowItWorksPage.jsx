@@ -11,7 +11,7 @@ class Works extends Component {
         if(this.state.activeTab === 0) {
             return(
                 <div style={{width: '100%', margin: 'auto'}}>
-                    <Grid classname= 'range-connectivity-grid'>
+                    <Grid className= 'range-connectivity-grid'>
                         <Cell col= {12}>
                             <img
                                 src="https://tinyurl.com/y255hvlk"
@@ -28,7 +28,7 @@ class Works extends Component {
         } else if (this.state.activeTab === 1) {
             return(
                 <div style={{width: '100%', margin: 'auto'}}>
-                    <Grid classname= 'tracking-grid'>
+                    <Grid className= 'tracking-grid'>
                         <Cell col= {12}>
                             <img
                                 src="https://tinyurl.com/y6oo5daj"
@@ -45,7 +45,7 @@ class Works extends Component {
         } else if (this.state.activeTab === 2) {
             return(
                 <div style={{width: '100%', margin: 'auto'}}>
-                    <Grid classname= 'specs-grid'>
+                    <Grid className= 'specs-grid'>
                         <Cell col= {12}>
                             <img
                                 src="https://tinyurl.com/y6bmzktr"
