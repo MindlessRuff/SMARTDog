@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import GoogleMapsPage from "./GoogleMapsPage";
 
 /* Leave as a state-less class for now. If multiple components will be on this page, state should
    be with the lowest common parent of all children that use the state. If this ends up not being the lowest
@@ -32,11 +32,14 @@ state = {
     };
 
 
-    render() {
-        return(
-            <div><h1>{this.state.data}</h1></div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1>Tracking Page</h1>
+        <GoogleMapsPage />
+      </div>
+    );
+  }
 }
 
 export default Track;
