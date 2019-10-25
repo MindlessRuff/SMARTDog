@@ -8,9 +8,12 @@ import Track from './track';
 import {useAuth0} from '../auth0-wrapper';
 import PrivateRoute from './Private';
 //import SignUp from "./containers/SignUpForm.js"
+<<<<<<< HEAD
 =======
 import Account from "./account"
 >>>>>>> h
+=======
+>>>>>>> 5b7bd0991b7405d16ccc6931bb3d34288932ad40
 
 import { Switch, Route } from 'react-router-dom';
 

@@ -19,6 +19,7 @@
   overflow: auto;
 }
 
+<<<<<<< HEAD
 label {
   display: table-cell;
   padding: 20px 0 10px 0;
@@ -100,4 +101,88 @@ label {
   text-align: center;
   font-size: 2.3em;
   word-spacing: 10px;
+=======
+ label {
+    display: table-cell;
+    padding: 20px 0 10px 0;
+}
+
+/* For the Button.Jsx styling, has to use .btn (the bootstrap class) instead of Button to overwrite any bootstrap options. */
+.btn {   
+    /* Up Right Down Left margin
+    If only one value does it for all 4 sides. */
+    margin: 4px 0 4px 40px;
+	width: 150px;
+	transition-duration: 0;	/* Get rid of the weird color transition */
+	-webkit-transition-duration: 0s; /* Safari */
+	box-shadow: 0 4	px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+	
+.App {
+	height: 100vh;
+	display: flex;
+	color: white;
+}
+
+.App__Form {
+    width: 100%;
+    background-color:	#A9A9A9;
+    padding: 25px 40px;
+    overflow: auto;
+}
+  
+.PageSwitcher {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10%;
+}
+  
+.PageSwitcher__Item {
+    background-color: #4C5D72;
+    color: #9DA6B1;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: .9em;
+    border: none;
+    outline: none;
+    display: inline-block;
+    text-decoration: none;
+}
+  
+.PageSwitcher__Item--Active {
+    background-color: #56CCF2;
+    color: white;
+}
+  
+.PageSwitcher__Item:first-child {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+.PageSwitcher__Item:last-child {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+  
+.FormTitle__Link {
+    color: #707C8B;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.7em;
+    margin: 0 10px;
+    padding-bottom: 5px;
+}
+  
+.FormTitle__Link--Active {
+    color: white;
+    border-bottom: 1px solid #199087;
+}
+
+.paragraph_text {
+    color: blue;
+    text-align: center;
+    font-size: 2.3em;
+    word-spacing: 10px;
+>>>>>>> 5b7bd0991b7405d16ccc6931bb3d34288932ad40
 }

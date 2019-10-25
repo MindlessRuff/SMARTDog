@@ -35,6 +35,7 @@ class CustomerFormContainer extends Component {
                 <Input
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     type={'email'}
                     title={'Email'}
                     name={'email'}
@@ -42,6 +43,8 @@ class CustomerFormContainer extends Component {
 =======
 =======
 >>>>>>> g
+=======
+>>>>>>> 5b7bd0991b7405d16ccc6931bb3d34288932ad40
                     type={'text'}
                     title={'Address'}
                     name={'address'}
@@ -71,9 +74,12 @@ class CustomerFormContainer extends Component {
                     name={'zip_code'}
                     value={values.zipCode}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> have auth0 working without having to delete cookies now, fixed variable names
 =======
 >>>>>>> g
+=======
+>>>>>>> 5b7bd0991b7405d16ccc6931bb3d34288932ad40
                     placeholder={''}
                     handlechange={this.props.handleInputChange}
                 />

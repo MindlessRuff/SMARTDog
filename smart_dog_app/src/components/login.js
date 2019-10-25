@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react';
 =======
 import React, { Component } from 'react';
 >>>>>>> h
+=======
+import React from 'react';
+>>>>>>> 5b7bd0991b7405d16ccc6931bb3d34288932ad40
 import {useAuth0} from "../auth0-wrapper";
 import Button from "./Button"
 
