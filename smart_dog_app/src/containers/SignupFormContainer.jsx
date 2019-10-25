@@ -25,14 +25,14 @@ class SignupFormContainer extends Component {
     }   
 
 
-    componentDidMount() {
-        console.log(this.props);
+    // componentDidMount() {
+    //     console.log(this.props);
         
-        axios.get(`http://localhost:3006/users`).then(function(response) {
-            console.log(response);
-        })
+    //     axios.get(`http://localhost:3006/users`).then(function(response) {
+    //         console.log(response);
+    //     })
         
-    }
+    // }
     // Input change event is passed to all children in render
     // components so it triggers the parent (this form) 
     // to update its state
@@ -73,7 +73,6 @@ class SignupFormContainer extends Component {
         // This will keep the child component textboxes populated with
         // the parent's variables. It also will change child component
         // state anytime a parent function is called, like clear or submit.
-        const {user} = this.props;
         const {first, last, address, city, state, zipCode} = this.state;
         const userValues = {first, last, address, city, state, zipCode};
         const {user} = this.props;
