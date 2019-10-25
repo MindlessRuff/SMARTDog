@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 /* Leave as a state-less class for now. If multiple components will be on this page, state should
    be with the lowest common parent of all children that use the state. If this ends up not being the lowest
@@ -10,9 +11,13 @@ state = {
 
     componentDidMount() {
         // Call the fetch function after the component has mounted
-        this.callBackendAPI()
-            .then(res => this.setState({ data: res.express }))
-            .catch(err => console.log(err));
+
+        axios.get(`http://localhost:3000/track/api`).then(function(response) {
+            console.log(response);
+        //this.callBackendAPI()
+        //    .then(res => this.setState({ data: res.express }))
+        //    .catch(err => console.log(err));
+        })
     }
 
     // Function which will fetch the GET route from the json-server API

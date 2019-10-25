@@ -16,7 +16,7 @@ const ttn = require("ttn")
 const express = require("express")
 const jsonServer = require("json-server")
 const app = express()
-const port = 3005
+const port = 3000
 
 // Utilize Express to monitor the json server API
 //app.use('/track/api', jsonServer.router('db.json'))
