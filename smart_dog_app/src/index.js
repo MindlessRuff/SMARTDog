@@ -7,9 +7,6 @@ import 'react-mdl/extra/material.js';
 import * as serviceWorker from "./serviceWorker";
 import {Auth0Provider} from "./auth0-wrapper";
 import App from "./App";
-import Login from './components/login';
-
-require('dotenv').config();
 
 
 const onRedirectCallback = appState => {
