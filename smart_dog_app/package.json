@@ -12,6 +12,7 @@
     "dotenv": "^8.1.0",
     "eslint": "^6.3.0",
     "eslint-plugin-react-hooks": "^2.2.0",
+    "express": "^4.17.1",
     "json-server": "^0.15.1",
     "package.json": "^2.0.1",
     "react": "^16.9.0",
@@ -23,7 +24,7 @@
     "ttn": "^2.3.3"
   },
   "scripts": {
-    "start": "react-scripts -r dotenv/config start && npm run track",
+    "start": "react-scripts -r dotenv/config start && npm run track && npm run json:server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
