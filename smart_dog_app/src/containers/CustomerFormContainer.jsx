@@ -16,7 +16,7 @@ class CustomerFormContainer extends Component {
                 <Input
                     type={'text'}
                     title={'First Name'}
-                    name={'firstName'}
+                    name={'first'}
                     value={values.first}
                     placeholder={''}
                     // Pass the parent handleInputChange method
@@ -27,7 +27,7 @@ class CustomerFormContainer extends Component {
                 <Input
                     type={'text'}
                     title={'Last Name'}
-                    name={'lastName'}
+                    name={'last'}
                     value={values.last}
                     placeholder={''}
                     handlechange={this.props.handleInputChange}
@@ -59,7 +59,7 @@ class CustomerFormContainer extends Component {
                 <Input
                     type={'text'}
                     title={'Zip Code'}
-                    name={'zip_code'}
+                    name={'zipCode'}
                     value={values.zipCode}
                     placeholder={''}
                     handlechange={this.props.handleInputChange}
