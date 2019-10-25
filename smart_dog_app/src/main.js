@@ -5,8 +5,7 @@ import Works from './containers/HowItWorksPage';
 import Track from './containers/TrackPage';
 import PrivateRoute from './components/PrivateRoute';
 import { Switch, Route } from 'react-router-dom';
-import Profile from './containers/SignupFormContainer';
-
+import ProfilePage from './containers/ProfilePage';
 
 const Main = () => (
     <Switch>W
@@ -14,7 +13,7 @@ const Main = () => (
         <Route path ="/about" component= {About} />
         <Route path ="/works" component= {Works} />
         <PrivateRoute path ="/track" component= {Track} />
-        <Route path = "/profile" component = {Profile} />
+        <PrivateRoute path ="/profile" component= {ProfilePage} />
     </Switch>
 )
 

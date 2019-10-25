@@ -3,7 +3,6 @@ import Button from '../components/Button';
 import CustomerFormContainer from './CustomerFormContainer';
 import DogFormContainer from './DogFormContainer';
 import axios from 'axios';
-import {useAuth0} from "../auth0-wrapper";
 
 class SignupFormContainer extends Component {
     // This Signup form container is the top-level component
@@ -48,11 +47,7 @@ class SignupFormContainer extends Component {
         });
         // Post to REST (json.db), must npm install json-server
         // and npm install axios -> 'npm run json:server --watch db.json'
-        //axios.post('http://localhost:3000/users', postData);
-        user.user_metadata = user.user_metadata || {};
-        // update the user_metadata that will be part of the response
-        user.user_metadata.preferences = user.user_metadata.preferences || {};
-        user.user_metadata.preferences.fontSize = 12;
+        axios.post('http://localhost:3001/users', postData);
     
         // persist the user_metadata update
         //auth0.users.updateUserMetadata(user.user_id, user.user_metadata)
@@ -67,6 +62,7 @@ class SignupFormContainer extends Component {
             city: '',
             state: '',
             zipCode: '',
+            email: ''
         });
     }
 
@@ -76,9 +72,9 @@ class SignupFormContainer extends Component {
         // the parent's variables. It also will change child component
         // state anytime a parent function is called, like clear or submit.
         const {first, last, address, city, state, zipCode} = this.state;
-
         const userValues = {first, last, address, city, state, zipCode};
-
+        const {user} = this.props;
+        
         return (
             <form className='container-fluid'
             onSubmit={this.handleFormSubmit}>
@@ -87,6 +83,7 @@ class SignupFormContainer extends Component {
                         handleInputChange={this.handleInputChange}
                         values={userValues}
                     />
+                    
                 </div>
                 <div className='container'>
                     <Button

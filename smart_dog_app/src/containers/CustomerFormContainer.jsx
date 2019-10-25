@@ -11,12 +11,13 @@ class CustomerFormContainer extends Component {
         // of the parent is updated, like with clear
         // and any future functions.
         const {values} = this.props;
+        values.zipCode = '432334';
         return (
             <div className='col-md-6'>
                 <Input
                     type={'text'}
                     title={'First Name'}
-                    name={'firstName'}
+                    name={'first'}
                     value={values.first}
                     placeholder={''}
                     // Pass the parent handleInputChange method
@@ -27,7 +28,7 @@ class CustomerFormContainer extends Component {
                 <Input
                     type={'text'}
                     title={'Last Name'}
-                    name={'lastName'}
+                    name={'last'}
                     value={values.last}
                     placeholder={''}
                     handlechange={this.props.handleInputChange}
@@ -59,10 +60,10 @@ class CustomerFormContainer extends Component {
                 <Input
                     type={'text'}
                     title={'Zip Code'}
-                    name={'zip_code'}
+                    name={'zipCode'}
                     value={values.zipCode}
                     placeholder={''}
-                    handlechange={this.props.handleInputChange}
+                    onChange={this.props.handleInputChange.bind(this, 'zipCode')}
                 />
             </div>
         )
