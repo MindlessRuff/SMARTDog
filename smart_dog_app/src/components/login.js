@@ -1,6 +1,4 @@
 import React from "react";
-import React, { Component } from "react";
-import React from "react";
 import { useAuth0 } from "../auth0-wrapper";
 import Button from "./Button";
 
