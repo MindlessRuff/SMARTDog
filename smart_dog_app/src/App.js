@@ -6,7 +6,7 @@ import Main from './main';
 import Login from "./components/Login_Out";
 
 function App() {
-    const {loading} = useAuth0;
+    const { loading } = useAuth0;
 
     if(loading){
         return(
@@ -22,6 +22,7 @@ function App() {
                         <Link to="/about">About</Link>
                         <Link to="/works">How It Works</Link>
                         <Link to="/track">Track</Link>
+                        <Link to ="/profile">Profile</Link>
                         <Login/>
                     </Navigation>
                 </Header>
