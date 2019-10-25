@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Input from '../components/Input';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';     // Prop-types can be used to require certain fields to be filled out.
 
 class CustomerFormContainer extends Component {
 
