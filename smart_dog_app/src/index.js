@@ -8,8 +8,6 @@ import * as serviceWorker from "./serviceWorker";
 import {Auth0Provider} from "./auth0-wrapper";
 import App from "./App";
 
-require('dotenv').config();
-
 
 const onRedirectCallback = appState => {
     window.history.replaceState(
