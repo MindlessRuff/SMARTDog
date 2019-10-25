@@ -18,7 +18,7 @@ state = {
     // Function which will fetch the GET route from the json-server API
     callBackendAPI = async () => {
         const response = await fetch('/track/api');
-        const body = await response.json();
+        const body = await response.text();
 
         if (response.status !== 200) {
             throw Error(body.message)
@@ -29,7 +29,7 @@ state = {
 
     render() {
         return(
-            <div><h1>Tracking Page {this.state.data}</h1></div>
+            <div><h1>{this.state.data}</h1></div>
         )
     }
 }
