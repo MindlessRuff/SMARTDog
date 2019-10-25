@@ -3,20 +3,20 @@ import Button from '../components/Button';
 import CustomerFormContainer from './CustomerFormContainer';
 import DogFormContainer from './DogFormContainer';
 import axios from 'axios';
+import {useAuth0} from "../auth0-wrapper";
 
 class SignupFormContainer extends Component {
-    
     // This Signup form container is the top-level component
     // of the signup page. It holds all the state (variables)
     // and passes the variables down to its children components,
     // the individual (dog, user) containers, and from there to the textboxes
     // to keep those boxes populated with this top-level state.
-    
+
     state = {
         first: '',
         last: '',
-        adress: '',
-        zity: '',
+        address: '',
+        city: '',
         state: '',
         zipCode: '',
     };
@@ -48,7 +48,14 @@ class SignupFormContainer extends Component {
         });
         // Post to REST (json.db), must npm install json-server
         // and npm install axios -> 'npm run json:server --watch db.json'
-        axios.post('http://localhost:3000/users', postData);
+        //axios.post('http://localhost:3000/users', postData);
+        user.user_metadata = user.user_metadata || {};
+        // update the user_metadata that will be part of the response
+        user.user_metadata.preferences = user.user_metadata.preferences || {};
+        user.user_metadata.preferences.fontSize = 12;
+    
+        // persist the user_metadata update
+        //auth0.users.updateUserMetadata(user.user_id, user.user_metadata)
     }
 
     handleFormClear = (event) => {

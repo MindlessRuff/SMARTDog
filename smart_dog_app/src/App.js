@@ -22,6 +22,7 @@ function App() {
                         <Link to="/about">About</Link>
                         <Link to="/works">How It Works</Link>
                         <Link to="/track">Track</Link>
+                        <Link to="/profile">Profile</Link>
                         <Login/>
                     </Navigation>
                 </Header>
