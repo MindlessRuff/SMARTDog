@@ -5,7 +5,13 @@
         "firstName": "Carlo",
         "lastName": "Hormoz",
         "dogName": "Ken",
-        "dogBreed": "Terrier"
+        "dogBreed": "Terrier",
+        "coords": [
+          {
+            "lat": "",
+            "long": ""
+          }
+        ]
       },
       "id": 2
     },
