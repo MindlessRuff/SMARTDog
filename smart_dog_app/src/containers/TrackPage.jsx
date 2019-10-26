@@ -1,40 +1,36 @@
 import React, { Component } from "react";
 import GoogleMapsPage from "./GoogleMapsPage";
-<<<<<<< HEAD
-=======
-import axios from 'axios'
+import axios from "axios";
 
->>>>>>> b313274ab7b9cbfd60218dad2ea354fd337832c4
 /* Leave as a state-less class for now. If multiple components will be on this page, state should
    be with the lowest common parent of all children that use the state. If this ends up not being the lowest
    common parent, change this to a functional component (const Track = () => ) */
 class Track extends Component {
-state = {
+  state = {
     data: null
-    };
+  };
 
-    componentDidMount() {
-        // Call the fetch function after the component has mounted
+  componentDidMount() {
+    // Call the fetch function after the component has mounted
 
-        axios.get(`http://localhost:3000/track/api`).then(function(response) {
-            console.log(response);
-        //this.callBackendAPI()
-        //    .then(res => this.setState({ data: res.express }))
-        //    .catch(err => console.log(err));
-        })
+    axios.get(`http://localhost:3000/track/api`).then(function(response) {
+      console.log(response);
+      //this.callBackendAPI()
+      //    .then(res => this.setState({ data: res.express }))
+      //    .catch(err => console.log(err));
+    });
+  }
+
+  // Function which will fetch the GET route from the json-server API
+  callBackendAPI = async () => {
+    const response = await fetch("/track/api");
+    const body = await response.text();
+
+    if (response.status !== 200) {
+      throw Error(body.message);
     }
-
-    // Function which will fetch the GET route from the json-server API
-    callBackendAPI = async () => {
-        const response = await fetch('/track/api');
-        const body = await response.text();
-
-        if (response.status !== 200) {
-            throw Error(body.message)
-        }
-        return body;
-    };
-
+    return body;
+  };
 
   render() {
     return (
