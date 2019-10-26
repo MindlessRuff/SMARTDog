@@ -1,22 +1,28 @@
 {
   "users": [
     {
-      "chormoz@sdsu.edu": {
-        "firstName": "Carlo",
-        "lastName": "Hormoz",
-        "dogName": "Ken",
-        "dogBreed": "Terrier"
+      "email": "a@a.com",
+      "userInfo": {
+        "first": "AAA",
+        "last": "dwq",
+        "address": "d",
+        "city": "dwdd",
+        "state": "d",
+        "zipCode": "d"
       },
-      "id": 2
+      "id": 1
     },
     {
-      "": {
-        "firstName": "",
-        "lastName": "",
-        "dogName": "",
-        "dogBreed": ""
+      "email": "a@b.com",
+      "userInfo": {
+        "first": "",
+        "last": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
       },
-      "id": 3
+      "id": 2
     }
   ]
 }
