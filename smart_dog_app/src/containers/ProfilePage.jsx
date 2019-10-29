@@ -1,13 +1,17 @@
 import React from 'react';
-import Button from '../components/Button';
 import SignupFormContainer from "./SignupFormContainer";
-import axios from 'axios';
 import { useAuth0 } from '../auth0-wrapper';
 
 const ProfilePage = () => {
-    const { user } = useAuth0();    // Grab user data with auth0 hook. Have to call inside const component.
+    const { loading, user } = useAuth0();    // Grab user data with auth0 hook. Have to call inside const component.
+    if (loading || !user) {
+        return (
+            <div>Loading...</div>
+        );
+    }
+
     return (
-        <SignupFormContainer user={user}/>
+        <SignupFormContainer email={user.email}/>
     )
 }
 

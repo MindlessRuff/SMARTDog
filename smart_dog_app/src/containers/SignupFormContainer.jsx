@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
+import React, {useEffect, Component} from 'react';
 import Button from '../components/Button';
 import CustomerFormContainer from './CustomerFormContainer';
 import DogFormContainer from './DogFormContainer';
 import axios from 'axios';
-import {useAuth0} from "../auth0-wrapper";
 
 
 // This Signup form container is the top-level component
@@ -24,15 +23,16 @@ class SignupFormContainer extends Component {
         };
     }   
 
-
     componentDidMount() {
-        console.log(this.props);
-        
-        axios.get(`http://localhost:3006/users`).then(function(response) {
-            console.log(response);
+        let email = this.props.email;
+        // Need to use arrow functions with axios calls so that 'this' variable will
+        // refer to the class component instead of axios.
+        axios.get(`http://localhost:3006/users?email=${email}`).then(response => {
+            this.setState(response.data[0].userInfo);   // [0] index since entries keyed by email are unique
         })
-        
     }
+
+
     // Input change event is passed to all children in render
     // components so it triggers the parent (this form) 
     // to update its state
@@ -43,13 +43,11 @@ class SignupFormContainer extends Component {
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        let email = this.props.user.email;
-        let postData = {
-            [email]: this.state,
-        }
+        let email = this.props.email;
+        let userInfo = this.state;
         // Post to REST (json.db), must npm install json-server
         // and npm install axios -> 'npm run json:server --watch db.json'
-        axios.post('http://localhost:3000/users', postData);
+        axios.post('http://localhost:3006/users', {email, userInfo});
     }
 
     handleFormClear = (event) => {
@@ -69,7 +67,6 @@ class SignupFormContainer extends Component {
         // This will keep the child component textboxes populated with
         // the parent's variables. It also will change child component
         // state anytime a parent function is called, like clear or submit.
-        const {user} = this.props;
         const {first, last, address, city, state, zipCode} = this.state;
         const userValues = {first, last, address, city, state, zipCode};
 
