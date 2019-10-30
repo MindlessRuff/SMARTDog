@@ -46,7 +46,7 @@ state = {
         <GoogleMapsPage />
       </div>
     );
-  }
+  } 
 }
 
 export default Track;
