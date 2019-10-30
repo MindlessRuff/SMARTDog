@@ -7,13 +7,15 @@ import axios from 'axios'
    common parent, change this to a functional component (const Track = () => ) */
 class Track extends Component {
 state = {
-    data: null
+    data: null,
     };
+    interval = null;
 
     componentDidMount() {
         // Call the fetch function after the component has mounted
 
-        axios.get(`http://localhost:3000/track/api`).then(function(response) {
+        setInterval()
+        axios.get(`http://localhost:3007/`).then(function(response) {
             console.log(response);
         //this.callBackendAPI()
         //    .then(res => this.setState({ data: res.express }))
