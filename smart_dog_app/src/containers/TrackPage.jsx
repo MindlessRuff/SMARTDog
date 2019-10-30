@@ -11,14 +11,16 @@ state = {
     };
 
     componentDidMount() {
-        // Call the fetch function after the component has mounted
+        // // Call the fetch function after the component has mounted
 
-        axios.get(`http://localhost:3000/track/api`).then(function(response) {
-            console.log(response);
-        //this.callBackendAPI()
-        //    .then(res => this.setState({ data: res.express }))
-        //    .catch(err => console.log(err));
-        })
+        // axios.get(`http://localhost:3000/track/api`).then(function(response) {
+        //     console.log(response);
+        // //this.callBackendAPI()
+        // //    .then(res => this.setState({ data: res.express }))
+        // //    .catch(err => console.log(err));
+        // })
+
+          
     }
 
     // Function which will fetch the GET route from the json-server API

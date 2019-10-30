@@ -1,7 +1,6 @@
-import React, {useEffect, Component} from 'react';
+import React, {Component} from 'react';
 import Button from '../components/Button';
 import CustomerFormContainer from './CustomerFormContainer';
-import DogFormContainer from './DogFormContainer';
 import axios from 'axios';
 
 
