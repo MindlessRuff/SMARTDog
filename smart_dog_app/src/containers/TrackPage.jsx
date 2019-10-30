@@ -23,21 +23,6 @@ state = {
         })
     }
 
-    // Function which will fetch the GET route from the json-server API
-    callBackendAPI = async () => {
-        const response = await fetch('/track/api');
-        const body = await response.text();
-
-  // Function which will fetch the GET route from the json-server API
-  callBackendAPI = async () => {
-    const response = await fetch("/track/api");
-    const body = await response.text();
-
-    if (response.status !== 200) {
-      throw Error(body.message);
-    }
-    return body;
-  };
 
   render() {
     return (
