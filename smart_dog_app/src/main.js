@@ -9,7 +9,6 @@ import ProfilePage from "./containers/ProfilePage";
 
 const Main = () => (
   <Switch>
-    W
     <Route exact path="/" component={LandingPage} />
     <Route path="/about" component={About} />
     <Route path="/works" component={Works} />
