@@ -13,7 +13,7 @@ const Main = () => (
     <Route path="/about" component={About} />
     <Route path="/works" component={Works} />
     <PrivateRoute path="/track" component={Track} />
-    <Route path="/profile" component={ProfilePage} />
+    <PrivateRoute path="/profile" component={ProfilePage} />
   </Switch>
 );
 

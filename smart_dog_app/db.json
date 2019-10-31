@@ -3,12 +3,16 @@
     {
       "email": "a@a.com",
       "userInfo": {
-        "first": "AAA",
-        "last": "dwq",
-        "address": "d",
-        "city": "dwdd",
-        "state": "d",
-        "zipCode": "d"
+        "first": "Carlo",
+        "last": "Hormoz",
+        "address": "SDSU",
+        "city": "San Diego",
+        "state": "CA",
+        "zipCode": "92990"
+      },
+      "coords": {
+        "lat": 32.776973,
+        "lng": -117.072589
       },
       "id": 1
     },
