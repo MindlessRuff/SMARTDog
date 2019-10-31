@@ -34,7 +34,6 @@
     "track": "nodemon ./src/server/track_script.js",
     "json:server": "json-server --watch db.json"
   },
-  "proxy": "http://localhost:3007",
   "eslintConfig": {
     "extends": "react-app"
   },
