@@ -9,9 +9,10 @@ const mapStyles = {
 
 class GoogleMapsPage extends Component {
 	state = {
-		lat: 0,
-		lng: 0,
+		lat: 32.77697,
+	 	lng: -117.072198
 	}
+
 
 	// id and userInfo are only updated once, for the put requests
 	// on the interval to avoid wiping user data when updating coords.
@@ -25,7 +26,29 @@ class GoogleMapsPage extends Component {
 		zipCode: '',
 	}
 
-
+	testCoordIndex = 0;
+	testCoords = [
+		{
+			lat: 32.776973,
+			lng: -117.072589
+		},
+		{
+			lat: 32.776742,
+			lng: -117.072631
+		},
+		{
+			lat: 32.776742,
+			lng: -117.072237
+		},
+		{
+			lat: 32.776891,
+			lng: -117.072122
+		},
+		{
+			lat: 32.77697,
+			lng: -117.072198
+		},
+	];
 	interval = 0;
 
 	componentDidMount() {
@@ -34,8 +57,8 @@ class GoogleMapsPage extends Component {
 			this.id = response.data[0].id;
 			this.userInfo = response.data[0].userInfo;
 		})	
-		this.setState({ lat: 32.7157, lng: -117.1611 });
-		this.interval = setInterval(this.getData, 7000);
+		this.setState({  lat: 32.77697, lng: -117.072198 });
+		this.interval = setInterval(this.getData, 8000);
 		this.getData();
 	}
 
@@ -44,13 +67,15 @@ class GoogleMapsPage extends Component {
 	}
 
 	getData = () => {
-		let coords = {lat: 32.7157, lng: -117.1611};
+		let coords = this.testCoords[this.testCoordIndex];
 		axios.put(`http://localhost:3006/users/${this.id}`, {email: this.props.email, userInfo: this.userInfo, coords: coords}).then(response => {
 			this.setState({lat: coords.lat, lng: coords.lng});
 		})
 		.catch(error => {
 			console.log(error);
-		}) 
+		});
+		this.testCoordIndex++;
+		if (this.testCoordIndex === 5) this.testCoordIndex = 0;
 	}
 
 	render() {
@@ -59,9 +84,9 @@ class GoogleMapsPage extends Component {
 		return (
 			<Map
 				google={this.props.google}
-				zoom={12}
+				zoom={15}
 				style={mapStyles}
-				initialCenter={{ lat: 32.7157, lng: -117.1611 }}
+				initialCenter={{ lat: 32.77697, lng: -117.072198 }}
 			>
 			<Marker position={{ lat: lat, lng: lng  }} />
 			</Map>
