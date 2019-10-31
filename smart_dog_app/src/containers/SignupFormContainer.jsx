@@ -1,7 +1,6 @@
-import React, {useEffect, Component} from 'react';
+import React, {Component} from 'react';
 import Button from '../components/Button';
 import CustomerFormContainer from './CustomerFormContainer';
-import DogFormContainer from './DogFormContainer';
 import axios from 'axios';
 
 
@@ -14,13 +13,17 @@ class SignupFormContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            first: '',
-            last: '',
-            address: '',
-            city: '',
-            state: '',
-            zipCode: '',
+            userInfo: {
+                first: '',
+                last: '',
+                address: '',
+                city: '',
+                state: '',
+                zipCode: '',
+            },
+            message: ''
         };
+        let id;     // Stores the database id on the initial page load -> get request.
     }   
 
     componentDidMount() {
@@ -28,8 +31,14 @@ class SignupFormContainer extends Component {
         // Need to use arrow functions with axios calls so that 'this' variable will
         // refer to the class component instead of axios.
         axios.get(`http://localhost:3006/users?email=${email}`).then(response => {
-            this.setState(response.data[0].userInfo);   // [0] index since entries keyed by email are unique
+            let fetchedData = response.data[0].userInfo;
+            this.setState({userInfo: fetchedData, message: ''});   // [0] index since entries keyed by email are unique
+            this.id = response.data[0].id;
+            console.log(this.state);
         })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
 
@@ -37,17 +46,22 @@ class SignupFormContainer extends Component {
     // components so it triggers the parent (this form) 
     // to update its state
     handleInputChange = (event) => {
-        this.setState({[event.target.name]: event.target.value});
+        this.setState({userInfo: {...this.state.userInfo, [event.target.name]: event.target.value}, message: ''});
     }
 
 
     handleFormSubmit = (event) => {
         event.preventDefault();
         let email = this.props.email;
-        let userInfo = this.state;
-        // Post to REST (json.db), must npm install json-server
-        // and npm install axios -> 'npm run json:server --watch db.json'
-        axios.post('http://localhost:3006/users', {email, userInfo});
+        let userInfo = this.state.userInfo;
+        this.setState({message: 'Processing...'});
+        console.log(this.state.message);
+        // Insert the id of the current user into the put request, can't do it with email key.
+        axios.put(`http://localhost:3006/users/${this.id}`, {email: email, userInfo: userInfo})
+        .catch(error => {
+            console.log(error);
+        });
+        this.setState({message: 'Profile Updated'});
     }
 
     handleFormClear = (event) => {
@@ -59,6 +73,7 @@ class SignupFormContainer extends Component {
             city: '',
             state: '',
             zipCode: '',
+            message: '',
         });
     }
 
@@ -67,7 +82,7 @@ class SignupFormContainer extends Component {
         // This will keep the child component textboxes populated with
         // the parent's variables. It also will change child component
         // state anytime a parent function is called, like clear or submit.
-        const {first, last, address, city, state, zipCode} = this.state;
+        const {first, last, address, city, state, zipCode} = this.state.userInfo;
         const userValues = {first, last, address, city, state, zipCode};
 
         return (
@@ -91,6 +106,7 @@ class SignupFormContainer extends Component {
                         title={'Clear Form'}
                     />  
                 </div>
+                <div className="result">{this.state.message}</div>
             </form>
         )
     }
