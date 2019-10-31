@@ -15,8 +15,7 @@ state = {
   componentDidMount() {
     // Call the fetch function after the component has mounted
 
-        setInterval()
-        axios.get(`http://localhost:3007/`).then(function(response) {
+        axios.get(`http://localhost:3007/users/1`).then(function(response) {
             console.log(response);
         //this.callBackendAPI()
         //    .then(res => this.setState({ data: res.express }))
