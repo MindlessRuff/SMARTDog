@@ -14,13 +14,6 @@ const Track = () => {
   if (loading || !user) {
     return <div>Loading...</div>;
   }
-
-  return (
-    <div>
-      <h1>Tracking Page</h1>
-      <GoogleMapsPage email={user.email} />
-    </div>
-  );
 };
 
 export default Track;
