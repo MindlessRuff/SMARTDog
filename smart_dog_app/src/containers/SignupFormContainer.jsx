@@ -93,18 +93,12 @@ class SignupFormContainer extends Component {
                         handleInputChange={this.handleInputChange}
                         values={userValues}
                     />
-                </div>
-                <div className='container'>
-                    <Button
-                        action={this.handleFormSubmit}
-                        type={'btn btn-primary'}
-                        title={'Submit'}
+                    <div>
+                    <Button action={this.handleFormSubmit}
+                        type={'btn btn-primary btn-block'}
+                        title={'Update'}
                     />
-                    <Button
-                        action={this.handleFormClear}
-                        type={'btn btn-secondary'}
-                        title={'Clear Form'}
-                    />  
+                    </div>
                 </div>
                 <div className="result">{this.state.message}</div>
             </form>

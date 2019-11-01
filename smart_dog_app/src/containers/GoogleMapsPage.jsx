@@ -58,7 +58,7 @@ class GoogleMapsPage extends Component {
 			this.userInfo = response.data[0].userInfo;
 		})	
 		this.setState({  lat: 32.77697, lng: -117.072198 });
-		this.interval = setInterval(this.getData, 8000);
+		this.interval = setInterval(this.getData, 5000);
 		this.getData();
 	}
 
@@ -84,7 +84,7 @@ class GoogleMapsPage extends Component {
 		return (
 			<Map
 				google={this.props.google}
-				zoom={15}
+				zoom={18}
 				style={mapStyles}
 				initialCenter={{ lat: 32.77697, lng: -117.072198 }}
 			>
