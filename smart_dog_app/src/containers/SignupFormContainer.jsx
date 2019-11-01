@@ -44,12 +44,15 @@ class SignupFormContainer extends Component {
     handleFormSubmit = (event) => {
         event.preventDefault();
         let email = this.props.user.email;
+        console.log(email);
         let postData = {
             [email]: this.state,
         }
         // Post to REST (json.db), must npm install json-server
         // and npm install axios -> 'npm run json:server --watch db.json'
-        axios.post('http://localhost:3001/users', postData);
+        axios.post(`http://localhost:3006`).then(function(response){
+            console.log(response);
+        })
     
         // persist the user_metadata update
         //auth0.users.updateUserMetadata(user.user_id, user.user_metadata)

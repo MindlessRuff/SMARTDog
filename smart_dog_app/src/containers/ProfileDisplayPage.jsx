@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Button from '../components/Button';
 import SignupFormContainer from "./SignupFormContainer";
 import axios from 'axios';
@@ -16,8 +16,8 @@ class ProfileDisplayPage extends Component {
         // of the parent is updated, like with clear
         // and any future functions.
 
-        const {user} = this.props;
-        info = axios.get(`http://localhost:3006/users?email=${email}`);
+        let email = this.props.user.email;
+        let info = axios.get(`http://localhost:3006/users?email=${email}`);
         return (
             <div>
                 <p>{info.first}</p>

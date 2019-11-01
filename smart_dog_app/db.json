@@ -1,22 +1,4 @@
 {
-  "users": [
-    {
-      "chormoz@sdsu.edu": {
-        "firstName": "Carlo",
-        "lastName": "Hormoz",
-        "dogName": "Ken",
-        "dogBreed": "Terrier"
-      },
-      "id": 2
-    },
-    {
-      "": {
-        "firstName": "",
-        "lastName": "",
-        "dogName": "",
-        "dogBreed": ""
-      },
-      "id": 3
-    }
-  ]
+
+  
 }

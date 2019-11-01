@@ -11,7 +11,6 @@ class CustomerFormContainer extends Component {
         // of the parent is updated, like with clear
         // and any future functions.
         const {values} = this.props;
-        values.zipCode = '432334';
         return (
             <div className='col-md-6'>
                 <Input
@@ -63,7 +62,7 @@ class CustomerFormContainer extends Component {
                     name={'zipCode'}
                     value={values.zipCode}
                     placeholder={''}
-                    onChange={this.props.handleInputChange.bind(this, 'zipCode')}
+                    handlechange={this.props.handleInputChange}
                 />
             </div>
         )
