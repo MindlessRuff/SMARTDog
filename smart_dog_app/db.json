@@ -1,4 +1,37 @@
 {
+<<<<<<< HEAD
 
   
+=======
+  "users": [
+    {
+      "email": "a@a.com",
+      "userInfo": {
+        "first": "Carlo",
+        "last": "Hormoz",
+        "address": "SDSU",
+        "city": "San Diego",
+        "state": "CA",
+        "zipCode": "92990"
+      },
+      "coords": {
+        "lat": 32.776973,
+        "lng": -117.072589
+      },
+      "id": 1
+    },
+    {
+      "email": "a@b.com",
+      "userInfo": {
+        "first": "",
+        "last": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
+      },
+      "id": 2
+    }
+  ]
+>>>>>>> 53f9bfdcf1ca3f630f134dec44b2a35502a9e582
 }
