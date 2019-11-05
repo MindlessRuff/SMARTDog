@@ -53,7 +53,7 @@ class GoogleMapsPage extends Component {
 
 	componentDidMount() {
 		let email = this.props.email;
-		axios.get(`http://localhost:3006/users?email=${email}`).then(response => {
+		axios.get(`http://localhost:3000/users?email=${email}`).then(response => {
 			this.id = response.data[0].id;
 			this.userInfo = response.data[0].userInfo;
 		})	
@@ -68,7 +68,7 @@ class GoogleMapsPage extends Component {
 
 	getData = () => {
 		let coords = this.testCoords[this.testCoordIndex];
-		axios.put(`http://localhost:3006/users/${this.id}`, {email: this.props.email, userInfo: this.userInfo, coords: coords}).then(response => {
+		axios.put(`http://localhost:3000/users/${this.id}`, {email: this.props.email, userInfo: this.userInfo, coords: coords}).then(response => {
 			this.setState({lat: coords.lat, lng: coords.lng});
 		})
 		.catch(error => {

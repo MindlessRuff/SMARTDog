@@ -27,6 +27,22 @@
         "zipCode": ""
       },
       "id": 2
+    },
+    {
+      "email": "g@g.com",
+      "userInfo": {
+        "first": "Brandon",
+        "last": "Veltre",
+        "address": "123 cool st",
+        "city": "new york",
+        "state": "FL",
+        "zipCode": "30303"
+      },
+      "coords": {
+        "lat": 32.77697,
+        "lng": -117.072198
+      },
+      "id": 3
     }
   ]
 }
