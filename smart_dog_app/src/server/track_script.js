@@ -5,13 +5,15 @@ utilizing express. In the future, there should be the capability to get the user
 to seperate the data accordingly, but for now, a single use case will suffice for prototyping purposes.
 */
 
-// Import ttn npm package
+// Import ttn package
 const ttn = require("ttn")
 // Get TTN_APPID and TTN_ACCESSKEY from .env file located in project root for extra security.
 // Found under https://console.thethingsnetwork.org/applications/<your-application>
 // Can hardcode these values here for testing if no env file is used.
 const appID = process.env.REACT_APP_TTN_APPID
 const accessKey = process.env.REACT_APP_TTN_ACCESSKEY
+
+// Set up server variables
 
 console.log("LoRa Packet Tracking Script Initiated...")
 // Pass appID and accessKey to the ttn API
