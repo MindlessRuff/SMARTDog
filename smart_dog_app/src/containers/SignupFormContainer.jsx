@@ -9,23 +9,6 @@ import axios from "axios";
 // the individual (dog, user) containers, and from there to the textboxes
 // to keep those boxes populated with this top-level state.
 class SignupFormContainer extends Component {
-<<<<<<< HEAD
-  constructor(props) {
-    super(props);
-    this.state = {
-      userInfo: {
-        first: "",
-        last: "",
-        address: "",
-        city: "",
-        state: "",
-        zipCode: ""
-      },
-      message: ""
-    };
-    let id; // Stores the database id on the initial page load -> get request.
-  }
-=======
     constructor(props) {
         super(props);
         this.state = {
@@ -58,7 +41,6 @@ class SignupFormContainer extends Component {
         });
     }
 
->>>>>>> 6aa3e664d4c64f4c02826356219efd950853a34a
 
   componentDidMount() {
     let email = this.props.email;
