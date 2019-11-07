@@ -3,13 +3,27 @@
     {
       "email": "a@a.com",
       "userInfo": {
-        "first": "Carlo",
+        "first": "Carlo is A God",
         "last": "Hormoz",
         "address": "SDSU",
         "city": "San Diego",
         "state": "CA",
-        "zipCode": "92991"
+        "zipCode": "92990"
       },
+      "coords": {
+        "lat": 32.776742,
+        "lng": -117.072631
+      },
+      "dogs": [
+      {
+        "EUI": "124",
+          "dogInfo": {
+            "dogName": "Stacy",
+            "dogBreed": "Aussie"
+          }
+      }
+
+      ],
       "id": 1
     },
     {
@@ -23,6 +37,22 @@
         "zipCode": ""
       },
       "id": 2
+    },
+    {
+      "email": "g@g.com",
+      "userInfo": {
+        "first": "Brandon",
+        "last": "Veltre",
+        "address": "123 cool st",
+        "city": "new york",
+        "state": "FL",
+        "zipCode": "30303"
+      },
+      "coords": {
+        "lat": 32.77697,
+        "lng": -117.072198
+      },
+      "id": 3
     }
   ]
 }
