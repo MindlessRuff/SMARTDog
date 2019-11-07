@@ -10,6 +10,7 @@ let port = 3000;
 // the individual (dog, user) containers, and from there to the textboxes
 // to keep those boxes populated with this top-level state.
 class SignupFormContainer extends Component {
+    port = 3000;
     constructor(props) {
         super(props);
         this.state = {
