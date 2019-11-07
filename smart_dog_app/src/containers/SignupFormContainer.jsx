@@ -24,14 +24,14 @@ class SignupFormContainer extends Component {
             message: ''
         };
         let id;     // Stores the database id on the initial page load -> get request.
-        let port = 3000;
     }   
 
     componentDidMount() {
+        let port = 3006;
         let email = this.props.email;
         // Need to use arrow functions with axios calls so that 'this' variable will
         // refer to the class component instead of axios.
-        axios.get(`http://localhost:${this.port}/users?email=${email}`).then(response => {
+        axios.get(`http://localhost:${port}/users?email=${email}`).then(response => {
             let fetchedData = response.data[0].userInfo;
             this.setState({userInfo: fetchedData, message: ''});   // [0] index since entries keyed by email are unique
             this.id = response.data[0].id;

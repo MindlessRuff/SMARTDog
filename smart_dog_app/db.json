@@ -15,14 +15,13 @@
         "lng": -117.072631
       },
       "dogs": [
-      {
-        "EUI": "124",
+        {
+          "EUI": "124",
           "dogInfo": {
             "dogName": "Stacy",
             "dogBreed": "Aussie"
           }
-      }
-
+        }
       ],
       "id": 1
     },
