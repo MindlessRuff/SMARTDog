@@ -73,11 +73,7 @@ class SignupFormContainer extends Component {
             city: '',
             state: '',
             zipCode: '',
-<<<<<<< HEAD
-            email: ''
-=======
             message: '',
->>>>>>> 53f9bfdcf1ca3f630f134dec44b2a35502a9e582
         });
     }
 
@@ -86,11 +82,7 @@ class SignupFormContainer extends Component {
         // This will keep the child component textboxes populated with
         // the parent's variables. It also will change child component
         // state anytime a parent function is called, like clear or submit.
-<<<<<<< HEAD
-        const {first, last, address, city, state, zipCode} = this.state;
-=======
         const {first, last, address, city, state, zipCode} = this.state.userInfo;
->>>>>>> 53f9bfdcf1ca3f630f134dec44b2a35502a9e582
         const userValues = {first, last, address, city, state, zipCode};
         const {user} = this.props;
         

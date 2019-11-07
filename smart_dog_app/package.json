@@ -27,11 +27,7 @@
     "ttn": "^2.3.3"
   },
   "scripts": {
-<<<<<<< HEAD
-    "start": "react-scripts -r dotenv/config start && npm run track && npm run json:server",
-=======
     "start": "concurrently \"react-scripts -r dotenv/config start\" \"npm run track\"",
->>>>>>> 53f9bfdcf1ca3f630f134dec44b2a35502a9e582
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
