@@ -10,19 +10,6 @@
         "state": "CA",
         "zipCode": "92990"
       },
-      "coords": {
-        "lat": 32.776742,
-        "lng": -117.072631
-      },
-      "dogs": [
-        {
-          "EUI": "124",
-          "dogInfo": {
-            "dogName": "Stacy",
-            "dogBreed": "Aussie"
-          }
-        }
-      ],
       "id": 1
     },
     {
@@ -52,6 +39,18 @@
         "lng": -117.072198
       },
       "id": 3
+    },
+    {
+      "email": "this@this.com",
+      "userInfo": {
+        "first": "kevin",
+        "last": "sprigg",
+        "address": "something",
+        "city": "or",
+        "state": "other",
+        "zipCode": "123456"
+      },
+      "id": 4
     }
   ]
 }
