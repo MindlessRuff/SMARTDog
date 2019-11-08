@@ -28,7 +28,7 @@ class SignupFormContainer extends Component {
     }   
 
     componentDidMount() {
-        let email = this.props.user.email;
+        let email = this.props.email;
         // Need to use arrow functions with axios calls so that 'this' variable will
         // refer to the class component instead of axios.
         axios.get(`http://localhost:${port}/users?email=${email}`).then(response => {
@@ -38,7 +38,7 @@ class SignupFormContainer extends Component {
             console.log(this.state);
         })
         .catch(error => {
-            axios.post(`http://localhost:${port}/users`,{email: this.props.user.email, userInfo: this.state.userInfo, message: ''});
+            axios.post(`http://localhost:${port}/users`,{email: this.props.email, userInfo: this.state.userInfo, message: ''});
             axios.get(`http://localhost:${port}/users?email=${email}`).then(response => {
                 let fetchedData = response.data[0].userInfo;
                 this.setState({userInfo: fetchedData, message: ''});   // [0] index since entries keyed by email are unique
@@ -61,7 +61,7 @@ class SignupFormContainer extends Component {
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        let email = this.props.user.email;
+        let email = this.props.email;
         let userInfo = this.state.userInfo;
         this.setState({message: 'Processing...'});
         console.log(this.state.message);
