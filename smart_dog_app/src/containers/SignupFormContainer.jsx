@@ -87,6 +87,7 @@ class SignupFormContainer extends Component {
     }
 
     render() {
+        console.log('SignupContainer render');
         // Destructure state into variables to pass into child components.
         // This will keep the child component textboxes populated with
         // the parent's variables. It also will change child component
@@ -103,12 +104,13 @@ class SignupFormContainer extends Component {
                         handleInputChange={this.handleInputChange}
                         values={userValues}
                     />
-                    <div>
-                    <Button action={this.handleFormSubmit}
-                        type={'btn btn-primary btn-block'}
+                </div>
+                <div className='container'>
+                    <Button
+                        action={this.handleFormSubmit}
+                        type={'btn btn-primary'}
                         title={'Update'}
-                    />
-                    </div>
+                    /> 
                 </div>
                 <div className="result">{this.state.message}</div>
             </form>

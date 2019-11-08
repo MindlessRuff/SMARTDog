@@ -5,14 +5,10 @@
       "userInfo": {
         "first": "Carlo is A God",
         "last": "Hormoz",
-        "address": "SDSU",
+        "address": "1556 E Main Street",
         "city": "San Diego",
         "state": "CA",
-        "zipCode": "92990"
-      },
-      "coords": {
-        "lat": 32.776742,
-        "lng": -117.072631
+        "zipCode": "92019"
       },
       "id": 1
     },
