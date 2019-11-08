@@ -38,7 +38,7 @@ class SignupFormContainer extends Component {
             console.log(this.state);
         })
         .catch(error => {
-            axios.post(`http://localhost:${port}/users`,{email: this.props.email, userInfo: this.state.userInfo, message: ''});
+            axios.post(`http://localhost:${port}/users`,{email: this.props.email, userInfo: this.state.userInfo});
             axios.get(`http://localhost:${port}/users?email=${email}`).then(response => {
                 let fetchedData = response.data[0].userInfo;
                 this.setState({userInfo: fetchedData, message: ''});   // [0] index since entries keyed by email are unique

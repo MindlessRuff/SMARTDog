@@ -39,6 +39,18 @@
         "lng": -117.072198
       },
       "id": 3
+    },
+    {
+      "email": "this@this.com",
+      "userInfo": {
+        "first": "",
+        "last": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
+      },
+      "id": 4
     }
   ]
 }
