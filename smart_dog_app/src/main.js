@@ -15,8 +15,8 @@ const Main = (props) => {
       <Route exact path="/" component={LandingPage} />
       <Route path="/about" component={About} />
       <Route path="/works" component={Works} />
-      <PrivateRoute path="/track" component={Track} />
-      <PrivateRoute path="/profile" render={(props) => <ProfilePage {...{user}} />} />
+      <PrivateRoute path="/track" render={(props) => <Track {...{user}}/>} />
+      <PrivateRoute path="/profile" render={(props) => <ProfilePage {...{user}}/>} />
     </Switch>
   );
 };
