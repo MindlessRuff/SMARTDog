@@ -1,99 +1,125 @@
 import React, { Component } from "react";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import { InfoWindow, Circle, Map, Marker, GoogleApiWrapper} from "google-maps-react";
 import axios from "axios";
+import geocode from "react-geocode";
+
+// For the circle coordinates
+let addressLat = 0.0;
+let addressLng = 0.0;
+// TODO: Get rid of this for database dog name
+const dogName = 'Kevin'
 
 const mapStyles = {
 	width: "90%",
 	height: "90%"
 };
 
-class GoogleMapsPage extends Component {
-	state = {
-		lat: 32.77697,
-	 	lng: -117.072198
+export class GoogleMapsPage extends Component {
+	constructor(props) {
+		super(props);
+		
+		this.state = {
+			lat: 0,
+			lng: 0,
+			showInfoWindow: false,
+			infoMarker: {}
+		}
+		
+		// TODO: Change this to only get address.
+		let userInfo = {
+			first: '',
+			last: '',
+			address: '',
+			city: '',
+			state: '',
+			zipCode: '',
+		}
+		
+		let email = this.props.email;
+	
+		axios.get(`http://localhost:3006/users?email=${email}`).then(response => {
+			userInfo = response.data[0].userInfo;
+			// Using .then to synchronize response, this is only called once
+			// when component is constructed to get the lat and lng from address for the circle.
+			geocode.fromAddress([userInfo.address]).then(response => {
+				const {lat, lng} = response.results[0].geometry.location;
+				addressLat = lat;
+				addressLng = lng;
+				// TODO: Change this setState to lat and lng from the database file
+				// once server is set up. addressLat and lng are only for the circle.
+				this.setState({lat: addressLat, lng: addressLng})
+			})	
+		})
+		this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
+		this.onMouseoutMarker = this.onMouseoutMarker.bind(this);
 	}
-
-
-	// id and userInfo are only updated once, for the put requests
-	// on the interval to avoid wiping user data when updating coords.
-	id;
-	userInfo = {
-		first: '',
-		last: '',
-		address: '',
-		city: '',
-		state: '',
-		zipCode: '',
-	}
-
-	testCoordIndex = 0;
-	testCoords = [
-		{
-			lat: 32.776973,
-			lng: -117.072589
-		},
-		{
-			lat: 32.776742,
-			lng: -117.072631
-		},
-		{
-			lat: 32.776742,
-			lng: -117.072237
-		},
-		{
-			lat: 32.776891,
-			lng: -117.072122
-		},
-		{
-			lat: 32.77697,
-			lng: -117.072198
-		},
-	];
-	interval = 0;
 
 	componentDidMount() {
-		let email = this.props.email;
-		axios.get(`http://localhost:3006/users?email=${email}`).then(response => {
-			this.id = response.data[0].id;
-			this.userInfo = response.data[0].userInfo;
-		})	
-		this.setState({  lat: 32.77697, lng: -117.072198 });
 		this.interval = setInterval(this.getData, 8000);
-		this.getData();
+		// Call getData explicitly to render the map correctly
+		// on its first mount. Otherwise center will be wrong.
 	}
 
 	componentWillUnmount() {
 		clearInterval(this.interval);
 	}
 
+	// TODO: Set this to make a get request from database.
 	getData = () => {
-		let coords = this.testCoords[this.testCoordIndex];
-		axios.put(`http://localhost:3006/users/${this.id}`, {email: this.props.email, userInfo: this.userInfo, coords: coords}).then(response => {
-			this.setState({lat: coords.lat, lng: coords.lng});
-		})
-		.catch(error => {
-			console.log(error);
-		});
-		this.testCoordIndex++;
-		if (this.testCoordIndex === 5) this.testCoordIndex = 0;
+		// 	this.setState({lat: coords.lat, lng: coords.lng});
+		// })
+		// .catch(error => {
+		// 	console.log('getData error', error);
+		// });
 	}
 
+	// Render an info window for the circle
+	onMouseoverMarker (props, marker, event) {
+		if (this.state.showInfoWindow === false) {
+			this.setState({showInfoWindow: true, infoMarker: marker});
+		}
+	}
+
+	onMouseoutMarker () {
+		if (this.state.showInfoWindow === true) {
+			this.setState({showInfoWindow: false});
+		}
+	}
+	
+
+	// TODO: Un-hardcode dog marker name and geocode coords into address.
 	render() {
-		const {lat, lng} = this.state;
-		console.log('Current latitude, longitude', lat, lng);
+		console.log('Map Render');
+		const {lat, lng, showInfoWindow, infoMarker} = this.state;
 		return (
 			<Map
 				google={this.props.google}
-				zoom={15}
+				zoom={16}
 				style={mapStyles}
-				initialCenter={{ lat: 32.77697, lng: -117.072198 }}
-			>
-			<Marker position={{ lat: lat, lng: lng  }} />
+				center={{ lat: lat, lng: lng }}>
+				<Marker 
+					position={{ lat: this.state.lat, lng: this.state.lng  }}
+					name={'Dog1'}
+					onMouseover={this.onMouseoverMarker}
+					onMouseout={this.onMouseoutMarker}>
+				</Marker>
+				<Circle
+					center={{lat: addressLat, lng: addressLng}}
+					radius={50}
+					fillColor='red'>
+				</Circle>
+				<InfoWindow
+					marker={infoMarker}
+					visible={showInfoWindow}>
+					<h4>{dogName}</h4>
+				</InfoWindow>
 			</Map>
 		);
 	}
 }
 
+
+geocode.setApiKey("AIzaSyCq5ETSwUuhklrRh3hbvXo5auyCt3C4WKk");
 export default GoogleApiWrapper({
 	apiKey: "AIzaSyCq5ETSwUuhklrRh3hbvXo5auyCt3C4WKk"
 })(GoogleMapsPage);

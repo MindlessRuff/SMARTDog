@@ -5,14 +5,10 @@
       "userInfo": {
         "first": "Carlo",
         "last": "Hormoz",
-        "address": "SDSU",
+        "address": "1556 E Main Street",
         "city": "San Diego",
         "state": "CA",
-        "zipCode": "92990"
-      },
-      "coords": {
-        "lat": 32.776973,
-        "lng": -117.072589
+        "zipCode": "92019"
       },
       "id": 1
     },
