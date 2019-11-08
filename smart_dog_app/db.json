@@ -5,24 +5,11 @@
       "userInfo": {
         "first": "Carlo is A God",
         "last": "Hormoz",
-        "address": "SDSU",
-        "city": "San Diego",
-        "state": "CA",
-        "zipCode": "92990"
+        "address": "31 Congress St",
+        "city": "Belfast",
+        "state": "ME",
+        "zipCode": "04915"
       },
-      "coords": {
-        "lat": 32.776742,
-        "lng": -117.072631
-      },
-      "dogs": [
-        {
-          "EUI": "124",
-          "dogInfo": {
-            "dogName": "Stacy",
-            "dogBreed": "Aussie"
-          }
-        }
-      ],
       "id": 1
     },
     {
@@ -48,10 +35,22 @@
         "zipCode": "30303"
       },
       "coords": {
-        "lat": 32.776742,
-        "lng": -117.072631
+        "lat": 32.77697,
+        "lng": -117.072198
       },
       "id": 3
+    },
+    {
+      "email": "this@this.com",
+      "userInfo": {
+        "first": "",
+        "last": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
+      },
+      "id": 4
     }
   ]
 }
