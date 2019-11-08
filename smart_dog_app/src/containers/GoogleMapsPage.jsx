@@ -8,6 +8,7 @@ const mapStyles = {
 };
 
 class GoogleMapsPage extends Component {
+	port = 3000;
 	state = {
 		lat: 32.77697,
 	 	lng: -117.072198
@@ -53,7 +54,7 @@ class GoogleMapsPage extends Component {
 
 	componentDidMount() {
 		let email = this.props.email;
-		axios.get(`http://localhost:3000/users?email=${email}`).then(response => {
+		axios.get(`http://localhost:${this.port}/users?email=${email}`).then(response => {
 			this.id = response.data[0].id;
 			this.userInfo = response.data[0].userInfo;
 		})	
@@ -68,7 +69,7 @@ class GoogleMapsPage extends Component {
 
 	getData = () => {
 		let coords = this.testCoords[this.testCoordIndex];
-		axios.put(`http://localhost:3000/users/${this.id}`, {email: this.props.email, userInfo: this.userInfo, coords: coords}).then(response => {
+		axios.put(`http://localhost:${this.port}/users/${this.id}`, {email: this.props.email, userInfo: this.userInfo, coords: coords}).then(response => {
 			this.setState({lat: coords.lat, lng: coords.lng});
 		})
 		.catch(error => {

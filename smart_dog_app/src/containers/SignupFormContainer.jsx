@@ -9,22 +9,37 @@ import axios from "axios";
 // the individual (dog, user) containers, and from there to the textboxes
 // to keep those boxes populated with this top-level state.
 class SignupFormContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userInfo: {
-        first: "",
-        last: "",
-        address: "",
-        city: "",
-        state: "",
-        zipCode: ""
-      },
-      message: ""
-    };
-    let id; // Stores the database id on the initial page load -> get request.
-    let port = 3000;
-  }
+    port = 3000;
+    constructor(props) {
+        super(props);
+        this.state = {
+            userInfo: {
+                first: '',
+                last: '',
+                address: '',
+                city: '',
+                state: '',
+                zipCode: '',
+            },
+            message: ''
+        };
+        let id;     // Stores the database id on the initial page load -> get request.
+    }   
+
+    componentDidMount() {
+        let email = this.props.email;
+        // Need to use arrow functions with axios calls so that 'this' variable will
+        // refer to the class component instead of axios.
+        axios.get(`http://localhost:${this.port}/users?email=${email}`).then(response => {
+            let fetchedData = response.data[0].userInfo;
+            this.setState({userInfo: fetchedData, message: ''});   // [0] index since entries keyed by email are unique
+            this.id = response.data[0].id;
+            console.log(this.state);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
 
   componentDidMount() {
     let email = this.props.email;
