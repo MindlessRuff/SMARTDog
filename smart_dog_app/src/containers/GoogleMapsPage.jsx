@@ -8,6 +8,7 @@ let addressLat = 0.0;
 let addressLng = 0.0;
 // TODO: Get rid of this for database dog name
 const dogName = 'Kevin'
+let port = process.env.PORT || 3000
 
 const mapStyles = {
 	width: "90%",
@@ -37,7 +38,7 @@ export class GoogleMapsPage extends Component {
 		
 		let email = this.props.email;
 	
-		axios.get(`http://localhost:3006/users?email=${email}`).then(response => {
+		axios.get(`http://localhost:${port}/users?email=${email}`).then(response => {
 			userInfo = response.data[0].userInfo;
 			// Using .then to synchronize response, this is only called once
 			// when component is constructed to get the lat and lng from address for the circle.
