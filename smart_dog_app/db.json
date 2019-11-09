@@ -6,7 +6,7 @@
         "first": "Carlo",
         "last": "Hormoz",
         "address": "2051 Pierce Ct",
-        "city": "San Diego",
+        "city": "El cajon",
         "state": "CA",
         "zipCode": "92109"
       },
@@ -23,6 +23,34 @@
         "zipCode": ""
       },
       "id": 2
+    },
+    {
+      "email": "g@g.com",
+      "userInfo": {
+        "first": "Brandon",
+        "last": "Veltre",
+        "address": "123 cool st",
+        "city": "new york",
+        "state": "FL",
+        "zipCode": "30303"
+      },
+      "coords": {
+        "lat": 32.77697,
+        "lng": -117.072198
+      },
+      "id": 3
+    },
+    {
+      "email": "this@this.com",
+      "userInfo": {
+        "first": "",
+        "last": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
+      },
+      "id": 4
     }
   ]
 }

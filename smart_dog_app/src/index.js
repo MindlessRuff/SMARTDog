@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import './index.css';
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
-import * as serviceWorker from "./serviceWorker";
+// import * as serviceWorker from "./serviceWorker";
 import { Auth0Provider } from "./auth0-wrapper";
 import App from "./App";
 
@@ -31,4 +31,4 @@ ReactDOM.render(
 	document.getElementById("root")
 );
 
-serviceWorker.unregister();
+//serviceWorker.unregister();

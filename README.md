@@ -25,6 +25,10 @@ Add the master branch so you can pull the team's latest changes:
 ```
 git remote add upstream https://github.com/bveltre/SMARTDog.git
 ```
+Fetch the branches:
+```
+git fetch upstream
+```
 
 ### Workflow steps
 Here is a detailed breakdown of an example developer workflow. I will list the terminal commands here, however you can also use the VSCode UI to perform these actions as well.

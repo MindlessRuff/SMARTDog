@@ -2,6 +2,8 @@
   "name": "smart_dog_app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3006",
+  "homepage": ".",
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.4.0",
     "auth0-js": "^9.11.3",
@@ -28,11 +30,11 @@
     "ttn": "^2.3.3"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts -r dotenv/config start\" \"npm run track\"",
+    "start": "concurrently --kill-others \"react-scripts -r dotenv/config start\" \"npm run track\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "track": "nodemon ./src/server/server.js",
+    "track": "nodemon --watch ./src/server --inspect ./src/server/server.js",
     "json:server": "json-server --watch db.json"
   },
   "eslintConfig": {
