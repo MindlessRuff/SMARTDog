@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import Button from "../components/Button";
 import CustomerFormContainer from "./CustomerFormContainer";
 import axios from "axios";
 
+=======
+import React, {Component} from 'react';
+import Button from '../components/Button';
+import CustomerFormContainer from './CustomerFormContainer';
+import axios from 'axios';
+
+let port = 3000;
+>>>>>>> ecf6b60aa753a03e79e252400b16c29cced7e503
 // This Signup form container is the top-level component
 // of the signup page. It holds all the state (variables)
 // and passes the variables down to its children components,
@@ -30,14 +39,22 @@ class SignupFormContainer extends Component {
         let email = this.props.email;
         // Need to use arrow functions with axios calls so that 'this' variable will
         // refer to the class component instead of axios.
-        axios.get(`http://localhost:${this.port}/users?email=${email}`).then(response => {
+        axios.get(`http://localhost:${port}/users?email=${email}`).then(response => {
             let fetchedData = response.data[0].userInfo;
             this.setState({userInfo: fetchedData, message: ''});   // [0] index since entries keyed by email are unique
             this.id = response.data[0].id;
             console.log(this.state);
         })
         .catch(error => {
-            console.log(error);
+            axios.post(`http://localhost:${port}/users`,{email: this.props.email, userInfo: this.state.userInfo});
+            axios.get(`http://localhost:${port}/users?email=${email}`).then(response => {
+                let fetchedData = response.data[0].userInfo;
+                this.setState({userInfo: fetchedData, message: ''});   // [0] index since entries keyed by email are unique
+                this.id = response.data[0].id;
+            })
+            .catch(error => {
+                console.log(error);
+            });
         });
     }
 
@@ -88,6 +105,7 @@ class SignupFormContainer extends Component {
     });
   };
 
+<<<<<<< HEAD
   handleFormSubmit = event => {
     event.preventDefault();
     let email = this.props.email;
@@ -105,6 +123,21 @@ class SignupFormContainer extends Component {
       });
     this.setState({ message: "Profile Updated" });
   };
+=======
+    handleFormSubmit = (event) => {
+        event.preventDefault();
+        let email = this.props.email;
+        let userInfo = this.state.userInfo;
+        this.setState({message: 'Processing...'});
+        console.log(this.state.message);
+        // Insert the id of the current user into the put request, can't do it with email key.
+        axios.put(`http://localhost:${port}/users/${this.id}`, {email: email, userInfo: userInfo})
+        .catch(error => {
+            console.log(error);
+        });
+        this.setState({message: 'Profile Updated'});
+    }
+>>>>>>> ecf6b60aa753a03e79e252400b16c29cced7e503
 
   handleFormClear = event => {
     event.preventDefault();
@@ -119,6 +152,7 @@ class SignupFormContainer extends Component {
     });
   };
 
+<<<<<<< HEAD
   render() {
     // Destructure state into variables to pass into child components.
     // This will keep the child component textboxes populated with
@@ -146,6 +180,38 @@ class SignupFormContainer extends Component {
       </form>
     );
   }
+=======
+    render() {
+        console.log('SignupContainer render');
+        // Destructure state into variables to pass into child components.
+        // This will keep the child component textboxes populated with
+        // the parent's variables. It also will change child component
+        // state anytime a parent function is called, like clear or submit.
+        const {first, last, address, city, state, zipCode} = this.state.userInfo;
+        const userValues = {first, last, address, city, state, zipCode};
+        const {user} = this.props;
+        
+        return (
+            <form className='container-fluid'
+            onSubmit={this.handleFormSubmit}>
+                <div className='container'>
+                    <CustomerFormContainer 
+                        handleInputChange={this.handleInputChange}
+                        values={userValues}
+                    />
+                </div>
+                <div className='container'>
+                    <Button
+                        action={this.handleFormSubmit}
+                        type={'btn btn-primary'}
+                        title={'Update'}
+                    /> 
+                </div>
+                <div className="result">{this.state.message}</div>
+            </form>
+        )
+    }
+>>>>>>> ecf6b60aa753a03e79e252400b16c29cced7e503
 }
 
 export default SignupFormContainer;

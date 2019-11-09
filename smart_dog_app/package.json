@@ -19,13 +19,18 @@
     "eslint": "^6.6.0",
     "eslint-plugin-react-hooks": "^2.2.0",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "font-awesome": "^4.7.0",
     "google-maps-react": "^2.0.2",
+=======
+    "google-maps-react": "github:fullstackreact/google-maps-react#master",
+>>>>>>> ecf6b60aa753a03e79e252400b16c29cced7e503
     "json-server": "^0.15.1",
     "nodemon": "^1.19.4",
     "package.json": "^2.0.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-geocode": "^0.2.1",
     "react-mdl": "^1.11.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
