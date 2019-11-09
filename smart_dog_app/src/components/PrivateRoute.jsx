@@ -21,7 +21,8 @@ const PrivateRoute = ({ component: Component, path }) => {
       <div>Loading...</div>
     )
   }
-
+  
+  //Creates a new data entry into the database if it doesn't exist
   axios.get(`http://localhost:${process.env.REACT_APP_PORT}/users?email=${user.email}`)
   .catch(error => {
       axios.post(`http://localhost:${process.env.REACT_APP_PORT}/users`,{email: user.email, userInfo: userInfo});
