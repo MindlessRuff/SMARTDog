@@ -3,24 +3,26 @@ import { InfoWindow, Circle, Map, Marker, GoogleApiWrapper} from "google-maps-re
 import axios from "axios";
 import geocode from "react-geocode";
 
+
 // For the circle coordinates
 let addressLat = 0.0;
 let addressLng = 0.0;
+
 // TODO: Get rid of this for database dog name
-const dogName = 'Kevin'
+const dogName = 'Brandon';
 
 const mapStyles = {
 	width: "90%",
 	height: "90%"
 };
-
+	
 export class GoogleMapsPage extends Component {
 	constructor(props) {
 		super(props);
-		
 		this.state = {
 			lat: 0,
 			lng: 0,
+			currentDogAddress: '',
 			showInfoWindow: false,
 			infoMarker: {}
 		}
@@ -41,13 +43,14 @@ export class GoogleMapsPage extends Component {
 			userInfo = response.data[0].userInfo;
 			// Using .then to synchronize response, this is only called once
 			// when component is constructed to get the lat and lng from address for the circle.
-			geocode.fromAddress([userInfo.address]).then(response => {
+			geocode.fromAddress([userInfo.address] + [userInfo.zipCode]).then(response => {
+				console.log([userInfo.address] + ' ' + [userInfo.zipCode]);
 				const {lat, lng} = response.results[0].geometry.location;
 				addressLat = lat;
 				addressLng = lng;
 				// TODO: Change this setState to lat and lng from the database file
 				// once server is set up. addressLat and lng are only for the circle.
-				this.setState({lat: addressLat, lng: addressLng})
+				this.setState({lat: addressLat, lng: addressLng});
 			})	
 		})
 		this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
@@ -76,7 +79,15 @@ export class GoogleMapsPage extends Component {
 	// Render an info window for the circle
 	onMouseoverMarker (props, marker, event) {
 		if (this.state.showInfoWindow === false) {
-			this.setState({showInfoWindow: true, infoMarker: marker});
+			if (this.state.lat && this.state.lng) {
+				geocode.fromLatLng(this.state.lat, this.state.lng).then(response => {
+					let currentDogAddress = response.results[0].formatted_address;
+					this.setState({showInfoWindow: true, infoMarker: marker, currentDogAddress: currentDogAddress});
+				})
+				.catch(error => {
+					console.log('Geocode fromLatLng error', error);
+				});
+			}
 		}
 	}
 
@@ -90,7 +101,8 @@ export class GoogleMapsPage extends Component {
 	// TODO: Un-hardcode dog marker name and geocode coords into address.
 	render() {
 		console.log('Map Render');
-		const {lat, lng, showInfoWindow, infoMarker} = this.state;
+		const { lat, lng, showInfoWindow, infoMarker, currentDogAddress } = this.state;
+
 		return (
 			<Map
 				google={this.props.google}
@@ -98,7 +110,7 @@ export class GoogleMapsPage extends Component {
 				style={mapStyles}
 				center={{ lat: lat, lng: lng }}>
 				<Marker 
-					position={{ lat: this.state.lat, lng: this.state.lng  }}
+					position={{ lat: lat, lng: lng }}
 					name={'Dog1'}
 					onMouseover={this.onMouseoverMarker}
 					onMouseout={this.onMouseoutMarker}>
@@ -111,13 +123,12 @@ export class GoogleMapsPage extends Component {
 				<InfoWindow
 					marker={infoMarker}
 					visible={showInfoWindow}>
-					<h4>{dogName}</h4>
+						<h5>{dogName}<br/>{currentDogAddress}</h5>
 				</InfoWindow>
 			</Map>
 		);
 	}
 }
-
 
 geocode.setApiKey("AIzaSyCq5ETSwUuhklrRh3hbvXo5auyCt3C4WKk");
 export default GoogleApiWrapper({
