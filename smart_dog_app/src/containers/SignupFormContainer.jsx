@@ -105,25 +105,6 @@ class SignupFormContainer extends Component {
     });
   };
 
-<<<<<<< HEAD
-  handleFormSubmit = event => {
-    event.preventDefault();
-    let email = this.props.email;
-    let userInfo = this.state.userInfo;
-    this.setState({ message: "Processing..." });
-    console.log(this.state.message);
-    // Insert the id of the current user into the put request, can't do it with email key.
-    axios
-      .put(`http://localhost:${this.port}/users/${this.id}`, {
-        email: email,
-        userInfo: userInfo
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    this.setState({ message: "Profile Updated" });
-  };
-=======
     handleFormSubmit = (event) => {
         event.preventDefault();
         let email = this.props.email;
@@ -137,7 +118,6 @@ class SignupFormContainer extends Component {
         });
         this.setState({message: 'Profile Updated'});
     }
->>>>>>> ecf6b60aa753a03e79e252400b16c29cced7e503
 
   handleFormClear = event => {
     event.preventDefault();
