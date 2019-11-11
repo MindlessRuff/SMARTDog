@@ -35,9 +35,10 @@ const PrivateRoute = ({ component: Component, path }) => {
 
   /*
    * Checks the database to see if user exists. If they do not then it creates an entry
-   * with the users email. This can only be done if their is a user that is already logged
-   * in. If the user is not logged in otherwise there is no user that exists and so this can 
-   * not be checked.
+   * with the users email. This can only be done if there is a user that is already logged
+   * in. If the user is not logged in there is no user that exists and so this can 
+   * not be checked. Put it in privateroute because both profile and track need to get
+   * data from the data base.
   */
   if(isAuthenticated){
       axios.get(`http://localhost:${process.env.REACT_APP_PORT}/users?email=${user.email}`)
