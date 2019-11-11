@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { InfoWindow, Circle, Map, Marker, GoogleApiWrapper} from "google-maps-react";
 import axios from "axios";
 import geocode from "react-geocode";
+import {Switch, Redirect, Route} from 'react-router-dom';
 
 
 // For the circle coordinates
@@ -25,7 +26,9 @@ export class GoogleMapsPage extends Component {
 			lng: 0,
 			currentDogAddress: '',
 			showInfoWindow: false,
-			infoMarker: {}
+			infoMarker: {},
+			addressError: false,
+			redirect: false
 		}
 		
 		// TODO: Change this to only get address.
@@ -54,19 +57,34 @@ export class GoogleMapsPage extends Component {
 				// once server is set up. addressLat and lng are only for the circle.
 				this.setState({lat: addressLat, lng: addressLng});
 			})	
+			.catch(error => {
+				/**
+				 * This will let the program know that the address is not properly configured and
+				 * so can not render the map with location properly. I will then use this boolean
+				 * in the render function to redirect the user back to the profile page
+				 */
+				this.setState({addressError: true});
+			});
 		})
 		this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
 		this.onMouseoutMarker = this.onMouseoutMarker.bind(this);
 	}
 
 	componentDidMount() {
-		this.interval = setInterval(this.getData, 8000);
 		// Call getData explicitly to render the map correctly
 		// on its first mount. Otherwise center will be wrong.
+		this.interval = setInterval(this.getData, 8000);
+		/**
+		 * This will allow the current page to be displayed so that I 
+		 * can tell the user what needs to be done before they are 
+		 * redirected to the page. 
+		 */
+		this.id = setTimeout(() => this.setState({ redirect: true }), 2500)
 	}
 
 	componentWillUnmount() {
 		clearInterval(this.interval);
+		clearTimeout(this.id);
 	}
 
 	// TODO: Set this to make a get request from database.
@@ -102,6 +120,17 @@ export class GoogleMapsPage extends Component {
 
 	// TODO: Un-hardcode dog marker name and geocode coords into address.
 	render() {
+		/**
+		 * This do the redirecting and display a message to let the user
+		 * know what they need to do before it gets redirected
+		 */
+		if(this.state.addressError === true)
+		{
+			return(
+				this.state.redirect ? <Redirect to="/profile" /> : <div>PLEASE UPDATE ADDRESS</div>
+			);
+		}
+
 		console.log('Map Render');
 		const { lat, lng, showInfoWindow, infoMarker, currentDogAddress } = this.state;
 

@@ -4,7 +4,8 @@ import Button from "./Button"
 
 const Login = () => {
     const { loading, isAuthenticated, loginWithRedirect, logout } = useAuth0();
-    if (loading) return <div>Loading...</div>   // Still weird functionality, but better than the button switching from login to logout on load.
+    // Prevent the state of the Login Button from changing while loading.
+    if (loading) return <div>Loading...</div>
     else if (!isAuthenticated) {
         return (
             <div>

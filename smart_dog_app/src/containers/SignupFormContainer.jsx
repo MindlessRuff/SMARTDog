@@ -24,7 +24,7 @@ class SignupFormContainer extends Component {
             },
             message: ''
         };
-        let id;     // Stores the database id on the initial page load -> get request.
+        let id;
     }   
 
     componentDidMount() {
@@ -38,15 +38,7 @@ class SignupFormContainer extends Component {
             console.log(this.state);
         })
         .catch(error => {
-            axios.post(`http://localhost:${port}/users`,{email: this.props.email, userInfo: this.state.userInfo});
-            axios.get(`http://localhost:${port}/users?email=${email}`).then(response => {
-                let fetchedData = response.data[0].userInfo;
-                this.setState({userInfo: fetchedData, message: ''});   // [0] index since entries keyed by email are unique
-                this.id = response.data[0].id;
-            })
-            .catch(error => {
-                console.log(error);
-            });
+           console.log(error);
         });
     }
 
@@ -64,13 +56,17 @@ class SignupFormContainer extends Component {
         let email = this.props.email;
         let userInfo = this.state.userInfo;
         this.setState({message: 'Processing...'});
-        console.log(this.state.message);
         // Insert the id of the current user into the put request, can't do it with email key.
         axios.put(`http://localhost:${port}/users/${this.id}`, {email: email, userInfo: userInfo})
         .catch(error => {
             console.log(error);
         });
-        this.setState({message: 'Profile Updated'});
+        //tells the user to finish updating their address
+        if(this.state.userInfo.address === '' || this.state.userInfo.state === '' || this.state.userInfo.city === '' || 
+            this.state.userInfo.zipCode === '')
+            this.setState({message: "PLEASE UPDATE ADDRESS"});
+        else
+            this.setState({message: 'Profile Updated'});
     }
 
     handleFormClear = (event) => {
@@ -86,8 +82,9 @@ class SignupFormContainer extends Component {
         });
     }
 
+
     render() {
-        console.log('SignupContainer render');
+        console.log(this);
         // Destructure state into variables to pass into child components.
         // This will keep the child component textboxes populated with
         // the parent's variables. It also will change child component
@@ -112,7 +109,7 @@ class SignupFormContainer extends Component {
                         title={'Update'}
                     /> 
                 </div>
-                <div className="result">{this.state.message}</div>
+                <div className>{this.state.message}</div>
             </form>
         )
     }
