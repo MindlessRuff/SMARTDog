@@ -47,8 +47,9 @@ export class GoogleMapsPage extends Component {
 			userInfo = response.data[0].userInfo;
 			// Using .then to synchronize response, this is only called once
 			// when component is constructed to get the lat and lng from address for the circle.
-			geocode.fromAddress([userInfo.address] + [userInfo.zipCode]).then(response => {
-				console.log([userInfo.address] + ' ' + [userInfo.zipCode]);
+			console.log(userInfo);
+			geocode.fromAddress(userInfo.address + ' ' + userInfo.zipCode).then(response => {
+				console.log('address and zip', userInfo.address + ' ' + userInfo.zipCode);
 				const {lat, lng} = response.results[0].geometry.location;
 				addressLat = lat;
 				addressLng = lng;
