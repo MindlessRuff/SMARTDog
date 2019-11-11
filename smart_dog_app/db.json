@@ -3,12 +3,12 @@
     {
       "email": "this@this.com",
       "userInfo": {
-        "first": "",
-        "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
+        "first": "Carlo",
+        "last": "Hormoz",
+        "address": "2051 Pierce Ct",
+        "city": "El cajon",
+        "state": "CA",
+        "zipCode": "92109"
       },
       "id": 1
     },
