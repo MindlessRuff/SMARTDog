@@ -61,7 +61,12 @@ class SignupFormContainer extends Component {
         .catch(error => {
             console.log(error);
         });
-        this.setState({message: 'Profile Updated'});
+        //tells the user to finish updating their address
+        if(this.state.userInfo.address === '' || this.state.userInfo.state === '' || this.state.userInfo.city === '' || 
+            this.state.userInfo.zipCode === '')
+            this.setState({message: "PLEASE UPDATE ADDRESS"});
+        else
+            this.setState({message: 'Profile Updated'});
     }
 
     handleFormClear = (event) => {
@@ -76,6 +81,7 @@ class SignupFormContainer extends Component {
             message: '',
         });
     }
+
 
     render() {
         console.log(this);
@@ -103,7 +109,7 @@ class SignupFormContainer extends Component {
                         title={'Update'}
                     /> 
                 </div>
-                <div className="result">{this.state.message}</div>
+                <div className>{this.state.message}</div>
             </form>
         )
     }
