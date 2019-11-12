@@ -119,7 +119,7 @@ class SignupFormContainer extends Component {
         //tells the user to finish updating their address
         if(this.state.userInfo.address === '' || this.state.userInfo.state === '' || this.state.userInfo.city === '' || 
             this.state.userInfo.zipCode === '')
-            this.setState({message: "PLEASE UPDATE ADDRESS"});
+            this.setState({message: "PLEASE UPDATE ADDRESS :("});
         else
             this.setState({message: 'Profile Updated'});
     }
@@ -149,14 +149,12 @@ class SignupFormContainer extends Component {
 
 
     render() {
-        console.log(this);
         // Destructure state into variables to pass into child components.
         // This will keep the child component textboxes populated with
         // the parent's variables. It also will change child component
         // state anytime a parent function is called, like clear or submit.
         const {first, last, address, city, state, zipCode} = this.state.userInfo;
         const userValues = {first, last, address, city, state, zipCode};
-        const {user} = this.props;
         
         return (
             <form className='container-fluid'
@@ -174,7 +172,7 @@ class SignupFormContainer extends Component {
                         title={'Update'}
                     /> 
                 </div>
-                <div className>{this.state.message}</div>
+                <div className = 'result'>{this.state.message}</div>
             </form>
         )
     }
