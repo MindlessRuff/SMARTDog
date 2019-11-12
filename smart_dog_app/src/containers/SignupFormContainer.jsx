@@ -1,116 +1,194 @@
-import React, {Component} from 'react';
-import Button from '../components/Button';
-import CustomerFormContainer from './CustomerFormContainer';
-import axios from 'axios';
+import React, { Component } from "react";
+import {
+  InfoWindow,
+  Circle,
+  Map,
+  Marker,
+  GoogleApiWrapper
+} from "google-maps-react";
+import axios from "axios";
+import geocode from "react-geocode";
+import { Switch, Redirect, Route } from "react-router-dom";
 
-let port = 3000;
-// This Signup form container is the top-level component
-// of the signup page. It holds all the state (variables)
-// and passes the variables down to its children components,
-// the individual (dog, user) containers, and from there to the textboxes
-// to keep those boxes populated with this top-level state.
-class SignupFormContainer extends Component {
-    port = 3000;
-    constructor(props) {
-        super(props);
-        this.state = {
-            userInfo: {
-                first: '',
-                last: '',
-                address: '',
-                city: '',
-                state: '',
-                zipCode: '',
-            },
-            message: ''
-        };
-        let id;
-    }   
+// For the circle coordinates
+let addressLat = 0.0;
+let addressLng = 0.0;
 
-    componentDidMount() {
-        let email = this.props.email;
-        // Need to use arrow functions with axios calls so that 'this' variable will
-        // refer to the class component instead of axios.
-        axios.get(`http://localhost:${port}/users?email=${email}`).then(response => {
-            let fetchedData = response.data[0].userInfo;
-            this.setState({userInfo: fetchedData, message: ''});   // [0] index since entries keyed by email are unique
-            this.id = response.data[0].id;
-            console.log(this.state);
-        })
-        .catch(error => {
-           console.log(error);
-        });
+// TODO: Get rid of this for database dog name
+const dogName = "Kevin";
+let port = process.env.PORT || 3000;
+
+const mapStyles = {
+  width: "90%",
+  height: "90%"
+};
+
+export class GoogleMapsPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lat: 0,
+      lng: 0,
+      currentDogAddress: "",
+      showInfoWindow: false,
+      infoMarker: {},
+      addressError: false,
+      redirect: false
+    };
+
+    // TODO: Change this to only get address.
+    let userInfo = {
+      first: "",
+      last: "",
+      address: "",
+      city: "",
+      state: "",
+      zipCode: ""
+    };
+
+    let email = this.props.email;
+
+    axios
+      .get(`http://localhost:${port}/users?email=${email}`)
+      .then(response => {
+        userInfo = response.data[0].userInfo;
+        // Using .then to synchronize response, this is only called once
+        // when component is constructed to get the lat and lng from address for the circle.
+        console.log(userInfo);
+        geocode
+          .fromAddress(userInfo.address + " " + userInfo.zipCode)
+          .then(response => {
+            console.log(
+              "address and zip",
+              userInfo.address + " " + userInfo.zipCode
+            );
+            const { lat, lng } = response.results[0].geometry.location;
+            addressLat = lat;
+            addressLng = lng;
+            // TODO: Change this setState to lat and lng from the database file
+            // once server is set up. addressLat and lng are only for the circle.
+            this.setState({ lat: addressLat, lng: addressLng });
+          })
+          .catch(error => {
+            /**
+             * This will let the program know that the address is not properly configured and
+             * so can not render the map with location properly. I will then use this boolean
+             * in the render function to redirect the user back to the profile page
+             */
+            this.setState({ addressError: true });
+          });
+      });
+    this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
+    this.onMouseoutMarker = this.onMouseoutMarker.bind(this);
+  }
+
+  componentDidMount() {
+    // Call getData explicitly to render the map correctly
+    // on its first mount. Otherwise center will be wrong.
+    this.interval = setInterval(this.getData, 8000);
+    /**
+     * This will allow the current page to be displayed so that I
+     * can tell the user what needs to be done before they are
+     * redirected to the page.
+     */
+    this.id = setTimeout(() => this.setState({ redirect: true }), 2500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+    clearTimeout(this.id);
+  }
+
+  // TODO: Set this to make a get request from database.
+  getData = () => {
+    // 	this.setState({lat: coords.lat, lng: coords.lng});
+    // })
+    // .catch(error => {
+    // 	console.log('getData error', error);
+    // });
+  };
+
+  // Render an info window for the circle
+  onMouseoverMarker(props, marker, event) {
+    if (this.state.showInfoWindow === false) {
+      if (this.state.lat && this.state.lng) {
+        geocode
+          .fromLatLng(this.state.lat, this.state.lng)
+          .then(response => {
+            let currentDogAddress = response.results[0].formatted_address;
+            this.setState({
+              showInfoWindow: true,
+              infoMarker: marker,
+              currentDogAddress: currentDogAddress
+            });
+          })
+          .catch(error => {
+            console.log("Geocode fromLatLng error", error);
+          });
+      }
+    }
+  }
+
+  onMouseoutMarker() {
+    if (this.state.showInfoWindow === true) {
+      this.setState({ showInfoWindow: false });
+    }
+  }
+
+  // TODO: Un-hardcode dog marker name and geocode coords into address.
+  render() {
+    /**
+     * This do the redirecting and display a message to let the user
+     * know what they need to do before it gets redirected
+     */
+    if (this.state.addressError === true) {
+      return this.state.redirect ? (
+        <Redirect to="/profile" />
+      ) : (
+        <div>PLEASE UPDATE ADDRESS</div>
+      );
     }
 
+    console.log("Map Render");
+    const {
+      lat,
+      lng,
+      showInfoWindow,
+      infoMarker,
+      currentDogAddress
+    } = this.state;
 
-    // Input change event is passed to all children in render
-    // components so it triggers the parent (this form) 
-    // to update its state
-    handleInputChange = (event) => {
-        this.setState({userInfo: {...this.state.userInfo, [event.target.name]: event.target.value}, message: ''});
-    }
-
-
-    handleFormSubmit = (event) => {
-        event.preventDefault();
-        let email = this.props.email;
-        let userInfo = this.state.userInfo;
-        this.setState({message: 'Processing...'});
-        // Insert the id of the current user into the put request, can't do it with email key.
-        axios.put(`http://localhost:${port}/users/${this.id}`, {email: email, userInfo: userInfo})
-        .catch(error => {
-            console.log(error);
-        });
-        //tells the user to finish updating their address
-        if(this.state.userInfo.address === '' || this.state.userInfo.state === '' || this.state.userInfo.city === '' || 
-            this.state.userInfo.zipCode === '')
-            this.setState({message: "PLEASE UPDATE ADDRESS :("});
-        else
-            this.setState({message: 'Profile Updated'});
-    }
-
-    handleFormClear = (event) => {
-        event.preventDefault();
-        this.setState( {
-            first: '',
-            last: '',
-            address: '',
-            city: '',
-            state: '',
-            zipCode: '',
-            message: '',
-        });
-    }
-
-
-    render() {
-        // Destructure state into variables to pass into child components.
-        // This will keep the child component textboxes populated with
-        // the parent's variables. It also will change child component
-        // state anytime a parent function is called, like clear or submit.
-        const {first, last, address, city, state, zipCode} = this.state.userInfo;
-        const userValues = {first, last, address, city, state, zipCode};
-        
-        return (
-            <form className='container-fluid'
-            onSubmit={this.handleFormSubmit}>
-                <div className='container'>
-                    <CustomerFormContainer 
-                        handleInputChange={this.handleInputChange}
-                        values={userValues}
-                    />
-                </div>
-                <div className='container'>
-                    <Button
-                        action={this.handleFormSubmit}
-                        type={'btn btn-primary'}
-                        title={'Update'}
-                    /> 
-                </div>
-                <div className = 'result'>{this.state.message}</div>
-            </form>
-        )
-    }
+    return (
+      <Map
+        google={this.props.google}
+        zoom={16}
+        style={mapStyles}
+        center={{ lat: lat, lng: lng }}
+      >
+        <Marker
+          position={{ lat: lat, lng: lng }}
+          name={"Dog1"}
+          onMouseover={this.onMouseoverMarker}
+          onMouseout={this.onMouseoutMarker}
+        ></Marker>
+        <Circle
+          center={{ lat: addressLat, lng: addressLng }}
+          radius={50}
+          fillColor="red"
+        ></Circle>
+        <InfoWindow marker={infoMarker} visible={showInfoWindow}>
+          <h5>
+            {dogName}
+            <br />
+            {currentDogAddress}
+          </h5>
+        </InfoWindow>
+      </Map>
+    );
+  }
 }
 
-export default SignupFormContainer;
+geocode.setApiKey("AIzaSyCq5ETSwUuhklrRh3hbvXo5auyCt3C4WKk");
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyCq5ETSwUuhklrRh3hbvXo5auyCt3C4WKk"
+})(GoogleMapsPage);
