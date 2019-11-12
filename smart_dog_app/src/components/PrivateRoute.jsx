@@ -22,6 +22,16 @@ const PrivateRoute = ({ component: Component, path }) => {
     )
   }
 
+  //   /*Using async will cause the login screen to continuously 
+  //     show up when hitting the backspace in the browser until
+  //     the user logs in. */
+  //   /*const fn = async () => {
+  //     await loginWithRedirect({
+  //       appState: { targetUrl: path }
+  //     });
+  //   };
+  //   fn();*/
+
 
   /*
    * Checks the database to see if user exists. If they do not then it creates an entry
@@ -30,19 +40,12 @@ const PrivateRoute = ({ component: Component, path }) => {
    * not be checked. Put it in privateroute because both profile and track need to get
    * data from the data base.
   */
- //Creates a new data entry into the database if it doesn't exist
- axios.get(`http://localhost:${process.env.REACT_APP_PORT}/users?email=${user.email}`).then(response => {
-    console.log('get', response);
-    if (!(Array.isArray(response.data) && response.data.length)) {
-      axios.post(`http://localhost:${process.env.REACT_APP_PORT}/users`,{email: user.email, userInfo: userInfo}).then(response => {
-        console.log('post', response);
-      })
-    }
- })
- .catch(error => {
-   console.log('error on get', error)
- 
-});
+  if(isAuthenticated){
+      axios.get(`http://localhost:${process.env.REACT_APP_PORT}/users?email=${user.email}`)
+    .catch(error => {
+      axios.post(`http://localhost:${process.env.REACT_APP_PORT}/users`,{email: user.email, userInfo: userInfo});
+    });
+  }
 
   const render = (props) => 
     isAuthenticated === true ? <Component {...props} email={user.email}/>
