@@ -7,7 +7,7 @@ import "react-mdl/extra/material.js";
 // import * as serviceWorker from "./serviceWorker";
 import { Auth0Provider } from "./auth0-wrapper";
 import App from "./App";
-import "font-awesome/css/font-awesome.min.css";
+// import "font-awesome/css/font-awesome.min.css";
 
 const onRedirectCallback = appState => {
   window.history.replaceState(

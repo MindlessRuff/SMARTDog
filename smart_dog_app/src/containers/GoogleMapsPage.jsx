@@ -7,6 +7,17 @@ import {
   GoogleApiWrapper
 } from "google-maps-react";
 import axios from "axios";
+import geocode from "react-geocode";
+import { Switch, Redirect, Route } from "react-router-dom";
+
+// import {
+//   InfoWindow,
+//   Circle,
+//   Map,
+//   Marker,
+//   GoogleApiWrapper
+// } from "google-maps-react";
+// import axios from "axios";
 // import geocode from "react-geocode";
 
 // For the circle coordinates
