@@ -3,14 +3,12 @@ import Button from "../components/Button";
 import CustomerFormContainer from "./CustomerFormContainer";
 import axios from "axios";
 
-let port = 3000;
 // This Signup form container is the top-level component
 // of the signup page. It holds all the state (variables)
 // and passes the variables down to its children components,
 // the individual (dog, user) containers, and from there to the textboxes
 // to keep those boxes populated with this top-level state.
 class SignupFormContainer extends Component {
-  port = 3000;
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +30,7 @@ class SignupFormContainer extends Component {
     // Need to use arrow functions with axios calls so that 'this' variable will
     // refer to the class component instead of axios.
     axios
-      .get(`http://localhost:${port}/users?email=${email}`)
+      .get(`/users?email=${email}`)
       .then(response => {
         let fetchedData = response.data[0].userInfo;
         this.setState({ userInfo: fetchedData, message: "" }); // [0] index since entries keyed by email are unique
@@ -64,7 +62,7 @@ class SignupFormContainer extends Component {
     this.setState({ message: "Processing..." });
     // Insert the id of the current user into the put request, can't do it with email key.
     axios
-      .put(`http://localhost:${port}/users/${this.id}`, {
+      .put(`/users/${this.id}`, {
         email: email,
         userInfo: userInfo
       })
