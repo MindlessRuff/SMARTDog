@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3006",
-  "homepage": ".",
+  "homepage": "http://www.smartdog-sdsu.com",
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.4.0",
     "auth0-js": "^9.11.3",
@@ -13,6 +13,7 @@
     "core-js": "^3.3.5",
     "csstools": "^0.1.5",
     "dotenv": "^8.2.0",
+    "env-cmd": "^10.0.1",
     "eslint": "^6.6.0",
     "eslint-plugin-react-hooks": "^2.2.0",
     "express": "^4.17.1",
@@ -32,6 +33,7 @@
   "scripts": {
     "start": "concurrently --kill-others \"react-scripts -r dotenv/config start\" \"npm run track\"",
     "build": "react-scripts build",
+    "build:staging": "env-cmd -f .env npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "track": "nodemon --watch ./src/server --inspect ./src/server/server.js",
