@@ -38,6 +38,7 @@
     },
     {
       "email": "g@g.com",
+      "deviceId": "transmitter",
       "userInfo": {
         "first": "ok",
         "last": "hormoz",
