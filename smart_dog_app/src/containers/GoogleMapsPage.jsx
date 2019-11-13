@@ -16,7 +16,6 @@ let addressLng = 0.0;
 
 // TODO: Get rid of this for database dog name
 const dogName = "Kevin";
-let port = process.env.PORT || 3000;
 
 const mapStyles = {
   width: "90%",
@@ -48,36 +47,34 @@ export class GoogleMapsPage extends Component {
 
     let email = this.props.email;
 
-    axios
-      .get(`http://localhost:${port}/users?email=${email}`)
-      .then(response => {
-        userInfo = response.data[0].userInfo;
-        // Using .then to synchronize response, this is only called once
-        // when component is constructed to get the lat and lng from address for the circle.
-        console.log(userInfo);
-        geocode
-          .fromAddress(userInfo.address + " " + userInfo.zipCode)
-          .then(response => {
-            console.log(
-              "address and zip",
-              userInfo.address + " " + userInfo.zipCode
-            );
-            const { lat, lng } = response.results[0].geometry.location;
-            addressLat = lat;
-            addressLng = lng;
-            // TODO: Change this setState to lat and lng from the database file
-            // once server is set up. addressLat and lng are only for the circle.
-            this.setState({ lat: addressLat, lng: addressLng });
-          })
-          .catch(error => {
-            /**
-             * This will let the program know that the address is not properly configured and
-             * so can not render the map with location properly. I will then use this boolean
-             * in the render function to redirect the user back to the profile page
-             */
-            this.setState({ addressError: true });
-          });
-      });
+    axios.get(`/users?email=${email}`).then(response => {
+      userInfo = response.data[0].userInfo;
+      // Using .then to synchronize response, this is only called once
+      // when component is constructed to get the lat and lng from address for the circle.
+      console.log(userInfo);
+      geocode
+        .fromAddress(userInfo.address + " " + userInfo.zipCode)
+        .then(response => {
+          console.log(
+            "address and zip",
+            userInfo.address + " " + userInfo.zipCode
+          );
+          const { lat, lng } = response.results[0].geometry.location;
+          addressLat = lat;
+          addressLng = lng;
+          // TODO: Change this setState to lat and lng from the database file
+          // once server is set up. addressLat and lng are only for the circle.
+          this.setState({ lat: addressLat, lng: addressLng });
+        })
+        .catch(error => {
+          /**
+           * This will let the program know that the address is not properly configured and
+           * so can not render the map with location properly. I will then use this boolean
+           * in the render function to redirect the user back to the profile page
+           */
+          this.setState({ addressError: true });
+        });
+    });
     this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
     this.onMouseoutMarker = this.onMouseoutMarker.bind(this);
   }
