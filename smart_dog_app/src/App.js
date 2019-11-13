@@ -9,6 +9,6 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  return <NavigationBar  />;
+  return <NavigationBar />;
 }
 export default App;
