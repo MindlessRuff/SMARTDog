@@ -61,6 +61,7 @@ class SignupFormContainer extends Component {
     let userInfo = this.state.userInfo;
     this.setState({ message: "Processing..." });
     // Insert the id of the current user into the put request, can't do it with email key.
+    console.log(email, userInfo, this.id);
     axios
       .put(`/users/${this.id}`, {
         email: email,
