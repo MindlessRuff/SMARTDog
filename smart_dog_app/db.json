@@ -39,12 +39,12 @@
     {
       "email": "a@a.com",
       "userInfo": {
-        "first": "",
-        "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
+        "first": "Anush",
+        "last": "Shetty",
+        "address": "sdsu",
+        "city": "SAN DIEGO",
+        "state": "CA",
+        "zipCode": "92126"
       },
       "id": 5
     },
