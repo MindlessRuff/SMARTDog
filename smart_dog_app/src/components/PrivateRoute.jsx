@@ -48,6 +48,9 @@ const PrivateRoute = ({ component: Component, path }) => {
                 }
               ]
             })
+            .then(response => {
+              console.log("post", response);
+            });
         }
       })
       .catch(error => {
