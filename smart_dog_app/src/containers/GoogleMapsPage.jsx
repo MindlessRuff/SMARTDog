@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import geocode from "react-geocode";
 import { Switch, Redirect, Route } from "react-router-dom";
+import Button from "../components/Button";
 
 // For the circle coordinates
 let addressLat = 0.0;
@@ -45,6 +46,7 @@ export class GoogleMapsPage extends Component {
       zipCode: ""
     };
 
+    let id;
     let email = this.props.email;
 
     axios.get(`/users?email=${email}`).then(response => {
@@ -84,17 +86,15 @@ export class GoogleMapsPage extends Component {
     // Call getData explicitly to render the map correctly
     // on its first mount. Otherwise center will be wrong.
     this.interval = setInterval(this.getData, 8000);
-    /**
-     * This will allow the current page to be displayed so that I
-     * can tell the user what needs to be done before they are
-     * redirected to the page.
-     */
-    this.id = setTimeout(() => this.setState({ redirect: true }), 2500);
+  }
+
+  handleClick = event => {
+    event.preventDefault();
+    this.setState({redirect: true})
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
-    clearTimeout(this.id);
   }
 
   // TODO: Set this to make a get request from database.
@@ -136,14 +136,24 @@ export class GoogleMapsPage extends Component {
   // TODO: Un-hardcode dog marker name and geocode coords into address.
   render() {
     /**
-     * This do the redirecting and display a message to let the user
+     * This does the redirecting and display a message to let the user
      * know what they need to do before it gets redirected
+     * User will get redirected when hey hit the ok button
      */
     if (this.state.addressError === true) {
       return this.state.redirect ? (
         <Redirect to="/profile" />
       ) : (
-        <div>PLEASE UPDATE ADDRESS</div>
+          <div className='popup'>
+            <h1>Please Update Address</h1>
+            <div className="container">
+             <Button
+              action={this.handleClick}
+              type={"btn btn-primary"}
+              title={"OK"}
+              />
+            </div>
+          </div>
       );
     }
 

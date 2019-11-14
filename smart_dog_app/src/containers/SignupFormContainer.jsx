@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "../components/Button";
 import CustomerFormContainer from "./CustomerFormContainer";
 import axios from "axios";
+import DogFormContainer from "./DogFormContainer";
 
 // This Signup form container is the top-level component
 // of the signup page. It holds all the state (variables)
@@ -20,6 +21,11 @@ class SignupFormContainer extends Component {
         state: "",
         zipCode: ""
       },
+      dogName: "",
+      dogInfo:{
+        Breed: "",
+        EUI: "",
+      },
       message: ""
     };
     let id;
@@ -35,7 +41,7 @@ class SignupFormContainer extends Component {
         let fetchedData = response.data[0].userInfo;
         this.setState({ userInfo: fetchedData, message: "" }); // [0] index since entries keyed by email are unique
         this.id = response.data[0].id;
-        console.log(this.state);
+        console.log('incomponentdidmount', this.state);
       })
       .catch(error => {
         console.log(error);
@@ -55,17 +61,36 @@ class SignupFormContainer extends Component {
     });
   };
 
+  handleDogInput = event => {
+    this.setState({
+      dogInfo:{
+        ...this.state.dogInfo,
+        [event.targe.name]: event.target.value
+      },
+      dogName:{
+        ...this.state.dogName,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
+
   handleFormSubmit = event => {
     event.preventDefault();
     let email = this.props.email;
     let userInfo = this.state.userInfo;
+    let dogName = this.state.dogName;
+    let dogInfo = this.state.dogInfo;
     this.setState({ message: "Processing..." });
     // Insert the id of the current user into the put request, can't do it with email key.
     console.log(email, userInfo, this.id);
     axios
       .put(`/users/${this.id}`, {
         email: email,
-        userInfo: userInfo
+        userInfo: userInfo,
+        dog:[{
+          dogName: dogName,
+          dogInfo: dogInfo
+        }]
       })
       .catch(error => {
         console.log(error);
@@ -100,22 +125,38 @@ class SignupFormContainer extends Component {
     // the parent's variables. It also will change child component
     // state anytime a parent function is called, like clear or submit.
     const { first, last, address, city, state, zipCode } = this.state.userInfo;
+    const { dogBreed, eui } = this.state.dogInfo;
+    const dogName = this.state.dogName;
     const userValues = { first, last, address, city, state, zipCode };
+    const petValues = { dogName, dogBreed, eui };
 
     return (
       <form className="container-fluid" onSubmit={this.handleFormSubmit}>
         <div className="container">
+          <div className="row">
           <CustomerFormContainer
             handleInputChange={this.handleInputChange}
             values={userValues}
           />
+          <DogFormContainer
+            handleFormClear={this.handleDogInput}
+            values={petValues}
+          />
+          </div>
         </div>
         <div className="container">
+          <div className="row">
           <Button
             action={this.handleFormSubmit}
             type={"btn btn-primary"}
             title={"Update"}
           />
+          <Button
+            action={this.handleFormClear}
+            type={"btn btn-primary"}
+            title={"Add Dog"}
+            />
+        </div>
         </div>
         <div className="result">{this.state.message}</div>
       </form>

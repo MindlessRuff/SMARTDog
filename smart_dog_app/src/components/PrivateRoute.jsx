@@ -14,6 +14,11 @@ const PrivateRoute = ({ component: Component, path }) => {
     state: "",
     zipCode: ""
   };
+  let dogName = "";
+  let dogInfo = {
+    Breed: "",
+    EUI: ""
+  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -36,17 +41,20 @@ const PrivateRoute = ({ component: Component, path }) => {
           axios
             .post(`/users`, {
               email: user.email,
-              userInfo: userInfo
+              userInfo: userInfo,
+              dog: [
+                {Name: dogName,
+                dogInfo: dogInfo
+                }
+              ]
             })
-            .then(response => {
-              console.log("post", response);
-              return user.email;
-            });
         }
       })
       .catch(error => {
         console.log("error on get", error);
       });
+
+      return user.email;
   }
   const render = props =>
     isAuthenticated === true ? (

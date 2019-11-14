@@ -1,57 +1,5 @@
 {
-  "users": [
-    {
-      "email": "this@this.com",
-      "userInfo": {
-        "first": "Kevin",
-        "last": "Sprigg",
-        "address": "hold",
-        "city": "or",
-        "state": "otherh",
-        "zipCode": "92117"
-      },
-      "id": 1
-    },
-    {
-      "email": "a@b.com",
-      "userInfo": {
-        "first": "",
-        "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
-      },
-      "id": 2
-    },
-    {
-      "email": "a@a.com",
-      "userInfo": {
-        "first": "",
-        "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
-      },
-      "id": 5
-    },
-    {
-      "email": "g@g.com",
-      "device": "transmitter",
-      "userInfo": {
-        "first": "",
-        "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
-      },
-      "coords": {
-        "lat": 0,
-        "lng": 0
-      },
-      "id": 7
-    }
+  "user":[
+
   ]
 }
