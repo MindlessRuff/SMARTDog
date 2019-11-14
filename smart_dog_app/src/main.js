@@ -11,10 +11,10 @@ const Main = () => {
   return (
     <Switch>
       <Route exact path="/" component={LandingPage} />
-      <Route path="/about" component={About} />
-      <Route path="/works" component={Works} />
-      <PrivateRoute path="/track" component={GoogleMapsPage} />
-      <PrivateRoute path="/profile" component={SignupFormContainer}  />
+      <Route path="/about/" component={About} />
+      <Route path="/works/" component={Works} />
+      <PrivateRoute path="/track/" component={GoogleMapsPage} />
+      <PrivateRoute path="/profile/" component={SignupFormContainer} />
     </Switch>
   );
 };

@@ -6,35 +6,56 @@ to seperate the data accordingly, but for now, a single use case will suffice fo
 */
 
 // Import ttn package
-const ttn = require("ttn")
+const ttn = require("ttn");
+const axios = require("axios");
 // Get TTN_APPID and TTN_ACCESSKEY from .env file located in project root for extra security.
 // Found under https://console.thethingsnetwork.org/applications/<your-application>
 // Can hardcode these values here for testing if no env file is used.
-const appID = process.env.REACT_APP_TTN_APPID
-const accessKey = process.env.REACT_APP_TTN_ACCESSKEY
+const appID = process.env.REACT_APP_TTN_APPID;
+const accessKey = process.env.REACT_APP_TTN_ACCESSKEY;
+let lat = 0;
+let lng = 0;
+let myData = [];
+let user;
+let email;
+let userId;
+let deviceId;
 
 // Set up server variables
 
-console.log("LoRa Packet Tracking Script Initiated...")
+console.log("LoRa Packet Tracking Script Initiated...");
 // Pass appID and accessKey to the ttn API
-ttn.data(appID, accessKey)
-  .then(function (client) {
+ttn
+  .data(appID, accessKey)
+  .then(function(client) {
     // When an uplink packet is received by the gateway
-    client.on("uplink", function (devID, message) {
-        // Print out the Device ID and the contents of the payload
-      console.log("Received uplink from ", devID)
-      console.log(message)
-      // TODO: Extract only the needed values from the message
-      // For now, send the whole message
+    client.on("uplink", function(deviceId, payload) {
+      // Print out the Device ID and the contents of the payload
+      console.log("Received uplink from ", deviceId);
+      axios
+        .get(`http://localhost:3000/users/?device=${deviceId}`)
+        .then(response => {
+          user = response.data[0];
+          email = user.email;
+          userId = user.id;
+          console.log(user);
+          myData = payload.payload_fields;
+          console.log(myData);
 
-      // Make a POST to the db.json file
-      // How to post to a specific users' coordinate data?
-      app.post('/users', function (req, res) {
-        res.send(message)
-      })
-    })
+          // axios
+          //   .patch(`http://localhost:3000/users/${userId}`, {
+          //     coords: { lat: lat, lng: lng }
+          //   })
+          //   .catch(error => {
+          //     console.log(error);
+          //   });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    });
   })
-  .catch(function (error) {
-    console.error("Error", error)
-    process.exit(1)
-  })
+  .catch(function(error) {
+    console.error("Error", error);
+    process.exit(1);
+  });

@@ -25,18 +25,6 @@
       "id": 2
     },
     {
-      "email": "this@this.com",
-      "userInfo": {
-        "first": "",
-        "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
-      },
-      "id": 4
-    },
-    {
       "email": "a@a.com",
       "userInfo": {
         "first": "Anush",
@@ -50,15 +38,20 @@
     },
     {
       "email": "g@g.com",
+      "device": "transmitter",
       "userInfo": {
-        "first": "ok",
+        "first": "",
         "last": "",
         "address": "",
         "city": "",
         "state": "",
         "zipCode": ""
       },
-      "id": 6
+      "coords": {
+        "lat": 0,
+        "lng": 0
+      },
+      "id": 7
     }
   ]
 }
