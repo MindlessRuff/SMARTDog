@@ -38,16 +38,20 @@
     },
     {
       "email": "g@g.com",
-      "deviceId": "transmitter",
+      "device": "transmitter",
       "userInfo": {
-        "first": "ok",
-        "last": "hormoz",
+        "first": "",
+        "last": "",
         "address": "",
-        "city": "San diego",
+        "city": "",
         "state": "",
         "zipCode": ""
       },
-      "id": 6
+      "coords": {
+        "lat": 0,
+        "lng": 0
+      },
+      "id": 7
     }
   ]
 }

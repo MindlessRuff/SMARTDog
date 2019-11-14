@@ -51,7 +51,7 @@ export class GoogleMapsPage extends Component {
       userInfo = response.data[0].userInfo;
       // Using .then to synchronize response, this is only called once
       // when component is constructed to get the lat and lng from address for the circle.
-      console.log(userInfo);
+      console.log("userInfo: ", userInfo);
       geocode
         .fromAddress(userInfo.address + " " + userInfo.zipCode)
         .then(response => {
@@ -59,6 +59,7 @@ export class GoogleMapsPage extends Component {
             "address and zip",
             userInfo.address + " " + userInfo.zipCode
           );
+          // TODO: Change assignment of lat, lon to read from database coordinatess
           const { lat, lng } = response.results[0].geometry.location;
           addressLat = lat;
           addressLng = lng;

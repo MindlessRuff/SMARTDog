@@ -27,28 +27,30 @@ const PrivateRoute = ({ component: Component, path }) => {
    * data from the data base.
    */
   //Creates a new data entry into the database if it doesn't exist
-  axios
-    .get(`/users?email=${user.email}`)
-    .then(response => {
-      console.log("get", response);
-      if (!(Array.isArray(response.data) && response.data.length)) {
-        axios
-          .post(`/users`, {
-            email: user.email,
-            userInfo: userInfo
-          })
-          .then(response => {
-            console.log("post", response);
-          });
-      }
-    })
-    .catch(error => {
-      console.log("error on get", error);
-    });
-
+  function getEmail() {
+    axios
+      .get(`/users?email=${user.email}`)
+      .then(response => {
+        console.log("get", response);
+        if (!(Array.isArray(response.data) && response.data.length)) {
+          axios
+            .post(`/users`, {
+              email: user.email,
+              userInfo: userInfo
+            })
+            .then(response => {
+              console.log("post", response);
+              return user.email;
+            });
+        }
+      })
+      .catch(error => {
+        console.log("error on get", error);
+      });
+  }
   const render = props =>
     isAuthenticated === true ? (
-      <Component {...props} email={user.email} />
+      <Component {...props} email={getEmail()} />
     ) : (
       loginWithRedirect()
     );
