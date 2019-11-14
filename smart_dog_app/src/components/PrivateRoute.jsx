@@ -40,13 +40,14 @@ const PrivateRoute = ({ component: Component, path }) => {
             })
             .then(response => {
               console.log("post", response);
-              return user.email;
             });
         }
       })
       .catch(error => {
         console.log("error on get", error);
       });
+
+      return user.email;
   }
   const render = props =>
     isAuthenticated === true ? (
