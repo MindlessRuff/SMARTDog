@@ -101,3 +101,78 @@ label {
   box-shadow: 0 4 px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
+body {
+  background: #56ccf2;
+  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
+  background: linear-gradient(to right, #2f80ed, #56ccf2);
+}
+
+/* Landing Page */
+.landing-img {
+  height: auto;
+  width: 100%;
+}
+.caption {
+  width: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 18%;
+  z-index: 1;
+  color: white;
+  text-transform: uppercase;
+}
+
+.caption h1 {
+  font-size: 4.8rem;
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+  text-shadow: 0.1rem 0.1rem 0.3rem black;
+}
+
+.caption h4 {
+  font-style: 1.5rem;
+  text-shadow: 0.1rem 0.1rem 0.2rem black;
+}
+
+.btn-lg {
+  color: white;
+  border-color: white;
+  border-width: medium;
+  border-radius: 1;
+  padding: 0.6rem 1.3rem;
+  font-size: 1.1rem;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background-image: none;
+  background: linear-gradient(to right, #2f80ed, #56ccf2);
+  border-color: white;
+}
+
+/* Landing Page - Slogan Section */
+.narrow {
+  width: 75%;
+  margin: 1.5em auto;
+  padding-top: 2rem;
+}
+.narrow h1 {
+  font-size: 2.4rem;
+}
+
+/* Landing Page - Feature Section */
+
+h3.heading {
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.heading-underline {
+  width: 3rem;
+  height: 0.2rem;
+  background-color: #2f80ed;
+  margin: -1rem auto 3rem;
+}

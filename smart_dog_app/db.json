@@ -1,14 +1,14 @@
 {
   "users": [
     {
-      "email": "a@a.com",
+      "email": "this@this.com",
       "userInfo": {
-        "first": "Carlo",
-        "last": "Hormoz",
-        "address": "sdsu",
-        "city": "San Diego",
-        "state": "CA",
-        "zipCode": "921232131123"
+        "first": "Kevin",
+        "last": "Sprigg",
+        "address": "hold",
+        "city": "or",
+        "state": "otherh",
+        "zipCode": "92117"
       },
       "id": 1
     },
@@ -25,23 +25,7 @@
       "id": 2
     },
     {
-      "email": "g@g.com",
-      "userInfo": {
-        "first": "Brandon",
-        "last": "Veltre",
-        "address": "123 cool st",
-        "city": "new york",
-        "state": "FL",
-        "zipCode": "30303"
-      },
-      "coords": {
-        "lat": 32.77697,
-        "lng": -117.072198
-      },
-      "id": 3
-    },
-    {
-      "email": "this@this.com",
+      "email": "a@a.com",
       "userInfo": {
         "first": "",
         "last": "",
@@ -50,7 +34,24 @@
         "state": "",
         "zipCode": ""
       },
-      "id": 4
+      "id": 5
+    },
+    {
+      "email": "g@g.com",
+      "device": "transmitter",
+      "userInfo": {
+        "first": "",
+        "last": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
+      },
+      "coords": {
+        "lat": 0,
+        "lng": 0
+      },
+      "id": 7
     }
   ]
 }
