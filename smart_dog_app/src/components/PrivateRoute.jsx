@@ -14,6 +14,15 @@ const PrivateRoute = ({ component: Component, path }) => {
     state: "",
     zipCode: ""
   };
+  let dogInfo = {
+    dogName: "",
+    dogBreed: "",
+  };
+  let device = "";
+  let coords = {
+    "lat": 0,
+    "lng": 0
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -36,7 +45,10 @@ const PrivateRoute = ({ component: Component, path }) => {
           axios
             .post(`/users`, {
               email: user.email,
-              userInfo: userInfo
+              device: device,
+              userInfo: userInfo,
+              dogInfo: dogInfo,
+              coords: coords
             })
             .then(response => {
               console.log("post", response);
