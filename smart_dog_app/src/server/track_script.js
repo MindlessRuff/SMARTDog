@@ -13,13 +13,9 @@ const axios = require("axios");
 // Can hardcode these values here for testing if no env file is used.
 const appID = process.env.REACT_APP_TTN_APPID;
 const accessKey = process.env.REACT_APP_TTN_ACCESSKEY;
-let lat = 0;
-let lng = 0;
-let myData = [];
+let receivedLat = 0;
+let receivedLng = 0;
 let user;
-let email;
-let userId;
-let deviceId;
 
 // Set up server variables
 
@@ -32,23 +28,27 @@ ttn
     client.on("uplink", function(deviceId, payload) {
       // Print out the Device ID and the contents of the payload
       console.log("Received uplink from ", deviceId);
+      receivedLat = payload.payload_fields.lat;
+      receivedLng = payload.payload_fields.lng;
       axios
         .get(`http://localhost:3000/users/?device=${deviceId}`)
         .then(response => {
           user = response.data[0];
-          email = user.email;
-          userId = user.id;
           console.log(user);
-          myData = payload.payload_fields;
-          console.log(myData);
 
-          // axios
-          //   .patch(`http://localhost:3000/users/${userId}`, {
-          //     coords: { lat: lat, lng: lng }
-          //   })
-          //   .catch(error => {
-          //     console.log(error);
-          //   });
+          axios
+            .put(`http://localhost:3000/users/${user.id}`, {
+              email: user.email,
+              device: deviceId,
+              userInfo: user.userInfo,
+              coords: {
+                lat: receivedLat,
+                lng: receivedLng
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
         })
         .catch(error => {
           console.log(error);

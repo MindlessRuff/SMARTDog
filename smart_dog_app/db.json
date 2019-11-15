@@ -2,6 +2,7 @@
   "users": [
     {
       "email": "this@this.com",
+      "device": "Kevin",
       "userInfo": {
         "first": "Kevin",
         "last": "Sprigg",
@@ -14,6 +15,7 @@
     },
     {
       "email": "a@b.com",
+      "device": "Michael",
       "userInfo": {
         "first": "",
         "last": "",
@@ -26,6 +28,7 @@
     },
     {
       "email": "a@a.com",
+      "device": "Carlo",
       "userInfo": {
         "first": "",
         "last": "",
@@ -48,8 +51,8 @@
         "zipCode": ""
       },
       "coords": {
-        "lat": 0,
-        "lng": 0
+        "lat": 69.6969696,
+        "lng": 42.042042
       },
       "id": 7
     }
