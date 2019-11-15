@@ -10,7 +10,7 @@ SFE_UBLOX_GPS myGPS;
 long lastTime = 0; //Simple local timer. Limits amount if I2C traffic to Ublox module.
 long latitude = 0;
 long longitude = 0;
-static uint8_t myData[4];
+static uint8_t myData[8];
 
 static osjob_t sendjob;
 
@@ -121,12 +121,17 @@ void do_send(osjob_t *j)
     else
     {
         // Prepare upstream data transmission at the next possible time.
-        myData[0] = latitude >> 16;
-        myData[1] = latitude >> 8;
-        myData[2] = longitude >> 16;
-        myData[3] = longitude >> 8;
+        myData[0] = latitude >> 24;
+        myData[1] = latitude >> 16;
+        myData[2] = latitude >> 8;
+        myData[3] = latitude;
+        myData[4] = longitude >> 24;
+        myData[5] = longitude >> 16;
+        myData[6] = longitude >> 8;
+        myData[7] = longitude;
+
         SerialUSB.println();
-        for (int i = 0; i < 4; i = i + 1)
+        for (int i = 0; i < 8; i = i + 1)
         {
             SerialUSB.println(myData[i]);
         }
