@@ -1,5 +1,16 @@
 {
-  "user":[
-
+  "users": [
+    {
+      "email": "this@this.com",
+      "userInfo": {
+        "first": "Kevin",
+        "last": "Sprigg",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
+      },
+      "id": 1
+    }
   ]
 }

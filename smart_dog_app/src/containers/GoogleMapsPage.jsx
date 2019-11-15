@@ -8,7 +8,7 @@ import {
 } from "google-maps-react";
 import axios from "axios";
 import geocode from "react-geocode";
-import { Switch, Redirect, Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Button from "../components/Button";
 
 // For the circle coordinates
