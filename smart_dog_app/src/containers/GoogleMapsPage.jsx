@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import geocode from "react-geocode";
 import { Switch, Redirect, Route } from "react-router-dom";
+import Button from "../components/Button";
 
 // For the circle coordinates
 let addressLat = 0.0;
@@ -89,12 +90,10 @@ export class GoogleMapsPage extends Component {
      * can tell the user what needs to be done before they are
      * redirected to the page.
      */
-    this.id = setTimeout(() => this.setState({ redirect: true }), 2500);
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
-    clearTimeout(this.id);
   }
 
   // TODO: Set this to make a get request from database.
@@ -133,6 +132,11 @@ export class GoogleMapsPage extends Component {
     }
   }
 
+  handleClick = event => {
+    event.preventDefault();
+    this.setState({redirect: true})
+  }
+
   // TODO: Un-hardcode dog marker name and geocode coords into address.
   render() {
     /**
@@ -143,7 +147,16 @@ export class GoogleMapsPage extends Component {
       return this.state.redirect ? (
         <Redirect to="/profile" />
       ) : (
-        <div>PLEASE UPDATE ADDRESS</div>
+          <div className='popup'>
+            <h1>Please Update Address</h1>
+            <div className="container">
+             <Button
+              action={this.handleClick}
+              type={"btn btn-primary"}
+              title={"OK"}
+              />
+            </div>
+          </div>
       );
     }
 
