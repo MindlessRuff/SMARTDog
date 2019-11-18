@@ -1,19 +1,6 @@
 {
   "users": [
     {
-      "email": "this@this.com",
-      "device": "Kevin",
-      "userInfo": {
-        "first": "Kevin",
-        "last": "Sprigg",
-        "address": "hold",
-        "city": "or",
-        "state": "otherh",
-        "zipCode": "92117"
-      },
-      "id": 1
-    },
-    {
       "email": "a@b.com",
       "device": "Michael",
       "userInfo": {
@@ -55,6 +42,27 @@
         "lng": 0
       },
       "id": 7
+    },
+    {
+      "email": "this@this.com",
+      "device": "",
+      "userInfo": {
+        "first": "Hod",
+        "last": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
+      },
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
+      },
+      "coords": {
+        "lat": 0,
+        "lng": 0
+      },
+      "id": 8
     }
   ]
 }
