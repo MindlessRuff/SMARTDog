@@ -34,7 +34,7 @@
     "ttn": "^2.3.3"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"react-scripts -r dotenv/config start\" \"npm run track\"",
+    "start": "concurrently --kill-others \"react-scripts -r dotenv/config start\" \"npm run track\" \"npm run lora:server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
