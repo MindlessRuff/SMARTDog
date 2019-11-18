@@ -11,6 +11,14 @@
         "state": "",
         "zipCode": ""
       },
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
+      },
+      "coords": {
+        "lat": 0,
+        "lng": 0
+      },
       "id": 2
     },
     {
@@ -24,6 +32,14 @@
         "state": "",
         "zipCode": ""
       },
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
+      },
+      "coords": {
+        "lat": 0,
+        "lng": 0
+      },
       "id": 5
     },
     {
@@ -36,6 +52,10 @@
         "city": "",
         "state": "",
         "zipCode": ""
+      },
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
       },
       "coords": {
         "lat": 0,
