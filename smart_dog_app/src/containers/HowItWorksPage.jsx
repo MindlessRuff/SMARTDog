@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Cell, Tabs, Tab } from "react-mdl";
+import Footer from "../components/Footer";
 
 class Works extends Component {
   constructor(props) {
@@ -11,7 +12,26 @@ class Works extends Component {
     if (this.state.activeTab === 0) {
       return (
         <div style={{ width: "100%", margin: "auto" }}>
-          <Grid className="range-connectivity-grid">
+          <Grid className="tab-img">
+            <Cell col={12}>
+              <div className="video-container">
+                <iframe
+                  src="https://www.youtube.com/embed/LjJ-QeSzEtc"
+                  className="tab-img"
+                  alt="tabimg"
+                />
+              </div>
+              <div className="banner-header">
+                <h1>Demo</h1>
+              </div>
+            </Cell>
+          </Grid>
+        </div>
+      );
+    } else if (this.state.activeTab === 1) {
+      return (
+        <div style={{ width: "100%", margin: "auto" }}>
+          <Grid className="img-grid">
             <Cell col={12}>
               <img
                 src="https://tinyurl.com/y255hvlk"
@@ -25,10 +45,10 @@ class Works extends Component {
           </Grid>
         </div>
       );
-    } else if (this.state.activeTab === 1) {
+    } else if (this.state.activeTab === 2) {
       return (
         <div style={{ width: "100%", margin: "auto" }}>
-          <Grid className="tracking-grid">
+          <Grid className="img-grid">
             <Cell col={12}>
               <img
                 src="https://tinyurl.com/y6oo5daj"
@@ -42,10 +62,10 @@ class Works extends Component {
           </Grid>
         </div>
       );
-    } else if (this.state.activeTab === 2) {
+    } else if (this.state.activeTab === 3) {
       return (
         <div style={{ width: "100%", margin: "auto" }}>
-          <Grid className="specs-grid">
+          <Grid className="img-grid">
             <Cell col={12}>
               <img
                 src="https://tinyurl.com/y6bmzktr"
@@ -64,17 +84,21 @@ class Works extends Component {
 
   render() {
     return (
-      <div className="category-tabs">
-        <Tabs
-          activeTab={this.state.activeTab}
-          onChange={tabId => this.setState({ activeTab: tabId })}
-          ripple
-        >
-          <Tab>Range + Connectivity</Tab>
-          <Tab>Tracking</Tab>
-          <Tab>Technical Specifications</Tab>
-        </Tabs>
-        <section className="features-grid">{this.toggleCategories()}</section>
+      <div>
+        <div className="category-tabs">
+          <Tabs
+            activeTab={this.state.activeTab}
+            onChange={tabId => this.setState({ activeTab: tabId })}
+            ripple
+          >
+            <Tab>Demo</Tab>
+            <Tab>Range + Connectivity</Tab>
+            <Tab>Tracking</Tab>
+            <Tab>Technical Specifications</Tab>
+          </Tabs>
+          <section className="features-grid">{this.toggleCategories()}</section>
+        </div>
+        <Footer />
       </div>
     );
   }
