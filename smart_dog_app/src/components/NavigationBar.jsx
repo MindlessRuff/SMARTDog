@@ -10,6 +10,8 @@ const NavigationBar = function(props) {
       <Layout fixedHeader>
         <Header
           className="header-color"
+          img
+          src="https://fbcd.co/product-lg/3eac7432730321c3aac109b495f272d6_resize.jpg"
           title={
             <Link to={"/"} style={{ color: "white" }}>
               SMARTDog
@@ -20,6 +22,7 @@ const NavigationBar = function(props) {
           <Navigation>
             <Link to="/about/">About</Link>
             <Link to="/works/">How It Works</Link>
+            <Link to="/store/">Store</Link>
             <Link to="/track/">Track</Link>
             <Link to="/profile/">Profile</Link>
             <Login />
@@ -35,6 +38,7 @@ const NavigationBar = function(props) {
           <Navigation>
             <Link to="/about/">About</Link>
             <Link to="/works/">How It Works</Link>
+            <Link to="/store/">Store</Link>
             <Link to="/track/">Track</Link>
             <Link to="/profile/">Profile</Link>
             <Login />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Cell } from "react-mdl";
+import Footer from "../components/Footer";
 
 const LandingPage = () => {
   return (
@@ -46,39 +46,43 @@ const LandingPage = () => {
               <div className="col-md-4">
                 <div className="feature">
                   <i
-                    className="fas fa-play-circle fa-4x"
+                    className="fa fa-battery fa-4x"
                     data-fa-transform="shrink-3 up-6"
                   ></i>
-                  <h4>Sick Battery Life!</h4>
+                  <h4>Unbeatable Battery Life</h4>
                   <p>
-                    Trust that our battery will last very long. (10 hours
-                    long!!!)
+                    Our device offer up to 10 full hours of battery life between
+                    charges under normal uses. Our device is water resistant,
+                    durable and well protected.
                   </p>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className="feature">
                   <i
-                    className="fas fa-play-circle fa-4x"
+                    className="fa fa-map-marker fa-4x"
                     data-fa-transform="shrink-3 up-5"
                   ></i>
-                  <h4>Geo Fencing Bruh!</h4>
+                  <h4>Tracking</h4>
                   <p>
-                    Alerts you when your dog runs outside the boundaries you set
-                    >:)
+                    Alerts you to your dog's location anytime from anywhere
+                    within our specified distance. Set a Geo-Fence and go out
+                    and enjoy your walk without worrying about your pup running
+                    too far.
                   </p>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className="feature">
                   <i
-                    className="fas fa-play-circle fa-4x"
+                    className="fa fa-microchip fa-4x"
                     data-fa-transform="shrink-3 up-5"
                   ></i>
-                  <h4>You Get Laura!</h4>
+                  <h4>Network & Service</h4>
                   <p>
-                    This chick Laura is awesome! Low power plus no monthly
-                    subscriptions? Say no mas.
+                    Our Lorawan technology eliminates the subscription fees.
+                    Just buy our device once and never pay for anything else.
+                    ABSOLUTELY no hidden fees.
                   </p>
                 </div>
               </div>

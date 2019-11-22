@@ -46,12 +46,12 @@
       "email": "g@g.com",
       "device": "transmitter",
       "userInfo": {
-        "first": "",
-        "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
+        "first": "Anush",
+        "last": "Shetty",
+        "address": "sdsu",
+        "city": "SAN DIEGO",
+        "state": "CA",
+        "zipCode": "92126"
       },
       "dogInfo": {
         "dogName": "This",

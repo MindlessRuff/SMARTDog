@@ -4,8 +4,20 @@
   background: linear-gradient(to right, #2f80ed, #56ccf2);
 }
 
+.img-grid {
+  text-align: center;
+}
+
+.yt-tab-img {
+  height: 450px;
+  width: 750px;
+  text-align: center;
+}
+
 .tab-img {
-  height: 400px;
+  text-align: center;
+  height: 450px;
+  width: 750px;
 }
 
 .landing-img {
@@ -162,7 +174,6 @@ body {
 }
 
 /* Landing Page - Feature Section */
-
 h3.heading {
   text-align: center;
   font-size: 1.9rem;
@@ -176,3 +187,46 @@ h3.heading {
   background-color: #2f80ed;
   margin: -1rem auto 3rem;
 }
+
+/* Landing Page - Footer Section */
+.footer-img {
+  float: none;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+/* About Page - Timeline */
+ul.timeline {
+  list-style-type: none;
+  position: relative;
+}
+ul.timeline:before {
+  content: " ";
+  background: #d4d9df;
+  display: inline-block;
+  position: absolute;
+  left: 29px;
+  width: 2px;
+  height: 100%;
+  z-index: 400;
+}
+ul.timeline > li {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+ul.timeline > li:before {
+  content: " ";
+  background: white;
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #22c0e8;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  z-index: 400;
+}
+
+/* Store Page */
