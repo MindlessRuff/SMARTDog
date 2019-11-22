@@ -1,19 +1,8 @@
 {
   "users": [
     {
-      "email": "this@this.com",
-      "userInfo": {
-        "first": "Kevin",
-        "last": "Sprigg",
-        "address": "hold",
-        "city": "or",
-        "state": "otherh",
-        "zipCode": "92117"
-      },
-      "id": 1
-    },
-    {
       "email": "a@b.com",
+      "device": "Michael",
       "userInfo": {
         "first": "",
         "last": "",
@@ -21,11 +10,20 @@
         "city": "",
         "state": "",
         "zipCode": ""
+      },
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
+      },
+      "coords": {
+        "lat": 0,
+        "lng": 0
       },
       "id": 2
     },
     {
       "email": "a@a.com",
+      "device": "Carlo",
       "userInfo": {
         "first": "",
         "last": "",
@@ -33,6 +31,14 @@
         "city": "",
         "state": "",
         "zipCode": ""
+      },
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
+      },
+      "coords": {
+        "lat": 0,
+        "lng": 0
       },
       "id": 5
     },
@@ -47,11 +53,36 @@
         "state": "",
         "zipCode": ""
       },
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
+      },
       "coords": {
         "lat": 0,
         "lng": 0
       },
       "id": 7
+    },
+    {
+      "email": "this@this.com",
+      "device": "",
+      "userInfo": {
+        "first": "Hod",
+        "last": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
+      },
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
+      },
+      "coords": {
+        "lat": 0,
+        "lng": 0
+      },
+      "id": 8
     }
   ]
 }
