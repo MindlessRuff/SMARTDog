@@ -33,9 +33,10 @@ ttn
       axios
         .get(`http://localhost:3000/users/?device=${deviceId}`)
         .then(response => {
+          let userId = response.data[0].id;
           axios
             // Update the user database with the newly received coordinates.
-            .patch(`http://localhost:3000/users/${user.id}`, {
+            .patch(`http://localhost:3000/users/${userId}`, {
               coords: {
                 lat: receivedLat,
                 lng: receivedLng
