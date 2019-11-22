@@ -169,8 +169,6 @@ export class GoogleMapsPage extends Component {
       infoCircle,
       dogAddress,
     } = this.state;
-
-    if (lat == 0) return <div>Loading...</div>; 
  
     if (this.addressError) {
       console.log('AddressError');
@@ -190,9 +188,10 @@ export class GoogleMapsPage extends Component {
       );
     }
 
+    if (lat == 0) return <div>Loading...</div>; 
+
     // Pass Checks -> Render map.
-    console.log('Map Render', infoCircle);
-    console.log('marker', infoMarker)
+    console.log('Map Render');
     return (
       <Map
         google={this.props.google}
