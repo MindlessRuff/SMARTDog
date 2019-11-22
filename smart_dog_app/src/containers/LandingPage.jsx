@@ -3,7 +3,7 @@ import { Grid, Cell } from "react-mdl";
 
 const LandingPage = () => {
   return (
-    <body>
+    <div>
       {/* Start Langing Page Section */}
       <div>
         <div className="landing">
@@ -28,7 +28,7 @@ const LandingPage = () => {
 
       {/* Start Slogan Section */}
       <div className="offset">
-        <div class="col-12 narrow text-center">
+        <div className="col-12 narrow text-center">
           <h1>SmartDog gives you ease of mind</h1>
           <h3 className="lead">
             Freedom to let your dog run without any worries
@@ -97,7 +97,7 @@ const LandingPage = () => {
       <div id="contact" className="offset">
         <footer>
           <div className="row justify-content-center">
-            <div class="col-md-5 text-center">
+            <div className="col-md-5 text-center">
               <img src=""></img>
               <p>
                 SmartDog was created by a bunch of smartdawgs who love dogs.
@@ -108,7 +108,7 @@ const LandingPage = () => {
           </div>
         </footer>
       </div>
-    </body>
+    </div>
   );
 };
 
