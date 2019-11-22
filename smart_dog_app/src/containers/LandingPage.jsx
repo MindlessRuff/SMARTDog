@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 
 const LandingPage = () => {
   return (
-    <body>
+    <div>
       {/* Start Langing Page Section */}
       <div>
         <div className="landing">
@@ -28,7 +28,7 @@ const LandingPage = () => {
 
       {/* Start Slogan Section */}
       <div className="offset">
-        <div class="col-12 narrow text-center">
+        <div className="col-12 narrow text-center">
           <h1>SmartDog gives you ease of mind</h1>
           <h3 className="lead">
             Freedom to let your dog run without any worries
@@ -90,9 +90,35 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       {/* Footer Component*/}
       <Footer />
     </body>
+=======
+      {/* Start Preorder Section */}
+      <div className="col-12 narrow text-center">
+        <p className="lead">Want to preorder our wonderful SmartDog collar?</p>
+        <a className="btn btn-secondary btn-md" href="http://google.com">
+          Preorder Now
+        </a>
+      </div>
+      {/* Start Footer Section */}
+      <div id="contact" className="offset">
+        <footer>
+          <div className="row justify-content-center">
+            <div className="col-md-5 text-center">
+              <img src=""></img>
+              <p>
+                SmartDog was created by a bunch of smartdawgs who love dogs.
+              </p>
+              <strong>Contact Info</strong>
+              <p>smartdog-sdsu@gmail.com</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+>>>>>>> 728ff0572bee67a9f14ce67f93b2d4cc65aa8701
   );
 };
 

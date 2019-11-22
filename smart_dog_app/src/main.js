@@ -4,7 +4,7 @@ import About from "./containers/AboutPage";
 import Works from "./containers/HowItWorksPage";
 import Store from "./containers/Store";
 import PrivateRoute from "./components/PrivateRoute";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import GoogleMapsPage from "./containers/GoogleMapsPage";
 import SignupFormContainer from "./containers/SignupFormContainer";
 

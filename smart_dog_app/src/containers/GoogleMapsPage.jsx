@@ -8,14 +8,10 @@ import {
 } from "google-maps-react";
 import axios from "axios";
 import geocode from "react-geocode";
-import { Switch, Redirect, Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import Button from "../components/Button";
+import {Dialog, DialogTitle, DialogActions} from "react-mdl";
 
-// For the circle coordinates
-let addressLat = 0.0;
-let addressLng = 0.0;
-
-// TODO: Get rid of this for database dog name
-const dogName = "Kevin";
 
 const mapStyles = {
   width: "90%",
@@ -25,18 +21,23 @@ const mapStyles = {
 export class GoogleMapsPage extends Component {
   constructor(props) {
     super(props);
+
+    this.id = 0;    // For axios, filled in by componentDidMount
+
     this.state = {
-      lat: 0,
-      lng: 0,
-      currentDogAddress: "",
-      showInfoWindow: false,
+      lat: 0.0,
+      lng: 0.0,
+      addressLat: 0.0,
+      addressLng: 0.0,
+      dogAddress: "",
+      showMarkerInfo: false,
+      showCircleInfo: false, 
       infoMarker: {},
-      addressError: false,
-      redirect: false
+      infoCircle: {},
     };
 
     // TODO: Change this to only get address.
-    let userInfo = {
+    this.userInfo = {
       first: "",
       last: "",
       address: "",
@@ -45,27 +46,33 @@ export class GoogleMapsPage extends Component {
       zipCode: ""
     };
 
-    let email = this.props.email;
+    this.dogName = '';
 
-    axios.get(`/users?email=${email}`).then(response => {
-      userInfo = response.data[0].userInfo;
+    this.addressError = false;
+    this.redirect = false;
+    this.email = this.props.email;
+
+    this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
+    this.onMouseoutMarker = this.onMouseoutMarker.bind(this);
+    this.onMouseoverCircle = this.onMouseoverCircle.bind(this);
+    this.onMouseoutCircle = this.onMouseoutCircle.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get(`/users?email=${this.email}`).then(response => {
+      this.id = response.data[0].id;              // Save user id for future axios requests.
+      this.userInfo = response.data[0].userInfo;
+      this.dogName = response.data[0].dogInfo.dogName;  
+      this.setState({lat: response.data[0].coords.lat, lng: response.data[0].coords.lng });
       // Using .then to synchronize response, this is only called once
       // when component is constructed to get the lat and lng from address for the circle.
-      console.log("userInfo: ", userInfo);
       geocode
-        .fromAddress(userInfo.address + " " + userInfo.zipCode)
+        .fromAddress(this.userInfo.address + " " + this.userInfo.zipCode)
         .then(response => {
-          console.log(
-            "address and zip",
-            userInfo.address + " " + userInfo.zipCode
-          );
-          // TODO: Change assignment of lat, lon to read from database coordinatess
+          // Get the lat and long of the user profile's address.
           const { lat, lng } = response.results[0].geometry.location;
-          addressLat = lat;
-          addressLng = lng;
-          // TODO: Change this setState to lat and lng from the database file
-          // once server is set up. addressLat and lng are only for the circle.
-          this.setState({ lat: addressLat, lng: addressLng });
+          this.setState({addressLat: lat, addressLng: lng});
+
         })
         .catch(error => {
           /**
@@ -73,112 +80,160 @@ export class GoogleMapsPage extends Component {
            * so can not render the map with location properly. I will then use this boolean
            * in the render function to redirect the user back to the profile page
            */
-          this.setState({ addressError: true });
+          console.log('Invalid Address', error);
+          this.addressError = true;
+          this.setState({lat: 0});  
         });
     });
-    this.onMouseoverMarker = this.onMouseoverMarker.bind(this);
-    this.onMouseoutMarker = this.onMouseoutMarker.bind(this);
-  }
 
-  componentDidMount() {
-    // Call getData explicitly to render the map correctly
-    // on its first mount. Otherwise center will be wrong.
     this.interval = setInterval(this.getData, 8000);
-    /**
-     * This will allow the current page to be displayed so that I
-     * can tell the user what needs to be done before they are
-     * redirected to the page.
-     */
-    this.id = setTimeout(() => this.setState({ redirect: true }), 2500);
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
-    clearTimeout(this.id);
   }
 
-  // TODO: Set this to make a get request from database.
+  // Updates marker's coordinates from database on an 8 second interval.
   getData = () => {
-    // 	this.setState({lat: coords.lat, lng: coords.lng});
-    // })
-    // .catch(error => {
-    // 	console.log('getData error', error);
-    // });
+    axios.get(`/users/${this.id}`).then(response => {
+      this.setState({lat: response.data.coords.lat, lng: response.data.coords.lng});
+    })
+    .catch(error => {
+      console.log('Error updating coords from DB', error);
+    });
   };
 
-  // Render an info window for the circle
+  // Render an info window for the dog marker
   onMouseoverMarker(props, marker, event) {
-    if (this.state.showInfoWindow === false) {
+    if (this.state.showMarkerInfo === false) {
       if (this.state.lat && this.state.lng) {
         geocode
           .fromLatLng(this.state.lat, this.state.lng)
           .then(response => {
-            let currentDogAddress = response.results[0].formatted_address;
+            let dogAddress = response.results[0].formatted_address;
             this.setState({
-              showInfoWindow: true,
+              showMarkerInfo: true,
               infoMarker: marker,
-              currentDogAddress: currentDogAddress
+              dogAddress: dogAddress
             });
           })
           .catch(error => {
-            console.log("Geocode fromLatLng error", error);
+            console.log("Geocode from - Lat, Lng error", error);
           });
       }
     }
   }
 
   onMouseoutMarker() {
-    if (this.state.showInfoWindow === true) {
-      this.setState({ showInfoWindow: false });
+    if (this.state.showMarkerInfo === true) {
+      this.setState({ showMarkerInfo: false });
     }
+  }
+
+  // Render an info window for the dog marker
+  onMouseoverCircle(props, marker, event) {
+    if (this.state.showCircleInfo === false) {
+      if (this.state.addressLat && this.state.addressLng) {
+        this.setState({showCircleInfo: true, infoCircle: marker});
+      }
+    }
+  }
+
+  onMouseoutCircle() {
+    if (this.state.showCircleInfo === true) {
+      this.setState({ showCircleInfo: false });
+    }
+  }
+
+  handleErrorClick = event => {
+    event.preventDefault();
+    this.redirect= true;
+    this.setState({lat: 0});
   }
 
   // TODO: Un-hardcode dog marker name and geocode coords into address.
   render() {
     /**
-     * This do the redirecting and display a message to let the user
+     * This does the redirecting and display a message to let the user
      * know what they need to do before it gets redirected
+     * User will get redirected when hey hit the ok button
      */
-    if (this.state.addressError === true) {
-      return this.state.redirect ? (
-        <Redirect to="/profile" />
-      ) : (
-        <div>PLEASE UPDATE ADDRESS</div>
-      );
-    }
-
-    console.log("Map Render");
     const {
       lat,
       lng,
-      showInfoWindow,
+      addressLat,
+      addressLng,
+      showMarkerInfo,
+      showCircleInfo,
       infoMarker,
-      currentDogAddress
+      infoCircle,
+      dogAddress,
     } = this.state;
+ 
+    if (this.addressError) {
+      console.log('AddressError');
+      return this.redirect ? (
+        <Redirect to="/profile" />
+      ) : ( 
+          <Dialog>
+            <DialogTitle>Please Update Address ASSHOLE</DialogTitle>
+            <DialogActions>
+            <Button
+            action={this.handleErrorClick}
+            type={"btn btn-primary"}
+            title={"OK"}
+            />
+            </DialogActions>
+          </Dialog>
+      );
+    }
 
+    if (lat == 0) return <div>Loading...</div>; 
+
+    // Pass Checks -> Render map.
+    console.log('Map Render');
     return (
       <Map
         google={this.props.google}
         zoom={16}
         style={mapStyles}
-        center={{ lat: lat, lng: lng }}
+        initialCenter={{ lat: lat, lng: lng }}
       >
+        {/* Dog Marker */}
         <Marker
           position={{ lat: lat, lng: lng }}
           name={"Dog1"}
           onMouseover={this.onMouseoverMarker}
           onMouseout={this.onMouseoutMarker}
         ></Marker>
+
+        {/* Home Marker */}
+        <Marker
+        icon = {{url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"  }}
+          position={{lat: addressLat, lng: addressLng}}
+          name={'Home'}
+          onMouseover={this.onMouseoverCircle}
+          onMouseout={this.onMouseoutCircle}
+        ></Marker>
         <Circle
           center={{ lat: addressLat, lng: addressLng }}
           radius={50}
-          fillColor="red"
+          fillColor="green"
         ></Circle>
-        <InfoWindow marker={infoMarker} visible={showInfoWindow}>
+        <InfoWindow marker={infoMarker} visible={showMarkerInfo}>
           <h5>
-            {dogName}
+            {this.dogName}
             <br />
-            {currentDogAddress}
+            <br />
+            {dogAddress}
+          </h5>
+        </InfoWindow>
+        <InfoWindow marker={infoCircle} visible={showCircleInfo}>
+          <h5>
+            {'Home Address'}
+            <br />
+            <br />
+            {this.userInfo.address}
           </h5>
         </InfoWindow>
       </Map>

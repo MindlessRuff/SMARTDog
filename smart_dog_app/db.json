@@ -1,19 +1,8 @@
 {
   "users": [
     {
-      "email": "this@this.com",
-      "userInfo": {
-        "first": "Kevin",
-        "last": "Sprigg",
-        "address": "hold",
-        "city": "or",
-        "state": "otherh",
-        "zipCode": "92117"
-      },
-      "id": 1
-    },
-    {
       "email": "a@b.com",
+      "device": "Michael",
       "userInfo": {
         "first": "",
         "last": "",
@@ -22,10 +11,40 @@
         "state": "",
         "zipCode": ""
       },
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
+      },
+      "coords": {
+        "lat": 0,
+        "lng": 0
+      },
       "id": 2
     },
     {
       "email": "a@a.com",
+      "device": "Carlo",
+      "userInfo": {
+        "first": "Carlo",
+        "last": "Hormoz",
+        "address": "2051 Pierce Ct",
+        "city": "EL Cajon",
+        "state": "CA",
+        "zipCode": "92019"
+      },
+      "dogInfo": {
+        "dogName": "Dawg",
+        "dogBreed": "Dog"
+      },
+      "coords": {
+        "lat": 32.7571825,
+        "lng": -116.9094835
+      },
+      "id": 5
+    },
+    {
+      "email": "g@g.com",
+      "device": "transmitter",
       "userInfo": {
         "first": "Anush",
         "last": "Shetty",
@@ -34,24 +53,36 @@
         "state": "CA",
         "zipCode": "92126"
       },
-      "id": 5
-    },
-    {
-      "email": "g@g.com",
-      "device": "transmitter",
-      "userInfo": {
-        "first": "",
-        "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
       },
       "coords": {
         "lat": 0,
         "lng": 0
       },
       "id": 7
+    },
+    {
+      "email": "this@this.com",
+      "device": "",
+      "userInfo": {
+        "first": "Hod",
+        "last": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
+      },
+      "dogInfo": {
+        "dogName": "This",
+        "dogBreed": "Dog"
+      },
+      "coords": {
+        "lat": 0,
+        "lng": 0
+      },
+      "id": 8
     }
   ]
 }
