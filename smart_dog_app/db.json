@@ -23,7 +23,7 @@
     },
     {
       "email": "a@a.com",
-      "device": "Carlo",
+      "device": "",
       "userInfo": {
         "first": "Carlo",
         "last": "Hormoz",
@@ -48,18 +48,18 @@
       "userInfo": {
         "first": "Anush",
         "last": "Shetty",
-        "address": "sdsu",
+        "address": "SDSU",
         "city": "SAN DIEGO",
         "state": "CA",
         "zipCode": "92126"
       },
       "dogInfo": {
-        "dogName": "This",
+        "dogName": "Francis",
         "dogBreed": "Dog"
       },
       "coords": {
-        "lat": 0,
-        "lng": 0
+        "lat": 32.7752773,
+        "lng": -117.0701934
       },
       "id": 7
     },
@@ -83,6 +83,27 @@
         "lng": 0
       },
       "id": 8
+    },
+    {
+      "email": "g@g.com",
+      "device": "",
+      "userInfo": {
+        "first": "",
+        "last": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zipCode": ""
+      },
+      "dogInfo": {
+        "dogName": "",
+        "dogBreed": ""
+      },
+      "coords": {
+        "lat": 0,
+        "lng": 0
+      },
+      "id": 9
     }
   ]
 }

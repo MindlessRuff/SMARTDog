@@ -25,17 +25,18 @@ ttn
     // When an uplink packet is received by the gateway, get the deviceId and the payload.
     client.on("uplink", function(deviceId, payload) {
       // Print out the Device ID and the contents of the payload
-      console.log("Received uplink from ", deviceId);
+      console.log("Received uplink from", deviceId);
       // Read the payload fields decoded on the TTN console.
       receivedLat = payload.payload_fields.lat;
       receivedLng = payload.payload_fields.lng;
       // Get the current userId based on the deviceId of the received payload.
       axios
-        .get(`http://localhost:3000/users/?device=${deviceId}`)
+        .get(`http://localhost:3000/users?device=${deviceId}`)
         .then(response => {
+          let id = response.data[0].id;
+          // Update the user database with the newly received coordinates.
           axios
-            // Update the user database with the newly received coordinates.
-            .patch(`http://localhost:3000/users/${user.id}`, {
+            .patch(`http://localhost:3000/users/${id}`, {
               coords: {
                 lat: receivedLat,
                 lng: receivedLng

@@ -122,6 +122,13 @@ export class GoogleMapsPage extends Component {
             console.log("Geocode from - Lat, Lng error", error);
           });
       }
+      else {
+        this.setState({
+          showMarkerInfo: true,
+          infoMarker: marker,
+          dogAddress: 'Africa'
+        });
+      }
     }
   }
 
@@ -234,7 +241,7 @@ export class GoogleMapsPage extends Component {
             {'Home Address'}
             <br />
             <br />
-            {this.userInfo.address}
+            {`${this.userInfo.address}, ${this.userInfo.zipCode}`}
           </h5>
         </InfoWindow>
       </Map>
