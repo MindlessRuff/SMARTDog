@@ -10,8 +10,7 @@ import axios from "axios";
 import geocode from "react-geocode";
 import { Redirect } from "react-router-dom";
 import Button from "../components/Button";
-import {Dialog, DialogTitle, DialogActions} from "react-mdl";
-
+import { Dialog, DialogTitle, DialogActions } from "react-mdl";
 
 const mapStyles = {
   width: "90%",
@@ -22,7 +21,7 @@ export class GoogleMapsPage extends Component {
   constructor(props) {
     super(props);
 
-    this.id = 0;    // For axios, filled in by componentDidMount
+    this.id = 0; // For axios, filled in by componentDidMount
 
     this.state = {
       lat: 0.0,
@@ -31,9 +30,9 @@ export class GoogleMapsPage extends Component {
       addressLng: 0.0,
       dogAddress: "",
       showMarkerInfo: false,
-      showCircleInfo: false, 
+      showCircleInfo: false,
       infoMarker: {},
-      infoCircle: {},
+      infoCircle: {}
     };
 
     // TODO: Change this to only get address.
@@ -46,7 +45,7 @@ export class GoogleMapsPage extends Component {
       zipCode: ""
     };
 
-    this.dogName = '';
+    this.dogName = "";
 
     this.addressError = false;
     this.redirect = false;
@@ -60,10 +59,13 @@ export class GoogleMapsPage extends Component {
 
   componentDidMount() {
     axios.get(`/users?email=${this.email}`).then(response => {
-      this.id = response.data[0].id;              // Save user id for future axios requests.
+      this.id = response.data[0].id; // Save user id for future axios requests.
       this.userInfo = response.data[0].userInfo;
-      this.dogName = response.data[0].dogInfo.dogName;  
-      this.setState({lat: response.data[0].coords.lat, lng: response.data[0].coords.lng });
+      this.dogName = response.data[0].dogInfo.dogName;
+      this.setState({
+        lat: response.data[0].coords.lat,
+        lng: response.data[0].coords.lng
+      });
       // Using .then to synchronize response, this is only called once
       // when component is constructed to get the lat and lng from address for the circle.
       geocode
@@ -71,8 +73,7 @@ export class GoogleMapsPage extends Component {
         .then(response => {
           // Get the lat and long of the user profile's address.
           const { lat, lng } = response.results[0].geometry.location;
-          this.setState({addressLat: lat, addressLng: lng});
-
+          this.setState({ addressLat: lat, addressLng: lng });
         })
         .catch(error => {
           /**
@@ -80,9 +81,9 @@ export class GoogleMapsPage extends Component {
            * so can not render the map with location properly. I will then use this boolean
            * in the render function to redirect the user back to the profile page
            */
-          console.log('Invalid Address', error);
+          console.log("Invalid Address", error);
           this.addressError = true;
-          this.setState({lat: 0});  
+          this.setState({ lat: 0 });
         });
     });
 
@@ -95,12 +96,17 @@ export class GoogleMapsPage extends Component {
 
   // Updates marker's coordinates from database on an 8 second interval.
   getData = () => {
-    axios.get(`/users/${this.id}`).then(response => {
-      this.setState({lat: response.data.coords.lat, lng: response.data.coords.lng});
-    })
-    .catch(error => {
-      console.log('Error updating coords from DB', error);
-    });
+    axios
+      .get(`/users/${this.id}`)
+      .then(response => {
+        this.setState({
+          lat: response.data.coords.lat,
+          lng: response.data.coords.lng
+        });
+      })
+      .catch(error => {
+        console.log("Error updating coords from DB", error);
+      });
   };
 
   // Render an info window for the dog marker
@@ -134,7 +140,7 @@ export class GoogleMapsPage extends Component {
   onMouseoverCircle(props, marker, event) {
     if (this.state.showCircleInfo === false) {
       if (this.state.addressLat && this.state.addressLng) {
-        this.setState({showCircleInfo: true, infoCircle: marker});
+        this.setState({ showCircleInfo: true, infoCircle: marker });
       }
     }
   }
@@ -147,9 +153,9 @@ export class GoogleMapsPage extends Component {
 
   handleErrorClick = event => {
     event.preventDefault();
-    this.redirect= true;
-    this.setState({lat: 0});
-  }
+    this.redirect = true;
+    this.setState({ lat: 0 });
+  };
 
   // TODO: Un-hardcode dog marker name and geocode coords into address.
   render() {
@@ -167,31 +173,31 @@ export class GoogleMapsPage extends Component {
       showCircleInfo,
       infoMarker,
       infoCircle,
-      dogAddress,
+      dogAddress
     } = this.state;
- 
+
     if (this.addressError) {
-      console.log('AddressError');
+      console.log("AddressError");
       return this.redirect ? (
         <Redirect to="/profile" />
-      ) : ( 
-          <Dialog>
-            <DialogTitle>Please Update Address ASSHOLE</DialogTitle>
-            <DialogActions>
+      ) : (
+        <Dialog>
+          <DialogTitle>Please Update Address ASSHOLE</DialogTitle>
+          <DialogActions>
             <Button
-            action={this.handleErrorClick}
-            type={"btn btn-primary"}
-            title={"OK"}
+              action={this.handleErrorClick}
+              type={"btn btn-primary"}
+              title={"OK"}
             />
-            </DialogActions>
-          </Dialog>
+          </DialogActions>
+        </Dialog>
       );
     }
 
-    if (lat == 0) return <div>Loading...</div>; 
+    if (lat == 1.753098457203985) return <div>Loading...</div>;
 
     // Pass Checks -> Render map.
-    console.log('Map Render');
+    console.log("Map Render");
     return (
       <Map
         google={this.props.google}
@@ -209,9 +215,11 @@ export class GoogleMapsPage extends Component {
 
         {/* Home Marker */}
         <Marker
-        icon = {{url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"  }}
-          position={{lat: addressLat, lng: addressLng}}
-          name={'Home'}
+          icon={{
+            url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          }}
+          position={{ lat: addressLat, lng: addressLng }}
+          name={"Home"}
           onMouseover={this.onMouseoverCircle}
           onMouseout={this.onMouseoutCircle}
         ></Marker>
@@ -230,7 +238,7 @@ export class GoogleMapsPage extends Component {
         </InfoWindow>
         <InfoWindow marker={infoCircle} visible={showCircleInfo}>
           <h5>
-            {'Home Address'}
+            {"Home Address"}
             <br />
             <br />
             {this.userInfo.address}
