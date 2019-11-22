@@ -40,7 +40,6 @@ const PrivateRoute = ({ component: Component, path }) => {
     axios
       .get(`/users?email=${user.email}`)
       .then(response => {
-        console.log("get", response);
         if (!(Array.isArray(response.data) && response.data.length)) {
           axios
             .post(`/users`, {
@@ -57,13 +56,25 @@ const PrivateRoute = ({ component: Component, path }) => {
       })
       .catch(error => {
         console.log("error on get", error);
+        axios
+          .post(`/users`, {
+            email: user.email,
+            device: device,
+            userInfo: userInfo,
+            dogInfo: dogInfo,
+            coords: coords
+          })
+          .then(response => {
+            console.log("post", response);
+          });
       });
 
       return user.email;
   }
+  
   const render = props =>
     isAuthenticated === true ? (
-      <Component {...props} email={getEmail()} />
+      <Component {...props} email={getEmail()}/>
     ) : (
       loginWithRedirect()
     );

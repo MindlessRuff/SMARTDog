@@ -14,6 +14,7 @@ const Input = function(props) {
         value={props.value}
         onChange={props.handlechange}
         placeholder={props.placeholder}
+        required={props.required}
       />
     </div>
   );

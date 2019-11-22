@@ -25,20 +25,20 @@
       "email": "a@a.com",
       "device": "Carlo",
       "userInfo": {
-        "first": "",
-        "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
+        "first": "Carlo",
+        "last": "Hormoz",
+        "address": "2051 Pierce Ct",
+        "city": "EL Cajon",
+        "state": "CA",
+        "zipCode": "92019"
       },
       "dogInfo": {
-        "dogName": "This",
+        "dogName": "Dawg",
         "dogBreed": "Dog"
       },
       "coords": {
-        "lat": 0,
-        "lng": 0
+        "lat": 32.7571825,
+        "lng": -116.9094835
       },
       "id": 5
     },
