@@ -90,28 +90,8 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      {/* Start Preorder Section */}
-      <div className="col-12 narrow text-center">
-        <p className="lead">Want to preorder our wonderful SmartDog collar?</p>
-        <a className="btn btn-secondary btn-md" href="http://google.com">
-          Preorder Now
-        </a>
-      </div>
       {/* Start Footer Section */}
-      <div id="contact" className="offset">
-        <footer>
-          <div className="row justify-content-center">
-            <div className="col-md-5 text-center">
-              <img src=""></img>
-              <p>
-                SmartDog was created by a bunch of smartdawgs who love dogs.
-              </p>
-              <strong>Contact Info</strong>
-              <p>smartdog-sdsu@gmail.com</p>
-            </div>
-          </div>
-        </footer>
-      </div>
+      <Footer />
     </div>
   );
 };
