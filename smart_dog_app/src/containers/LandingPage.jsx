@@ -90,11 +90,6 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-      {/* Footer Component*/}
-      <Footer />
-    </body>
-=======
       {/* Start Preorder Section */}
       <div className="col-12 narrow text-center">
         <p className="lead">Want to preorder our wonderful SmartDog collar?</p>
@@ -118,7 +113,6 @@ const LandingPage = () => {
         </footer>
       </div>
     </div>
->>>>>>> 728ff0572bee67a9f14ce67f93b2d4cc65aa8701
   );
 };
 
