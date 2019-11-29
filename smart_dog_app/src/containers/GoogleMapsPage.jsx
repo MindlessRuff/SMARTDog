@@ -10,21 +10,31 @@ import {
 import axios from "axios";
 import geocode from "react-geocode";
 import { Redirect } from "react-router-dom";
-import Button from "../components/Button";
 import {Dialog, DialogTitle, DialogActions} from "react-mdl";
+import Button from "../components/Button";
+import Select from "../components/Select";
 
 
 const mapStyles = {
-  width: "90%",
-  height: "90%"
+  width: "100%",
+  height: "100%"
 };
+
+const radiusOptions = [
+  10, 20, 30, 40, 50, 60,
+  70, 80, 90, 100, 110, 120
+];
 
 export class GoogleMapsPage extends Component {
   constructor(props) {
     super(props);
+    // Create a reference that can be used by DOM elements,
+    // used here to set focus when user clicks the home circle on the map
+    // This allows clicking anywhere on the screen to close the dropdown when it opens
+    // after clicking the circle.
+    this.dropdownRef = React.createRef();
 
     this.id = 0;    // For axios, filled in by componentDidMount
-
     this.state = {
       lat: 0.0,
       lng: 0.0,
@@ -35,6 +45,8 @@ export class GoogleMapsPage extends Component {
       showCircleInfo: false, 
       infoMarker: {},
       infoCircle: {},
+      radius: '',
+      dropdownSize: 1
     };
 
     // TODO: Change this to only get address.
@@ -57,6 +69,9 @@ export class GoogleMapsPage extends Component {
     this.onMouseoutMarker = this.onMouseoutMarker.bind(this);
     this.onMouseoverCircle = this.onMouseoverCircle.bind(this);
     this.onMouseoutCircle = this.onMouseoutCircle.bind(this);
+    this.handleRadiusChange = this.handleRadiusChange.bind(this);
+    this.onCircleClick = this.onCircleClick.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   componentDidMount() {
@@ -64,7 +79,7 @@ export class GoogleMapsPage extends Component {
       this.id = response.data[0].id;              // Save user id for future axios requests.
       this.userInfo = response.data[0].userInfo;
       this.dogName = response.data[0].dogInfo.dogName;  
-      this.setState({lat: response.data[0].coords.lat, lng: response.data[0].coords.lng });
+      this.setState({lat: response.data[0].coords.lat, lng: response.data[0].coords.lng, radius: response.data[0].mapRadius });
       // Using .then to synchronize response, this is only called once
       // when component is constructed to get the lat and lng from address for the circle.
       geocode
@@ -83,6 +98,7 @@ export class GoogleMapsPage extends Component {
            */
           console.log('Invalid Address', error);
           this.addressError = true;
+          // Force re-render
           this.setState({lat: 0});  
         });
     });
@@ -159,6 +175,33 @@ export class GoogleMapsPage extends Component {
     this.setState({lat: 0});
   }
 
+  // When user changes radius, save to DB and re-render.
+  handleRadiusChange(event) {
+    // If check in case user selects the placeholder string.
+    if (event.target.value) {
+      let radius = Number(event.target.value);
+      this.setState({radius: radius, dropdownSize: 1});
+      axios.patch(`/users/${this.id}`, {
+        mapRadius: radius
+      })
+    }
+    else {
+      this.setState({dropdownSize: 1});
+    }
+  }
+
+  // Blur is when a DOM element is un-focused. Used for the dropdown
+  // to close it when the user clicks off after opening with a circle click.
+  handleBlur() {
+    this.setState({dropdownSize: 1});
+  }
+
+  // Open the dropdown if user clicks on the circle to change radius.
+  onCircleClick() {
+    this.setState({dropdownSize: radiusOptions.length + 1});
+    this.dropdownRef.current.focus();
+  }
+
   // TODO: Un-hardcode dog marker name and geocode coords into address.
   render() {
     /**
@@ -186,65 +229,83 @@ export class GoogleMapsPage extends Component {
           <Dialog>
             <DialogTitle>Please Update Address ASSHOLE</DialogTitle>
             <DialogActions>
-            <Button
-            action={this.handleErrorClick}
-            type={"btn btn-primary"}
-            title={"OK"}
-            />
+              <Button
+                action={this.handleErrorClick}
+                type={"btn btn-primary"}
+                title={"OK"}
+              />
             </DialogActions>
           </Dialog>
       );
     }
 
-    if (lat == 0) return <div>Loading...</div>; 
+    if (lat === 0) return <div>Loading...</div>; 
 
     // Pass Checks -> Render map.
     console.log('Map Render');
     return (
-      <Map
-        google={this.props.google}
-        zoom={16}
-        style={mapStyles}
-        initialCenter={{ lat: lat, lng: lng }}
-      >
-        {/* Dog Marker */}
-        <Marker
-          position={{ lat: lat, lng: lng }}
-          name={"Dog1"}
-          onMouseover={this.onMouseoverMarker}
-          onMouseout={this.onMouseoutMarker}
-        ></Marker>
+      <div className='row'>
+        <div>
+          <Map
+            google={this.props.google}
+            zoom={16}
+            style={mapStyles}
+            initialCenter={{ lat: lat, lng: lng }}
+          >
+            {/* Dog Marker */}
+            <Marker
+              position={{ lat: lat, lng: lng }}
+              name={"Dog1"}
+              onMouseover={this.onMouseoverMarker}
+              onMouseout={this.onMouseoutMarker}
+            ></Marker>
 
-        {/* Home Marker */}
-        <Marker
-        icon = {{url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"  }}
-          position={{lat: addressLat, lng: addressLng}}
-          name={'Home'}
-          onMouseover={this.onMouseoverCircle}
-          onMouseout={this.onMouseoutCircle}
-        ></Marker>
-        <Circle
-          center={{ lat: addressLat, lng: addressLng }}
-          radius={50}
-          fillColor="green"
-        ></Circle>
-        <InfoWindow marker={infoMarker} visible={showMarkerInfo}>
-          <h5>
-            {this.dogName}
-            <br />
-            <br />
-            {dogAddress}
-          </h5>
-        </InfoWindow>
-        <InfoWindow marker={infoCircle} visible={showCircleInfo}>
-          <h5>
-            {'Home Address'}
-            <br />
-            <br />
-            {`${this.userInfo.address}, ${this.userInfo.zipCode}`}
-          </h5>
-        </InfoWindow>
-      </Map>
+            {/* Home Marker */}
+            <Marker
+            icon = {{url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"  }}
+              position={{lat: addressLat, lng: addressLng}}
+              name={'Home'}
+              onMouseover={this.onMouseoverCircle}
+              onMouseout={this.onMouseoutCircle}
+            ></Marker>
+            <Circle
+              onClick={ this.onCircleClick }
+              center={{ lat: addressLat, lng: addressLng }}
+              radius={ this.state.radius }
+              fillColor="green"
+            ></Circle>
+            <InfoWindow marker={infoMarker} visible={showMarkerInfo}>
+              <h5>
+                {this.dogName}
+                <br />
+                <br />
+                {dogAddress}
+              </h5>
+            </InfoWindow>
+            <InfoWindow marker={infoCircle} visible={showCircleInfo}>
+              <h5>
+                {'Home Address'}
+                <br />
+                <br />
+                {`${this.userInfo.address}, ${this.userInfo.zipCode}`}
+              </h5>
+            </InfoWindow>
+          </Map>
+        </div>
+        <div className='col-md-3' style={{margin: '50px 0 0 0'}}>
+          <Select
+            ref={this.dropdownRef}
+            style={{backgroundColor: 'grey', color: 'ghostwhite'}}
+            name={'radius'}
+            options={ radiusOptions } 
+            value={ this.state.radius }
+            placeholder={'Select Geo-Fence Radius Around Address'}
+            handleChange={ this.handleRadiusChange }
+            size={ this.state.dropdownSize }
+            handleBlur={ this.handleBlur }
+          ></Select>
+        </div>
+      </div>
     );
   }
 }

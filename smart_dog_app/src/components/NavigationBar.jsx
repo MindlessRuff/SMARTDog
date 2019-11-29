@@ -10,8 +10,6 @@ const NavigationBar = function(props) {
       <Layout fixedHeader>
         <Header
           className="header-color"
-          img
-          src="https://fbcd.co/product-lg/3eac7432730321c3aac109b495f272d6_resize.jpg"
           title={
             <Link to={"/"} style={{ color: "white" }}>
               SMARTDog
