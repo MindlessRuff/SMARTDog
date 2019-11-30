@@ -40,7 +40,12 @@
         "lat": 32.7571825,
         "lng": -116.9094835
       },
-      "id": 5
+      "id": 5,
+      "addressCoords": {
+        "addressLat": 32.7571825,
+        "addressLng": -116.9094835
+      },
+      "mapRadius": 40
     },
     {
       "email": "g@g.com",
@@ -58,10 +63,15 @@
         "dogBreed": "Dog"
       },
       "coords": {
-        "lat": 32.7752773,
-        "lng": -117.0701934
+        "lat": 32.77572170000001,
+        "lng": -117.0706
       },
-      "id": 7
+      "id": 7,
+      "mapRadius": 120,
+      "addressCoords": {
+        "addressLat": 32.77572170000001,
+        "addressLng": -117.0718893
+      }
     },
     {
       "email": "this@this.com",

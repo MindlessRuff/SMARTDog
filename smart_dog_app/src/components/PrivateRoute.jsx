@@ -20,8 +20,12 @@ const PrivateRoute = ({ component: Component, path }) => {
   };
   let device = "";
   let coords = {
-    "lat": 0,
-    "lng": 0
+    lat: 0,
+    lng: 0
+  };
+  let addressCoords = {
+    addressLat: 0,
+    addressLng: 0
   };
   
   if (loading) {
@@ -48,6 +52,7 @@ const PrivateRoute = ({ component: Component, path }) => {
               userInfo: userInfo,
               dogInfo: dogInfo,
               coords: coords,
+              addressCoords: addressCoords,
               mapRadius: ''
             })
             .then(response => {
@@ -64,6 +69,7 @@ const PrivateRoute = ({ component: Component, path }) => {
             userInfo: userInfo,
             dogInfo: dogInfo,
             coords: coords,
+            addressCoords: addressCoords,
             mapRadius: ''
           })
           .then(response => {

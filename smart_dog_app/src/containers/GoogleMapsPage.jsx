@@ -86,9 +86,18 @@ export class GoogleMapsPage extends Component {
         .fromAddress(this.userInfo.address + " " + this.userInfo.zipCode)
         .then(response => {
           // Get the lat and long of the user profile's address.
+          // Store it in the DB as well for the tracking script to detect the dog escaping.
           const { lat, lng } = response.results[0].geometry.location;
           this.setState({addressLat: lat, addressLng: lng});
-
+          axios.patch(`/users/${this.id}`, {
+            addressCoords: {
+              addressLat: lat,
+              addressLng: lng
+            }
+          })
+          .catch(error => {
+            console.log('Error updating DB with address coords', error);
+          });
         })
         .catch(error => {
           /**
@@ -202,7 +211,7 @@ export class GoogleMapsPage extends Component {
     this.dropdownRef.current.focus();
   }
 
-  // TODO: Un-hardcode dog marker name and geocode coords into address.
+
   render() {
     /**
      * This does the redirecting and display a message to let the user
@@ -242,7 +251,6 @@ export class GoogleMapsPage extends Component {
     if (lat === 0) return <div>Loading...</div>; 
 
     // Pass Checks -> Render map.
-    console.log('Map Render');
     return (
       <div className='row'>
         <div>
