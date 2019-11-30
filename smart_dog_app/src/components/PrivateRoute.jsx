@@ -41,6 +41,7 @@ const PrivateRoute = ({ component: Component, path }) => {
    */
 
   //Creates a new data entry into the database if it doesn't exist
+  if (user) {
     axios
       .get(`/users?email=${user.email}`)
       .then(response => {
@@ -76,6 +77,7 @@ const PrivateRoute = ({ component: Component, path }) => {
             console.log("post", response);
           });
       });
+  }
       
       const render = props =>
       isAuthenticated === true ? (

@@ -307,7 +307,7 @@ export class GoogleMapsPage extends Component {
             name={'radius'}
             options={ radiusOptions } 
             value={ this.state.radius }
-            placeholder={'Select Geo-Fence Radius Around Address'}
+            placeholder={'Select Geo-Fence Radius (Meters)'}
             handleChange={ this.handleRadiusChange }
             size={ this.state.dropdownSize }
             handleBlur={ this.handleBlur }
