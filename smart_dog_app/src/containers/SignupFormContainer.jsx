@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Button from "../components/Button";
 import CustomerFormContainer from "./CustomerFormContainer";
 import axios from "axios";
+import DogFormContainer from "./DogFormContainer";
+import { Redirect } from "react-router-dom";
+
 
 // This Signup form container is the top-level component
 // of the signup page. It holds all the state (variables)
@@ -20,9 +23,14 @@ class SignupFormContainer extends Component {
         state: "",
         zipCode: ""
       },
-      message: ""
+      dogInfo: {
+          dogName: "",
+          dogBreed: ""
+      },
+      message: "",
+     
     };
-    let id;
+    this.id = undefined;
   }
 
   componentDidMount() {
@@ -33,7 +41,9 @@ class SignupFormContainer extends Component {
       .get(`/users?email=${email}`)
       .then(response => {
         let fetchedData = response.data[0].userInfo;
-        this.setState({ userInfo: fetchedData, message: "" }); // [0] index since entries keyed by email are unique
+        let fetchedDog = response.data[0].dogInfo;
+        this.setState({ dogInfo: fetchedDog, userInfo: fetchedData, message: "" }); // [0] index since entries keyed by email are unique
+        console.log(response);
         this.id = response.data[0].id;
         console.log(this.state);
       })
@@ -59,12 +69,15 @@ class SignupFormContainer extends Component {
     event.preventDefault();
     let email = this.props.email;
     let userInfo = this.state.userInfo;
+    let dogInfo = this.state.dogInfo;
     this.setState({ message: "Processing..." });
     // Insert the id of the current user into the put request, can't do it with email key.
+    console.log(email, userInfo, this.id);
     axios
-      .put(`/users/${this.id}`, {
+      .patch(`/users/${this.id}`, {
         email: email,
-        userInfo: userInfo
+        userInfo: userInfo,
+        dogInfo: dogInfo
       })
       .catch(error => {
         console.log(error);
@@ -80,17 +93,16 @@ class SignupFormContainer extends Component {
     else this.setState({ message: "Profile Updated" });
   };
 
-  handleFormClear = event => {
+  handleDogInfo = event => {
     event.preventDefault();
+    
     this.setState({
-      first: "",
-      last: "",
-      address: "",
-      city: "",
-      state: "",
-      zipCode: "",
-      message: ""
+        dogInfo: {
+          ...this.state.dogInfo,
+          [event.target.name]: event.target.value
+        },
     });
+    
   };
 
   render() {
@@ -100,24 +112,37 @@ class SignupFormContainer extends Component {
     // state anytime a parent function is called, like clear or submit.
     const { first, last, address, city, state, zipCode } = this.state.userInfo;
     const userValues = { first, last, address, city, state, zipCode };
+    const petValues = this.state.dogInfo;
 
     return (
-      <form className="container-fluid" onSubmit={this.handleFormSubmit}>
-        <div className="container">
-          <CustomerFormContainer
-            handleInputChange={this.handleInputChange}
-            values={userValues}
-          />
-        </div>
-        <div className="container">
-          <Button
-            action={this.handleFormSubmit}
-            type={"btn btn-primary"}
-            title={"Update"}
-          />
-        </div>
-        <div className="result">{this.state.message}</div>
-      </form>
+      this.state.redirect === true ? (
+        <Redirect to="/dog" />
+      ):(
+        <form className="container-fluid" onSubmit={this.handleFormSubmit}>
+          <div className="container">
+              <div className="row">
+            <CustomerFormContainer
+              handleInputChange={this.handleInputChange}
+              values={userValues}
+            />
+            <DogFormContainer
+              handleInputChange={this.handleDogInfo}
+              values={petValues}
+            />
+            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+            <Button
+              action={this.handleFormSubmit}
+              type={"btn btn-primary"}
+              title={"Update"}
+            />
+          </div>
+          </div>
+          <div className="result">{this.state.message}</div>
+        </form>
+      )
     );
   }
 }

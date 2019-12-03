@@ -14,7 +14,20 @@ const PrivateRoute = ({ component: Component, path }) => {
     state: "",
     zipCode: ""
   };
-
+  let dogInfo = {
+    dogName: "",
+    dogBreed: "",
+  };
+  let device = "";
+  let coords = {
+    lat: 0,
+    lng: 0
+  };
+  let addressCoords = {
+    addressLat: 0,
+    addressLng: 0
+  };
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -26,34 +39,54 @@ const PrivateRoute = ({ component: Component, path }) => {
    * not be checked. Put it in privateroute because both profile and track need to get
    * data from the data base.
    */
+
   //Creates a new data entry into the database if it doesn't exist
-  axios
-    .get(`/users?email=${user.email}`)
-    .then(response => {
-      console.log("get", response);
-      if (!(Array.isArray(response.data) && response.data.length)) {
+  if (user) {
+    axios
+      .get(`/users?email=${user.email}`)
+      .then(response => {
+        if (!(Array.isArray(response.data) && response.data.length)) {
+          axios
+            .post(`/users`, {
+              email: user.email,
+              device: device,
+              userInfo: userInfo,
+              dogInfo: dogInfo,
+              coords: coords,
+              addressCoords: addressCoords,
+              mapRadius: ''
+            })
+            .then(response => {
+              console.log("post", response);
+            });
+        }
+      })
+      .catch(error => {
+        console.log("error on get", error);
         axios
           .post(`/users`, {
             email: user.email,
-            userInfo: userInfo
+            device: device,
+            userInfo: userInfo,
+            dogInfo: dogInfo,
+            coords: coords,
+            addressCoords: addressCoords,
+            mapRadius: ''
           })
           .then(response => {
             console.log("post", response);
           });
-      }
-    })
-    .catch(error => {
-      console.log("error on get", error);
-    });
-
-  const render = props =>
-    isAuthenticated === true ? (
-      <Component {...props} email={user.email} />
-    ) : (
-      loginWithRedirect()
-    );
-
-  return <Route path={path} render={render} />;
+      });
+  }
+      
+      const render = props =>
+      isAuthenticated === true ? (
+        <Component {...props} email={user.email}/>
+      ) : (
+        loginWithRedirect()
+      );
+  
+    return <Route path={path} render={render}/>;
 };
 
 export default PrivateRoute;
