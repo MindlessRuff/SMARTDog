@@ -93,27 +93,6 @@
         "lng": 0
       },
       "id": 8
-    },
-    {
-      "email": "g@g.com",
-      "device": "",
-      "userInfo": {
-        "first": "",
-        "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
-      },
-      "dogInfo": {
-        "dogName": "",
-        "dogBreed": ""
-      },
-      "coords": {
-        "lat": 0,
-        "lng": 0
-      },
-      "id": 9
     }
   ]
 }
