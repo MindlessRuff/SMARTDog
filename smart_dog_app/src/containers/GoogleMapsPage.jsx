@@ -237,6 +237,7 @@ export class GoogleMapsPage extends Component {
       console.log("AddressError");
       return this.redirect ? (
         <Redirect to="/profile" />
+
       ) : (
         <Dialog>
           <DialogTitle>Please Update Address ASSHOLE</DialogTitle>
