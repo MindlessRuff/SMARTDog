@@ -236,7 +236,7 @@ export class GoogleMapsPage extends Component {
         <Redirect to="/profile" />
       ) : ( 
           <Dialog>
-            <DialogTitle>Please Update Address ASSHOLE</DialogTitle>
+            <DialogTitle>Please Update Address</DialogTitle>
             <DialogActions>
               <Button
                 action={this.handleErrorClick}
