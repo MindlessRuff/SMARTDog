@@ -45,10 +45,10 @@ export class GoogleMapsPage extends Component {
       showCircleInfo: false, 
       infoMarker: {},
       infoCircle: {},
-      radius: '',
+      radius: 0,
       dropdownSize: 1
     };
-
+    
     // TODO: Change this to only get address.
     this.userInfo = {
       first: "",
@@ -228,8 +228,9 @@ export class GoogleMapsPage extends Component {
       infoMarker,
       infoCircle,
       dogAddress,
+      radius
     } = this.state;
- 
+
     if (this.addressError) {
       console.log('AddressError');
       return this.redirect ? (
@@ -249,7 +250,7 @@ export class GoogleMapsPage extends Component {
     }
 
     if (lat === 0) return <div>Loading...</div>; 
-
+    console.log(radius);
     // Pass Checks -> Render map.
     return (
       <div className='row'>
@@ -279,7 +280,7 @@ export class GoogleMapsPage extends Component {
             <Circle
               onClick={ this.onCircleClick }
               center={{ lat: addressLat, lng: addressLng }}
-              radius={ this.state.radius }
+              radius={ radius }
               fillColor="green"
             ></Circle>
             <InfoWindow marker={infoMarker} visible={showMarkerInfo}>
