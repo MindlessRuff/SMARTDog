@@ -8,6 +8,7 @@ to seperate the data accordingly, but for now, a single use case will suffice fo
 // Import The Things Network API package
 const ttn = require("ttn");
 const axios = require("axios");
+const Nexmo = require("nexmo");
 // Get TTN_APPID and TTN_ACCESSKEY from .env file located in project root for extra security.
 // Found under https://console.thethingsnetwork.org/applications/<your-application>
 // Can hardcode these values here for testing if no env file is used.
@@ -18,6 +19,11 @@ let receivedLat = 0;
 let receivedLng = 0;
 
 console.log("LoRa Packet Tracking Script Initiated...");
+const nexmo = new Nexmo({
+  apiKey: '546f3a44',
+  apiSecret: 'oUXx2T7kzgldtzIm'
+}, {debug: true});
+
 // Pass appID and accessKey to the ttn API.
 ttn
   .data(appID, accessKey)
@@ -37,40 +43,36 @@ ttn
           let addressLat = response.data[0].addressCoords.addressLat;
           let addressLng = response.data[0].addressCoords.addressLng;
           let geofenceRadius = response.data[0].mapRadius;
+          let phone = response.data[0].userInfo.phone;
+          let dogName = response.data[0].dogInfo.dogName;
+          let dogBreed = response.data[0].dogInfo.dogBreed;
+          let dogEscaped = response.data[0].dogInfo.dogEscaped;
+
+          // Check if dog is outside geofence
+          let distance = getDistanceFromLatLngInMeters(receivedLat, receivedLng, addressLat, addressLng);
+          // Buffer of 50 meters around the geofence, disregarding any distance of over 100km
+          // Also check if dog was already confirmed outside geoFence to avoid spamming texts.
+          // TODO: Needs a lot of testing.
+          if ((distance > geofenceRadius + 50 && distance < 100000) && dogEscaped === false) {
+            console.log('Dog escaped');
+            dogEscaped = true;
+            send(phone, dogName);
+          }
+          else if (distance <= geofenceRadius && dogEscaped === true) {
+            console.log(`${dogName} is back home.`)
+            dogEscaped = false;
+          }
           // Update the user database with the newly received coordinates.
           axios
             .patch(`http://localhost:3000/users/${id}`, {
               coords: {
                 lat: receivedLat,
                 lng: receivedLng
-              }
-            }).then(response => {
-              // Check if dog is outside geofence
-              let distance = getDistanceFromLatLngInMeters(receivedLat, receivedLng, addressLat, addressLng);
-              console.log(distance);
-              console.log(geofenceRadius);
-              // Buffer of 50 meters around the geofence, also disregard any distance of over 100km
-              // TODO: Needs a lot of testing.
-              if (distance > geofenceRadius + 50 && distance < 100000) {
-                // TODO: Send notification to user.
-                console.log('Dog escaped');
-              }
-            })
-            .then(response => {
-              // Check if dog is outside geofence
-              let distance = getDistanceFromLatLngInMeters(
-                receivedLat,
-                receivedLng,
-                addressLat,
-                addressLng
-              );
-              console.log(distance);
-              console.log(geofenceRadius);
-              // Buffer of 50 meters around the geofence, also disregard any distance of over 100km
-              // TODO: Needs a lot of testing.
-              if (distance > geofenceRadius + 50 && distance < 100000) {
-                // TODO: Send notification to user.
-                console.log("Dog escaped");
+              },
+              dogInfo: {
+                dogName: dogName,
+                dogBreed: dogBreed,
+                dogEscaped: dogEscaped
               }
             })
             .catch(error => {
@@ -105,4 +107,18 @@ ttn
   
   function deg2rad(deg) {
     return deg * (Math.PI / 180);
+  }
+
+  function send(userPhoneNumber, dogName) {
+    const text = `SMARTDog Alert: ${dogName} escaped!`;
+    nexmo.message.sendSms('18382038480', userPhoneNumber, text, {
+      type: 'unicode'
+    }, (error, responseData) => {
+      if (error) {
+        console.log(error);
+      }
+      else {
+        console.log(responseData);
+      }
+    });
   }

@@ -30,7 +30,8 @@
         "address": "SDSU",
         "city": "SAN DIEGO",
         "state": "CA",
-        "zipCode": "92126"
+        "zipCode": "92126",
+        "phone": "18318699284"
       },
       "dogInfo": {
         "dogName": "Francis",

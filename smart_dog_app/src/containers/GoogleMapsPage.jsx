@@ -56,7 +56,8 @@ export class GoogleMapsPage extends Component {
       address: "",
       city: "",
       state: "",
-      zipCode: ""
+      zipCode: "",
+      phone: "",
     };
 
     this.dogName = "";

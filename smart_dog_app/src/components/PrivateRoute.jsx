@@ -12,20 +12,18 @@ const PrivateRoute = ({ component: Component, path }) => {
     address: "",
     city: "",
     state: "",
-    zipCode: ""
+    zipCode: "",
+    phone: ""
   };
   let dogInfo = {
     dogName: "",
-    dogBreed: ""
+    dogBreed: "",
+    dogEscaped: false
   };
   let device = "";
   let coords = {
     lat: 1,
     lng: 0
-  };
-  let addressCoords = {
-    addressLat: 0,
-    addressLng: 0
   };
   let addressCoords = {
     addressLat: 0,
