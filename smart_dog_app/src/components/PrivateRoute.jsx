@@ -27,7 +27,11 @@ const PrivateRoute = ({ component: Component, path }) => {
     addressLat: 0,
     addressLng: 0
   };
-
+  let addressCoords = {
+    addressLat: 0,
+    addressLng: 0
+  };
+  
   if (loading) {
     return <div>Loading...</div>;
   }

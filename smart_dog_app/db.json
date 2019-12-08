@@ -51,21 +51,26 @@
       "email": "this@this.com",
       "device": "",
       "userInfo": {
-        "first": "Hod",
+        "first": "",
         "last": "",
-        "address": "",
-        "city": "",
-        "state": "",
-        "zipCode": ""
+        "address": "1556 East main st",
+        "city": "el cajon",
+        "state": "CA",
+        "zipCode": "92021"
       },
       "dogInfo": {
-        "dogName": "This",
-        "dogBreed": "Dog"
+        "dogName": "Fritz",
+        "dogBreed": ""
       },
       "coords": {
         "lat": 0,
         "lng": 0
       },
+      "addressCoords": {
+        "addressLat": 32.8060049,
+        "addressLng": -116.9248255
+      },
+      "mapRadius": "",
       "id": 8
     },
     {

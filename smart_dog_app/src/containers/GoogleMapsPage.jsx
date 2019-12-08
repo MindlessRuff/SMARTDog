@@ -42,7 +42,7 @@ export class GoogleMapsPage extends Component {
       addressLng: 0.0,
       dogAddress: "",
       showMarkerInfo: false,
-      showCircleInfo: false, 
+      showCircleInfo: false,
       infoMarker: {},
       infoCircle: {},
       radius: 0,
@@ -59,7 +59,7 @@ export class GoogleMapsPage extends Component {
       zipCode: ""
     };
 
-    this.dogName = '';
+    this.dogName = "";
 
     this.addressError = false;
     this.redirect = false;
@@ -76,7 +76,7 @@ export class GoogleMapsPage extends Component {
 
   componentDidMount() {
     axios.get(`/users?email=${this.email}`).then(response => {
-      this.id = response.data[0].id;              // Save user id for future axios requests.
+      this.id = response.data[0].id; // Save user id for future axios requests.
       this.userInfo = response.data[0].userInfo;
       this.dogName = response.data[0].dogInfo.dogName;  
       this.setState({lat: response.data[0].coords.lat, lng: response.data[0].coords.lng, radius: response.data[0].mapRadius });
@@ -105,7 +105,7 @@ export class GoogleMapsPage extends Component {
            * so can not render the map with location properly. I will then use this boolean
            * in the render function to redirect the user back to the profile page
            */
-          console.log('Invalid Address', error);
+          console.log("Invalid Address", error);
           this.addressError = true;
           // Force re-render
           this.setState({lat: 0});  
@@ -121,12 +121,17 @@ export class GoogleMapsPage extends Component {
 
   // Updates marker's coordinates from database on an 8 second interval.
   getData = () => {
-    axios.get(`/users/${this.id}`).then(response => {
-      this.setState({lat: response.data.coords.lat, lng: response.data.coords.lng});
-    })
-    .catch(error => {
-      console.log('Error updating coords from DB', error);
-    });
+    axios
+      .get(`/users/${this.id}`)
+      .then(response => {
+        this.setState({
+          lat: response.data.coords.lat,
+          lng: response.data.coords.lng
+        });
+      })
+      .catch(error => {
+        console.log("Error updating coords from DB", error);
+      });
   };
 
   // Render an info window for the dog marker
@@ -146,12 +151,11 @@ export class GoogleMapsPage extends Component {
           .catch(error => {
             console.log("Geocode from - Lat, Lng error", error);
           });
-      }
-      else {
+      } else {
         this.setState({
           showMarkerInfo: true,
           infoMarker: marker,
-          dogAddress: 'Africa'
+          dogAddress: "Africa"
         });
       }
     }
@@ -167,7 +171,7 @@ export class GoogleMapsPage extends Component {
   onMouseoverCircle(props, marker, event) {
     if (this.state.showCircleInfo === false) {
       if (this.state.addressLat && this.state.addressLng) {
-        this.setState({showCircleInfo: true, infoCircle: marker});
+        this.setState({ showCircleInfo: true, infoCircle: marker });
       }
     }
   }
@@ -180,8 +184,34 @@ export class GoogleMapsPage extends Component {
 
   handleErrorClick = event => {
     event.preventDefault();
-    this.redirect= true;
-    this.setState({lat: 0});
+    this.redirect = true;
+    this.setState({ lat: 0 });
+  };
+
+  // When user changes radius, save to DB and re-render.
+  handleRadiusChange(event) {
+    // If check in case user selects the placeholder string.
+    if (event.target.value) {
+      let radius = Number(event.target.value);
+      this.setState({ radius: radius, dropdownSize: 1 });
+      axios.patch(`/users/${this.id}`, {
+        mapRadius: radius
+      });
+    } else {
+      this.setState({ dropdownSize: 1 });
+    }
+  }
+
+  // Blur is when a DOM element is un-focused. Used for the dropdown
+  // to close it when the user clicks off after opening with a circle click.
+  handleBlur() {
+    this.setState({ dropdownSize: 1 });
+  }
+
+  // Open the dropdown if user clicks on the circle to change radius.
+  onCircleClick() {
+    this.setState({ dropdownSize: radiusOptions.length + 1 });
+    this.dropdownRef.current.focus();
   }
 
   // When user changes radius, save to DB and re-render.
@@ -232,7 +262,7 @@ export class GoogleMapsPage extends Component {
     } = this.state;
 
     if (this.addressError) {
-      console.log('AddressError');
+      console.log("AddressError");
       return this.redirect ? (
         <Redirect to="/profile" />
       ) : ( 

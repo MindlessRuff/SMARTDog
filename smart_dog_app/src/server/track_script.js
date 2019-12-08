@@ -56,6 +56,23 @@ ttn
                 console.log('Dog escaped');
               }
             })
+            .then(response => {
+              // Check if dog is outside geofence
+              let distance = getDistanceFromLatLngInMeters(
+                receivedLat,
+                receivedLng,
+                addressLat,
+                addressLng
+              );
+              console.log(distance);
+              console.log(geofenceRadius);
+              // Buffer of 50 meters around the geofence, also disregard any distance of over 100km
+              // TODO: Needs a lot of testing.
+              if (distance > geofenceRadius + 50 && distance < 100000) {
+                // TODO: Send notification to user.
+                console.log("Dog escaped");
+              }
+            })
             .catch(error => {
               console.log("Error updating user database", error);
             });
