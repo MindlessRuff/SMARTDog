@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3006",
-  "homepage": "http://www.smartdog-sdsu.com",
+  "homepage": "https://smartdog-sdsu.com",
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
