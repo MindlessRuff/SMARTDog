@@ -27,11 +27,15 @@ const LandingPage = () => {
       </div>
 
       {/* Start Slogan Section */}
-      <div className="offset">
+      <div className="offset-back">
         <div className="col-12 narrow text-center">
-          <h1>SmartDog gives you ease of mind</h1>
+          <h1>SmartDog Gives You Ease Of Mind</h1>
           <h3 className="lead">
-            Freedom to let your dog run without any worries
+            We're on a mission to improve the lives of pets by empowering the
+            people who love them. By combining pet science and technology, our
+            product helps you care for your pet in ways not previously possible.
+            Our top-rated wearables help every pet parent better understand
+            their pet's needs, behaviors and well-being.
           </h3>
         </div>
       </div>
@@ -51,7 +55,7 @@ const LandingPage = () => {
                   ></i>
                   <h4>Unbeatable Battery Life</h4>
                   <p>
-                    Our device offer up to 10 full hours of battery life between
+                    Our device offer up to 24 full hours of battery life between
                     charges under normal uses. Our device is water resistant,
                     durable and well protected.
                   </p>
@@ -87,6 +91,27 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        {/* Subscribe Form */}
+        <div>
+          <div class="simple-subscription-form">
+            <form>
+              <h4>Subscribe</h4>
+              <p>Enter Email to support our one of kind smart collar!</p>
+              <div className="input-group">
+                <span className="input-group-label">
+                  <i className="fa fa-envelope"></i>
+                </span>
+                <input
+                  className="input-group-field"
+                  type="email"
+                  placeholder="Email"
+                  required
+                ></input>
+                <button className="button">Sign up now</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
