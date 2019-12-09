@@ -52,7 +52,7 @@ body {
   width: 100%;
   max-width: 100%;
   position: absolute;
-  top: 18%;
+  top: 12%;
   z-index: 1;
   color: white;
   text-transform: uppercase;
@@ -97,7 +97,7 @@ body {
 
 /* Landing Page - Feature Section */
 .jumbotron {
-  background: whitesmoke;
+  background: white;
 }
 
 h3.heading {
@@ -123,7 +123,7 @@ h3.heading {
   overflow: hidden;
 }
 
-/* Landing Page - Email Optin */
+/* Landing Page - Email Optin (Subscribe)*/
 .email-form {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -133,6 +133,51 @@ h3.heading {
   background: linear-gradient(to right, #2f80ed, #56ccf2);
 }
 
+.simple-subscription-form {
+  text-align: center;
+  background: #56ccf2;
+  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
+  background: linear-gradient(to right, #2f80ed, #56ccf2);
+  color: white;
+  padding: 2rem;
+  padding-top: 5px;
+  border-radius: 0;
+  font-style: 1.5rem;
+  text-shadow: 0.1rem 0.1rem 0.2rem black;
+}
+
+.simple-subscription-form .button {
+  align-content: center;
+  margin-bottom: 0;
+  border-radius: 0 0 0 0;
+}
+
+.input-group {
+  align-items: center;
+  margin-left: 450px;
+}
+
+.btn-email {
+  margin: 0px 0px 0px 4px;
+  width: 70px;
+  transition-duration: 0; /* Get rid of the weird color transition */
+  box-shadow: 0 4 px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fa {
+  color: #2f80ed;
+}
+
+.fa-envelope {
+  color: white;
+}
+
+.offset-back {
+  color: white;
+  font-style: 1.5rem;
+  text-shadow: 0.1rem 0.1rem 0.2rem black;
+}
 /* About Page - Timeline */
 /* ul.timeline {
   list-style-type: none;
@@ -246,25 +291,3 @@ ul.timeline > li:before {
   display: table-cell;
   padding: 20px 0 10px 0;
 } */
-
-.simple-subscription-form {
-  text-align: center;
-  background: #56ccf2;
-  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
-  background: linear-gradient(to right, #2f80ed, #56ccf2);
-  color: black;
-  padding: 2rem;
-  padding-top: 5px;
-  border-radius: 0;
-}
-
-.simple-subscription-form .button {
-  align-content: center;
-  margin-bottom: 0;
-  border-radius: 0 0 0 0;
-}
-
-.input-group {
-  align-items: center;
-  margin-left: 420px;
-}

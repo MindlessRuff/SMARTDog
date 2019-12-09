@@ -97,11 +97,14 @@ const LandingPage = () => {
         <div>
           <div class="simple-subscription-form">
             <form>
-              <h4>Subscribe</h4>
-              <p>Enter Email to support our one of kind smart collar!</p>
+              <h3>Subscribe</h3>
+              <p>
+                Enter your email to show support and get updates of our one of
+                kind smart collar!
+              </p>
               <div className="input-group">
                 <span className="input-group-label">
-                  <i className="fa fa-envelope"></i>
+                  <i className="fa fa-envelope fa-2x fa-fw"></i>
                 </span>
                 <input
                   className="input-group-field"
@@ -109,7 +112,9 @@ const LandingPage = () => {
                   placeholder="Email"
                   required
                 ></input>
-                <button className="button">Sign up now</button>
+                <button className="btn-email btn-outline-light btn-md">
+                  Woof
+                </button>
               </div>
             </form>
           </div>

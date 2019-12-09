@@ -11,8 +11,6 @@ const Footer = function(props) {
               alt="footerimg"
               className="footer-img"
             />
-            <br></br>
-            <h4>Contact Info</h4>
             <p>smartdog-sdsu@gmail.com</p>
             <p>© 2020 SmartDog SDSU</p>
           </div>
