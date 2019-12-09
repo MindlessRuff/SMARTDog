@@ -19,10 +19,13 @@ let receivedLat = 0;
 let receivedLng = 0;
 
 console.log("LoRa Packet Tracking Script Initiated...");
-const nexmo = new Nexmo({
-  apiKey: '546f3a44',
-  apiSecret: 'oUXx2T7kzgldtzIm'
-}, {debug: true});
+const nexmo = new Nexmo(
+  {
+    apiKey: "546f3a44",
+    apiSecret: "oUXx2T7kzgldtzIm"
+  },
+  { debug: true }
+);
 
 // Pass appID and accessKey to the ttn API.
 ttn
@@ -49,17 +52,25 @@ ttn
           let dogEscaped = response.data[0].dogInfo.dogEscaped;
 
           // Check if dog is outside geofence
-          let distance = getDistanceFromLatLngInMeters(receivedLat, receivedLng, addressLat, addressLng);
+          let distance = getDistanceFromLatLngInMeters(
+            receivedLat,
+            receivedLng,
+            addressLat,
+            addressLng
+          );
           // Buffer of 50 meters around the geofence, disregarding any distance of over 100km
           // Also check if dog was already confirmed outside geoFence to avoid spamming texts.
           // TODO: Needs a lot of testing.
-          if ((distance > geofenceRadius + 50 && distance < 100000) && dogEscaped === false) {
-            console.log('Dog escaped');
+          if (
+            distance > geofenceRadius + 20 &&
+            distance < 100000 &&
+            dogEscaped === false
+          ) {
+            console.log("Dog escaped");
             dogEscaped = true;
             send(phone, dogName);
-          }
-          else if (distance <= geofenceRadius && dogEscaped === true) {
-            console.log(`${dogName} is back home.`)
+          } else if (distance <= geofenceRadius && dogEscaped === true) {
+            console.log(`${dogName} is back home.`);
             dogEscaped = false;
             sendClear(phone, dogName);
           }
@@ -90,50 +101,61 @@ ttn
     process.exit(1);
   });
 
-  // Modified from
-  // https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
-  function getDistanceFromLatLngInMeters(lat1, lng1, lat2, lng2) {
-    let R = 6371000; // Radius of the earth in m
-    let dLat = deg2rad(lat2 - lat1);  // deg2rad below
-    let dLng = deg2rad(lng2 - lng1); 
-    let a = 
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-      Math.sin(dLng / 2) * Math.sin(dLng / 2)
-      ; 
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
-    let d = R * c; // Distance in km
-    return d;
-  }
-  
-  function deg2rad(deg) {
-    return deg * (Math.PI / 180);
-  }
+// Modified from
+// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+function getDistanceFromLatLngInMeters(lat1, lng1, lat2, lng2) {
+  let R = 6371000; // Radius of the earth in m
+  let dLat = deg2rad(lat2 - lat1); // deg2rad below
+  let dLng = deg2rad(lng2 - lng1);
+  let a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLng / 2) *
+      Math.sin(dLng / 2);
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  let d = R * c; // Distance in km
+  return d;
+}
 
-  function send(userPhoneNumber, dogName) {
-    const text = `SMARTDog Alert: ${dogName} escaped!            `;
-    nexmo.message.sendSms('18382038480', userPhoneNumber, text, {
-      type: 'unicode'
-    }, (error, responseData) => {
+function deg2rad(deg) {
+  return deg * (Math.PI / 180);
+}
+
+function send(userPhoneNumber, dogName) {
+  const text = `SMARTDog Alert: ${dogName} escaped!            `;
+  nexmo.message.sendSms(
+    "18382038480",
+    userPhoneNumber,
+    text,
+    {
+      type: "unicode"
+    },
+    (error, responseData) => {
       if (error) {
         console.log(error);
-      }
-      else {
+      } else {
         console.log(responseData);
       }
-    });
-  }
+    }
+  );
+}
 
-  function sendClear(userPhoneNumber, dogName) {
-    const text = `SMARTDog Alert: ${dogName} back home safe.                `;
-    nexmo.message.sendSms('18382038480', userPhoneNumber, text, {
-      type: 'unicode'
-    }, (error, responseData) => {
+function sendClear(userPhoneNumber, dogName) {
+  const text = `SMARTDog Alert: ${dogName} back home safe.                `;
+  nexmo.message.sendSms(
+    "18382038480",
+    userPhoneNumber,
+    text,
+    {
+      type: "unicode"
+    },
+    (error, responseData) => {
       if (error) {
         console.log(error);
-      }
-      else {
+      } else {
         console.log(responseData);
       }
-    });
-  }
+    }
+  );
+}
