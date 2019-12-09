@@ -32,11 +32,7 @@
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.1",
-<<<<<<< HEAD
-    "reactstrap": "^8.1.1",
-=======
     "serialize-javascript": "^2.1.1",
->>>>>>> c3cc3590509eea171b10df66ed7255075ca9bdf4
     "ttn": "^2.3.3"
   },
   "scripts": {
