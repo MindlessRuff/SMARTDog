@@ -18,9 +18,8 @@ const NavigationBar = function(props) {
           scroll
         >
           <Navigation>
-            <Link to="/about/">About</Link>
+            {/* <Link to="/about/">About</Link> */}
             <Link to="/works/">How It Works</Link>
-            <Link to="/store/">Store</Link>
             <Link to="/track/">Track</Link>
             <Link to="/profile/">Profile</Link>
             <Login />
@@ -34,9 +33,8 @@ const NavigationBar = function(props) {
           }
         >
           <Navigation>
-            <Link to="/about/">About</Link>
+            {/* <Link to="/about/">About</Link> */}
             <Link to="/works/">How It Works</Link>
-            <Link to="/store/">Store</Link>
             <Link to="/track/">Track</Link>
             <Link to="/profile/">Profile</Link>
             <Login />

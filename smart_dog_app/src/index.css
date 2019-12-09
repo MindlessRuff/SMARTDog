@@ -4,13 +4,14 @@
   background: linear-gradient(to right, #2f80ed, #56ccf2);
 }
 
-.img-grid {
-  text-align: center;
-}
-
+/* How it works Tabs */
 .yt-tab-img {
   height: 450px;
   width: 750px;
+  text-align: center;
+}
+
+.img-grid {
   text-align: center;
 }
 
@@ -18,88 +19,6 @@
   text-align: center;
   height: 450px;
   width: 750px;
-}
-
-.landing-img {
-  height: auto;
-  width: 100%;
-}
-
-.banner-header {
-  width: 100%;
-  text-align: center;
-  overflow: auto;
-}
-
-.App {
-  height: 100vh;
-  display: flex;
-  color: white;
-}
-
-.App__Form {
-  width: 100%;
-  background-color: #a9a9a9;
-  padding: 25px 40px;
-  overflow: auto;
-}
-
-.PageSwitcher {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10%;
-}
-
-.PageSwitcher__Item {
-  background-color: #4c5d72;
-  color: #9da6b1;
-  padding: 10px 25px;
-  cursor: pointer;
-  font-size: 0.9em;
-  border: none;
-  outline: none;
-  display: inline-block;
-  text-decoration: none;
-}
-
-.PageSwitcher__Item--Active {
-  background-color: #56ccf2;
-  color: white;
-}
-
-.PageSwitcher__Item:first-child {
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-}
-.PageSwitcher__Item:last-child {
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-}
-
-.FormTitle__Link {
-  color: #707c8b;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1.7em;
-  margin: 0 10px;
-  padding-bottom: 5px;
-}
-
-.FormTitle__Link--Active {
-  color: white;
-  border-bottom: 1px solid #199087;
-}
-
-.paragraph_text {
-  color: blue;
-  text-align: center;
-  font-size: 2.3em;
-  word-spacing: 10px;
-}
-
-label {
-  display: table-cell;
-  padding: 20px 0 10px 0;
 }
 
 /* For the Button.Jsx styling, has to use .btn (the bootstrap class) instead of Button to overwrite any bootstrap options. */
@@ -113,12 +32,16 @@ label {
   box-shadow: 0 4 px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-
 body {
   background: #56ccf2;
   background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
   background: linear-gradient(to right, #2f80ed, #56ccf2);
 }
+/* body {
+  background: #56ccf2;
+  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
+  background: linear-gradient(to right, #2f80ed, #56ccf2);
+} */
 
 /* Landing Page */
 .landing-img {
@@ -129,7 +52,7 @@ body {
   width: 100%;
   max-width: 100%;
   position: absolute;
-  top: 18%;
+  top: 12%;
   z-index: 1;
   color: white;
   text-transform: uppercase;
@@ -167,13 +90,16 @@ body {
 .narrow {
   width: 75%;
   margin: 1.5em auto;
-  padding-top: 2rem;
 }
 .narrow h1 {
   font-size: 2.4rem;
 }
 
 /* Landing Page - Feature Section */
+.jumbotron {
+  background: white;
+}
+
 h3.heading {
   text-align: center;
   font-size: 1.9rem;
@@ -197,8 +123,63 @@ h3.heading {
   overflow: hidden;
 }
 
+/* Landing Page - Email Optin (Subscribe)*/
+.email-form {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background: #56ccf2;
+  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
+  background: linear-gradient(to right, #2f80ed, #56ccf2);
+}
+
+.simple-subscription-form {
+  text-align: center;
+  background: #56ccf2;
+  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
+  background: linear-gradient(to right, #2f80ed, #56ccf2);
+  color: white;
+  padding: 2rem;
+  padding-top: 5px;
+  border-radius: 0;
+  font-style: 1.5rem;
+  text-shadow: 0.1rem 0.1rem 0.2rem black;
+}
+
+.simple-subscription-form .button {
+  align-content: center;
+  margin-bottom: 0;
+  border-radius: 0 0 0 0;
+}
+
+.input-group {
+  align-items: center;
+  margin-left: 450px;
+}
+
+.btn-email {
+  margin: 0px 0px 0px 4px;
+  width: 70px;
+  transition-duration: 0; /* Get rid of the weird color transition */
+  box-shadow: 0 4 px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fa {
+  color: #2f80ed;
+}
+
+.fa-envelope {
+  color: white;
+}
+
+.offset-back {
+  color: white;
+  font-style: 1.5rem;
+  text-shadow: 0.1rem 0.1rem 0.2rem black;
+}
 /* About Page - Timeline */
-ul.timeline {
+/* ul.timeline {
   list-style-type: none;
   position: relative;
 }
@@ -227,6 +208,86 @@ ul.timeline > li:before {
   width: 20px;
   height: 20px;
   z-index: 400;
+} */
+
+/* .landing-img {
+  height: auto;
+  width: 100%;
+} */
+
+/* .banner-header {
+  width: 100%;
+  text-align: center;
+  overflow: auto;
+} */
+
+/* .App {
+  height: 100vh;
+  display: flex;
+  color: white;
+} */
+
+/* .App__Form {
+  width: 100%;
+  background-color: #a9a9a9;
+  padding: 25px 40px;
+  overflow: auto;
+} */
+
+/* .PageSwitcher {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10%;
+} */
+
+/* .PageSwitcher__Item {
+  background-color: #4c5d72;
+  color: #9da6b1;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 0.9em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+} */
+
+/* /* .PageSwitcher__Item--Active {
+  background-color: #56ccf2;
+  color: white;
 }
 
-/* Store Page */
+.PageSwitcher__Item:first-child {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.PageSwitcher__Item:last-child {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.FormTitle__Link {
+  color: #707c8b;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.7em;
+  margin: 0 10px;
+  padding-bottom: 5px;
+}
+
+.FormTitle__Link--Active {
+  color: white;
+  border-bottom: 1px solid #199087;
+} */
+
+/* .paragraph_text {
+  color: blue;
+  text-align: center;
+  font-size: 2.3em;
+  word-spacing: 10px;
+} */
+
+/* label {
+  display: table-cell;
+  padding: 20px 0 10px 0;
+} */
