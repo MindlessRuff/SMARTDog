@@ -45,6 +45,23 @@ ttn
                 lng: receivedLng
               }
             })
+            .then(response => {
+              // Check if dog is outside geofence
+              let distance = getDistanceFromLatLngInMeters(
+                receivedLat,
+                receivedLng,
+                addressLat,
+                addressLng
+              );
+              console.log(distance);
+              console.log(geofenceRadius);
+              // Buffer of 50 meters around the geofence, also disregard any distance of over 100km
+              // TODO: Needs a lot of testing.
+              if (distance > geofenceRadius + 50 && distance < 100000) {
+                // TODO: Send notification to user.
+                console.log("Dog escaped");
+              }
+            })
             .catch(error => {
               console.log("Error updating user database", error);
             });
@@ -52,16 +69,6 @@ ttn
         .catch(error => {
           console.log("Error getting user id", error);
         });
-        // Check if dog is outside geofence
-        let distance = getDistanceFromLatLngInMeters(receivedLat, receivedLng, addressLat, addressLng);
-        console.log(distance);
-        console.log(geofenceRadius);
-        // Buffer of 20 meters around the geofence, also disregard any distance of over 100km
-        // TODO: Needs a lot of testing.
-        if (distance > geofenceRadius + 20 && distance < 100000) {
-          // TODO: Send notification to user.
-          console.log('Dog escaped');
-        }
     });
   })
   .catch(function(error) {
@@ -69,22 +76,23 @@ ttn
     process.exit(1);
   });
 
-  // Modified from
-  // https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
-  function getDistanceFromLatLngInMeters(lat1, lng1, lat2, lng2) {
-    let R = 6371000; // Radius of the earth in m
-    let dLat = deg2rad(lat2 - lat1);  // deg2rad below
-    let dLng = deg2rad(lng2 - lng1); 
-    let a = 
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-      Math.sin(dLng / 2) * Math.sin(dLng / 2)
-      ; 
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
-    let d = R * c; // Distance in km
-    return d;
-  }
-  
-  function deg2rad(deg) {
-    return deg * (Math.PI / 180);
-  }
+// Modified from
+// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+function getDistanceFromLatLngInMeters(lat1, lng1, lat2, lng2) {
+  let R = 6371000; // Radius of the earth in m
+  let dLat = deg2rad(lat2 - lat1); // deg2rad below
+  let dLng = deg2rad(lng2 - lng1);
+  let a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLng / 2) *
+      Math.sin(dLng / 2);
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  let d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI / 180);
+}
