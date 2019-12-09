@@ -58,6 +58,15 @@ const CustomerFormContainer = props => {
         placeholder={""}
         handlechange={props.handleInputChange}
       />
+      <Input
+        required={true}
+        type={"text"}
+        title={"Phone Number (Including Country Code, no spaces or dashes)"}
+        name={"phone"}
+        value={props.values.phone}
+        placeholder={""}
+        handlechange={props.handleInputChange}
+      />
     </div>
   );
 };

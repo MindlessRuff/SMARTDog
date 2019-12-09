@@ -21,7 +21,8 @@ class SignupFormContainer extends Component {
         address: "",
         city: "",
         state: "",
-        zipCode: ""
+        zipCode: "",
+        phone: ""
       },
       dogInfo: {
           dogName: "",
@@ -110,8 +111,8 @@ class SignupFormContainer extends Component {
     // This will keep the child component textboxes populated with
     // the parent's variables. It also will change child component
     // state anytime a parent function is called, like clear or submit.
-    const { first, last, address, city, state, zipCode } = this.state.userInfo;
-    const userValues = { first, last, address, city, state, zipCode };
+    const { first, last, address, city, state, zipCode, phone } = this.state.userInfo;
+    const userValues = { first, last, address, city, state, zipCode, phone };
     const petValues = this.state.dogInfo;
 
     return (

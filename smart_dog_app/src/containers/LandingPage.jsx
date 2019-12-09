@@ -20,7 +20,7 @@ const LandingPage = () => {
         <div className="caption text-center">
           <h1>Welcome to SmartDog</h1>
           <h4>A one of a kind smart dog collar for your furry friend</h4>
-          <a className="btn btn-outline-light btn-lg" href="/works">
+          <a className="btn btn-outline-light btn-lg" href="/works/">
             Learn More
           </a>
         </div>

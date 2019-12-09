@@ -22,32 +22,6 @@
       "id": 2
     },
     {
-      "email": "a@a.com",
-      "device": "",
-      "userInfo": {
-        "first": "Carlo",
-        "last": "Hormoz",
-        "address": "2051 Pierce Ct",
-        "city": "El Cajon",
-        "state": "CA",
-        "zipCode": "92019"
-      },
-      "dogInfo": {
-        "dogName": "Dawg",
-        "dogBreed": "Dog"
-      },
-      "coords": {
-        "lat": 32.7571825,
-        "lng": -116.9094835
-      },
-      "id": 5,
-      "addressCoords": {
-        "addressLat": 32.7571825,
-        "addressLng": -116.9094835
-      },
-      "mapRadius": 40
-    },
-    {
       "email": "g@g.com",
       "device": "transmitter",
       "userInfo": {
@@ -56,7 +30,8 @@
         "address": "SDSU",
         "city": "SAN DIEGO",
         "state": "CA",
-        "zipCode": "92126"
+        "zipCode": "92126",
+        "phone": "18318699284"
       },
       "dogInfo": {
         "dogName": "Francis",
@@ -98,6 +73,32 @@
       },
       "mapRadius": "",
       "id": 8
+    },
+    {
+      "email": "a@a.com",
+      "device": "",
+      "userInfo": {
+        "first": "",
+        "last": "",
+        "address": "sdsu",
+        "city": "",
+        "state": "",
+        "zipCode": "92115"
+      },
+      "dogInfo": {
+        "dogName": "",
+        "dogBreed": ""
+      },
+      "coords": {
+        "lat": 1,
+        "lng": 0
+      },
+      "addressCoords": {
+        "addressLat": 32.77572170000001,
+        "addressLng": -117.0718893
+      },
+      "mapRadius": 10,
+      "id": 9
     }
   ]
 }

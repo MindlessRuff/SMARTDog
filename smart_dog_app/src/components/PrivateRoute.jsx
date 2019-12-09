@@ -12,15 +12,17 @@ const PrivateRoute = ({ component: Component, path }) => {
     address: "",
     city: "",
     state: "",
-    zipCode: ""
+    zipCode: "",
+    phone: ""
   };
   let dogInfo = {
     dogName: "",
     dogBreed: "",
+    dogEscaped: false
   };
   let device = "";
   let coords = {
-    lat: 0,
+    lat: 1,
     lng: 0
   };
   let addressCoords = {
@@ -54,7 +56,7 @@ const PrivateRoute = ({ component: Component, path }) => {
               dogInfo: dogInfo,
               coords: coords,
               addressCoords: addressCoords,
-              mapRadius: ''
+              mapRadius: 0
             })
             .then(response => {
               console.log("post", response);
@@ -71,22 +73,22 @@ const PrivateRoute = ({ component: Component, path }) => {
             dogInfo: dogInfo,
             coords: coords,
             addressCoords: addressCoords,
-            mapRadius: ''
+            mapRadius: 0
           })
           .then(response => {
             console.log("post", response);
           });
       });
   }
-      
-      const render = props =>
-      isAuthenticated === true ? (
-        <Component {...props} email={user.email}/>
-      ) : (
-        loginWithRedirect()
-      );
-  
-    return <Route path={path} render={render}/>;
+
+  const render = props =>
+    isAuthenticated === true ? (
+      <Component {...props} email={user.email} />
+    ) : (
+      loginWithRedirect()
+    );
+
+  return <Route path={path} render={render} />;
 };
 
 export default PrivateRoute;
