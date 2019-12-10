@@ -22,8 +22,8 @@ const PrivateRoute = ({ component: Component, path }) => {
   };
   let device = "transmitter";
   let coords = {
-    lat: 1,
-    lng: 0
+    lat: 32.7757877,
+    lng: -117.0719025
   };
   let addressCoords = {
     addressLat: 0,
