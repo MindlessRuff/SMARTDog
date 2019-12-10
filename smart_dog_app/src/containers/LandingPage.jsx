@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -10,7 +11,7 @@ const LandingPage = () => {
           <div className="home-wrap">
             <div className="home-inner">
               <img
-                src="https://tinyurl.com/y5c69osy"
+                src="https://images.unsplash.com/photo-1562176566-e9afd27531d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                 alt="landing"
                 className="landing-img"
               />
@@ -20,8 +21,8 @@ const LandingPage = () => {
         <div className="caption text-center">
           <h1>Welcome to SmartDog</h1>
           <h4>A one of a kind smart dog collar for your furry friend</h4>
-          <a className="btn btn-outline-light btn-lg" href="/works/">
-            Learn More
+          <a className="btn btn-outline-light btn-lg">
+            <Link style={{color: 'white'}} to={"/works/"}>Learn More</Link>
           </a>
         </div>
       </div>
@@ -95,17 +96,15 @@ const LandingPage = () => {
         </div>
         {/* Subscribe Form */}
         <div>
-          <div class="simple-subscription-form">
+          <div className="simple-subscription-form">
             <form>
               <h3>Subscribe</h3>
               <p>
                 Enter your email to show support and get updates of our one of
                 kind smart collar!
               </p>
-              <div className="input-group">
-                <span className="input-group-label">
-                  <i className="fa fa-envelope fa-2x fa-fw"></i>
-                </span>
+              <div className="input-groups">
+                <i className="fa fa-envelope fa-2x fa-fw"></i>
                 <input
                   className="input-group-field"
                   type="email"

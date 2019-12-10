@@ -101,22 +101,25 @@ ttn
     process.exit(1);
   });
 
-// Modified from
-// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
-function getDistanceFromLatLngInMeters(lat1, lng1, lat2, lng2) {
-  let R = 6371000; // Radius of the earth in m
-  let dLat = deg2rad(lat2 - lat1); // deg2rad below
-  let dLng = deg2rad(lng2 - lng1);
-  let a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(deg2rad(lat1)) *
-      Math.cos(deg2rad(lat2)) *
-      Math.sin(dLng / 2) *
-      Math.sin(dLng / 2);
-  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  let d = R * c; // Distance in km
-  return d;
-}
+  // Modified from
+  // https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+  function getDistanceFromLatLngInMeters(lat1, lng1, lat2, lng2) {
+    let R = 6371000; // Radius of the earth in m
+    let dLat = deg2rad(lat2 - lat1);  // deg2rad below
+    let dLng = deg2rad(lng2 - lng1); 
+    let a = 
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+      Math.sin(dLng / 2) * Math.sin(dLng / 2)
+      ; 
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
+    let d = R * c; // Distance in km
+    return d;
+  }
+  
+  function deg2rad(deg) {
+    return deg * (Math.PI / 180);
+  }
 
 function deg2rad(deg) {
   return deg * (Math.PI / 180);

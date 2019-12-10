@@ -144,6 +144,7 @@ h3.heading {
   border-radius: 0;
   font-style: 1.5rem;
   text-shadow: 0.1rem 0.1rem 0.2rem black;
+  align-content: center;
 }
 
 .simple-subscription-form .button {
@@ -152,9 +153,10 @@ h3.heading {
   border-radius: 0 0 0 0;
 }
 
-.input-group {
+.input-groups {
   align-items: center;
-  margin-left: 450px;
+  align-content: center;
+  text-align: center;
 }
 
 .btn-email {
