@@ -16,7 +16,7 @@ class Works extends Component {
             <Cell col={12}>
               <div className="video-container">
                 <iframe
-                  src="https://www.youtube.com/embed/LjJ-QeSzEtc"
+                  src="https://youtu.be/3st8zI1uBqw"
                   className="tab-img"
                   alt="tabimg"
                 />
