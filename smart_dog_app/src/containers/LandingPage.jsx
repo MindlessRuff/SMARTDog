@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -20,8 +21,8 @@ const LandingPage = () => {
         <div className="caption text-center">
           <h1>Welcome to SmartDog</h1>
           <h4>A one of a kind smart dog collar for your furry friend</h4>
-          <a className="btn btn-outline-light btn-lg" href="/works/">
-            Learn More
+          <a className="btn btn-outline-light btn-lg">
+            <Link style={{color: 'white'}} to={"/works/"}>Learn More</Link>
           </a>
         </div>
       </div>
