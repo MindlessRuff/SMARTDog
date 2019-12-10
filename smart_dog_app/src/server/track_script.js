@@ -68,11 +68,11 @@ ttn
           ) {
             console.log("Dog escaped");
             dogEscaped = true;
-            send(phone, dogName);
+            // send(phone, dogName);
           } else if (distance <= geofenceRadius && dogEscaped === true) {
             console.log(`${dogName} is back home.`);
             dogEscaped = false;
-            sendClear(phone, dogName);
+            // sendClear(phone, dogName);
           }
           // Update the user database with the newly received coordinates.
           axios
@@ -121,6 +121,34 @@ ttn
     return deg * (Math.PI / 180);
   }
 
+  function send(userPhoneNumber, dogName) {
+    const text = `SMARTDog Alert: ${dogName} escaped!            `;
+    nexmo.message.sendSms('18382038480', userPhoneNumber, text, {
+      type: 'unicode'
+    }, (error, responseData) => {
+      if (error) {
+        console.log(error);
+      }
+      else {
+        console.log(responseData);
+      }
+    });
+  }
+
+  function sendClear(userPhoneNumber, dogName) {
+    const text = `SMARTDog Alert: ${dogName} back home safe.                `;
+    nexmo.message.sendSms('18382038480', userPhoneNumber, text, {
+      type: 'unicode'
+    }, (error, responseData) => {
+      if (error) {
+        console.log(error);
+      }
+      else {
+        console.log(responseData);
+      }
+    });
+  }
+
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
@@ -162,3 +190,4 @@ function sendClear(userPhoneNumber, dogName) {
     }
   );
 }
+

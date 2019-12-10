@@ -14,7 +14,7 @@ class Works extends Component {
         <div style={{ width: "100%", margin: "auto" }}>
           <Grid className="tab-img">
             <Cell col={12}>
-              <div className="video-container">
+              <div>
                 <iframe
                   src="https://youtube.com/embed/3st8zI1uBqw"
                   className="tab-img"
@@ -41,6 +41,7 @@ class Works extends Component {
               />
               <div className="banner-header">
                 <h1>Range + Connectivity</h1>
+                <h3>Coming 12/11/2019</h3>
               </div>
             </Cell>
           </Grid>
@@ -58,6 +59,7 @@ class Works extends Component {
               />
               <div className="banner-header">
                 <h1>Tracking</h1>
+                <h3>Coming 12/11/2019</h3>
               </div>
             </Cell>
           </Grid>
@@ -75,6 +77,7 @@ class Works extends Component {
               />
               <div className="banner-header">
                 <h1>Technical Specifications</h1>
+                <h3>Coming 12/11/2019</h3>
               </div>
             </Cell>
           </Grid>

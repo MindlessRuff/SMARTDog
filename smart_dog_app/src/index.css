@@ -6,8 +6,6 @@
 
 /* How it works Tabs */
 .yt-tab-img {
-  height: 450px;
-  width: 750px;
   text-align: center;
 }
 
@@ -17,8 +15,8 @@
 
 .tab-img {
   text-align: center;
-  height: 450px;
-  width: 750px;
+  height: 400px;
+  width: 700px;
 }
 
 /* For the Button.Jsx styling, has to use .btn (the bootstrap class) instead of Button to overwrite any bootstrap options. */

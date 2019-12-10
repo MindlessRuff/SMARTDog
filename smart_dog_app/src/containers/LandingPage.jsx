@@ -21,9 +21,11 @@ const LandingPage = () => {
         <div className="caption text-center">
           <h1>Welcome to SmartDog</h1>
           <h4>A one of a kind smart dog collar for your furry friend</h4>
-          <a className="btn btn-outline-light btn-lg">
-            <Link style={{color: 'white'}} to={"/works/"}>Learn More</Link>
-          </a>
+          <div>
+            <Link style={{color: 'white'}} to={"/works/"}>
+              <button type="button" className="btn btn-outline-light btn-lg">Learn More</button>
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -57,8 +59,7 @@ const LandingPage = () => {
                   <h4>Unbeatable Battery Life</h4>
                   <p>
                     Our device offer up to 24 full hours of battery life between
-                    charges under normal uses. Our device is water resistant,
-                    durable and well protected.
+                    charges under normal uses. Our device is durable and well protected.
                   </p>
                 </div>
               </div>
