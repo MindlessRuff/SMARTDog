@@ -23,6 +23,7 @@ class Works extends Component {
               </div>
               <div className="banner-header">
                 <h1>Demo</h1>
+                <p>Hope you guys enjoyed the demo</p>
               </div>
             </Cell>
           </Grid>
@@ -98,7 +99,6 @@ class Works extends Component {
           </Tabs>
           <section className="features-grid">{this.toggleCategories()}</section>
         </div>
-        <Footer />
       </div>
     );
   }
