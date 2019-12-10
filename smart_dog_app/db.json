@@ -35,12 +35,12 @@
       },
       "dogInfo": {
         "dogName": "Francis",
-        "dogBreed": "Dog",
+        "dogBreed": "German Shepherd",
         "dogEscaped": false
       },
       "coords": {
-        "lat": 32.7748669,
-        "lng": -117.0719903
+        "lat": 32.7757418,
+        "lng": -117.0718964
       },
       "id": 7,
       "mapRadius": 120,
