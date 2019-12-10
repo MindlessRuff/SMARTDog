@@ -27,6 +27,9 @@ const nexmo = new Nexmo(
   { debug: true }
 );
 
+axios.get('/api/users/2').then(response => {
+  console.log('yay');
+})
 // Pass appID and accessKey to the ttn API.
 ttn
   .data(appID, accessKey)
@@ -40,7 +43,7 @@ ttn
       receivedLng = payload.payload_fields.lng;
       // Get the current userId based on the deviceId of the received payload.
       axios
-        .get(`https://my-json-server.typicode.com/carlohormoz/demo/users?device=${deviceId}`)
+        .get(`http://localhost:3000/api/users?device=${deviceId}`)
         .then(response => {
           let id = response.data[0].id;
           let addressLat = response.data[0].addressCoords.addressLat;
@@ -76,7 +79,7 @@ ttn
           }
           // Update the user database with the newly received coordinates.
           axios
-            .patch(`https://my-json-server.typicode.com/carlohormoz/demo/users/${id}`, {
+            .patch(`/api/users/${id}`, {
               coords: {
                 lat: receivedLat,
                 lng: receivedLng
@@ -121,7 +124,6 @@ ttn
     return deg * (Math.PI / 180);
   }
 
-<<<<<<< HEAD
   function send(userPhoneNumber, dogName) {
     const text = `SMARTDog Alert: ${dogName} escaped!            `;
     nexmo.message.sendSms('18382038480', userPhoneNumber, text, {
@@ -149,7 +151,7 @@ ttn
       }
     });
   }
-=======
+
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
@@ -191,4 +193,4 @@ function sendClear(userPhoneNumber, dogName) {
     }
   );
 }
->>>>>>> a5ff778550bc003080c169e2aa99eb1f46c2f769
+

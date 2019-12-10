@@ -5,7 +5,6 @@ import axios from "axios";
 import DogFormContainer from "./DogFormContainer";
 import { Redirect } from "react-router-dom";
 
-
 // This Signup form container is the top-level component
 // of the signup page. It holds all the state (variables)
 // and passes the variables down to its children components,
@@ -25,11 +24,10 @@ class SignupFormContainer extends Component {
         phone: ""
       },
       dogInfo: {
-          dogName: "",
-          dogBreed: ""
+        dogName: "",
+        dogBreed: ""
       },
-      message: "",
-     
+      message: ""
     };
     this.id = undefined;
   }
@@ -39,11 +37,15 @@ class SignupFormContainer extends Component {
     // Need to use arrow functions with axios calls so that 'this' variable will
     // refer to the class component instead of axios.
     axios
-      .get(`https://my-json-server.typicode.com/carlohormoz/demo/users?email=${email}`)
+      .get(`/api/users?email=${email}`)
       .then(response => {
         let fetchedData = response.data[0].userInfo;
         let fetchedDog = response.data[0].dogInfo;
-        this.setState({ dogInfo: fetchedDog, userInfo: fetchedData, message: "" }); // [0] index since entries keyed by email are unique
+        this.setState({
+          dogInfo: fetchedDog,
+          userInfo: fetchedData,
+          message: ""
+        }); // [0] index since entries keyed by email are unique
         console.log(response);
         this.id = response.data[0].id;
         console.log(this.state);
@@ -75,7 +77,7 @@ class SignupFormContainer extends Component {
     // Insert the id of the current user into the put request, can't do it with email key.
     console.log(email, userInfo, this.id);
     axios
-      .patch(`https://my-json-server.typicode.com/carlohormoz/demo/users/${this.id}`, {
+      .patch(`/api/users/${this.id}`, {
         email: email,
         userInfo: userInfo,
         dogInfo: dogInfo
@@ -96,14 +98,13 @@ class SignupFormContainer extends Component {
 
   handleDogInfo = event => {
     event.preventDefault();
-    
+
     this.setState({
-        dogInfo: {
-          ...this.state.dogInfo,
-          [event.target.name]: event.target.value
-        },
+      dogInfo: {
+        ...this.state.dogInfo,
+        [event.target.name]: event.target.value
+      }
     });
-    
   };
 
   render() {
@@ -111,17 +112,24 @@ class SignupFormContainer extends Component {
     // This will keep the child component textboxes populated with
     // the parent's variables. It also will change child component
     // state anytime a parent function is called, like clear or submit.
-    const { first, last, address, city, state, zipCode, phone } = this.state.userInfo;
+    const {
+      first,
+      last,
+      address,
+      city,
+      state,
+      zipCode,
+      phone
+    } = this.state.userInfo;
     const userValues = { first, last, address, city, state, zipCode, phone };
     const petValues = this.state.dogInfo;
 
-    return (
-      this.state.redirect === true ? (
-        <Redirect to="/dog" />
-      ):(
-        <form className="container-fluid" onSubmit={this.handleFormSubmit}>
-          <div className="container">
-              <div className="row">
+    return this.state.redirect === true ? (
+      <Redirect to="/dog" />
+    ) : (
+      <form className="container-fluid" onSubmit={this.handleFormSubmit}>
+        <div className="container">
+          <div className="row">
             <CustomerFormContainer
               handleInputChange={this.handleInputChange}
               values={userValues}
@@ -130,20 +138,19 @@ class SignupFormContainer extends Component {
               handleInputChange={this.handleDogInfo}
               values={petValues}
             />
-            </div>
           </div>
-          <div className="container">
-            <div className="row">
+        </div>
+        <div className="container">
+          <div className="row">
             <Button
               action={this.handleFormSubmit}
               type={"btn btn-primary"}
               title={"Update"}
             />
           </div>
-          </div>
-          <div className="result">{this.state.message}</div>
-        </form>
-      )
+        </div>
+        <div className="result">{this.state.message}</div>
+      </form>
     );
   }
 }

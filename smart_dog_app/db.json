@@ -25,13 +25,13 @@
       "email": "g@g.com",
       "device": "transmitter",
       "userInfo": {
-        "first": "Anush",
-        "last": "Shetty",
+        "first": "Brandon",
+        "last": "Veltre",
         "address": "SDSU",
         "city": "SAN DIEGO",
         "state": "CA",
-        "zipCode": "92126",
-        "phone": "18318699284"
+        "zipCode": "92182",
+        "phone": "16199775347"
       },
       "dogInfo": {
         "dogName": "Francis",
@@ -39,11 +39,11 @@
         "dogEscaped": false
       },
       "coords": {
-        "lat": 32.7757418,
-        "lng": -117.0718964
+        "lat": 32.7757877,
+        "lng": -117.0719025
       },
       "id": 7,
-      "mapRadius": 120,
+      "mapRadius": 20,
       "addressCoords": {
         "addressLat": 32.77572170000001,
         "addressLng": -117.0718893

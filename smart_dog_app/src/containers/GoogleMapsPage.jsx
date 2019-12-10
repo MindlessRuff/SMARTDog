@@ -10,20 +10,16 @@ import {
 import axios from "axios";
 import geocode from "react-geocode";
 import { Redirect } from "react-router-dom";
-import {Dialog, DialogTitle, DialogActions} from "react-mdl";
+import { Dialog, DialogTitle, DialogActions } from "react-mdl";
 import Button from "../components/Button";
 import Select from "../components/Select";
-
 
 const mapStyles = {
   width: "100%",
   height: "100%"
 };
 
-const radiusOptions = [
-  10, 20, 30, 40, 50, 60,
-  70, 80, 90, 100, 110, 120
-];
+const radiusOptions = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
 
 export class GoogleMapsPage extends Component {
   constructor(props) {
@@ -34,7 +30,7 @@ export class GoogleMapsPage extends Component {
     // after clicking the circle.
     this.dropdownRef = React.createRef();
 
-    this.id = 0;    // For axios, filled in by componentDidMount
+    this.id = 0; // For axios, filled in by componentDidMount
     this.state = {
       lat: 0.0,
       lng: 0.0,
@@ -48,7 +44,7 @@ export class GoogleMapsPage extends Component {
       radius: 0,
       dropdownSize: 1
     };
-    
+
     // TODO: Change this to only get address.
     this.userInfo = {
       first: "",
@@ -57,7 +53,7 @@ export class GoogleMapsPage extends Component {
       city: "",
       state: "",
       zipCode: "",
-      phone: "",
+      phone: ""
     };
 
     this.dogName = "";
@@ -76,11 +72,15 @@ export class GoogleMapsPage extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://my-json-server.typicode.com/carlohormoz/demo/users?email=${this.email}`).then(response => {
+    axios.get(`/api/users?email=${this.email}`).then(response => {
       this.id = response.data[0].id; // Save user id for future axios requests.
       this.userInfo = response.data[0].userInfo;
-      this.dogName = response.data[0].dogInfo.dogName;  
-      this.setState({lat: response.data[0].coords.lat, lng: response.data[0].coords.lng, radius: response.data[0].mapRadius });
+      this.dogName = response.data[0].dogInfo.dogName;
+      this.setState({
+        lat: response.data[0].coords.lat,
+        lng: response.data[0].coords.lng,
+        radius: response.data[0].mapRadius
+      });
       // Using .then to synchronize response, this is only called once
       // when component is constructed to get the lat and lng from address for the circle.
       geocode
@@ -89,16 +89,17 @@ export class GoogleMapsPage extends Component {
           // Get the lat and long of the user profile's address.
           // Store it in the DB as well for the tracking script to detect the dog escaping.
           const { lat, lng } = response.results[0].geometry.location;
-          this.setState({addressLat: lat, addressLng: lng});
-          axios.patch(`https://my-json-server.typicode.com/carlohormoz/demo/users/${this.id}`, {
-            addressCoords: {
-              addressLat: lat,
-              addressLng: lng
-            }
-          })
-          .catch(error => {
-            console.log('Error updating DB with address coords', error);
-          });
+          this.setState({ addressLat: lat, addressLng: lng });
+          axios
+            .patch(`/api/users/${this.id}`, {
+              addressCoords: {
+                addressLat: lat,
+                addressLng: lng
+              }
+            })
+            .catch(error => {
+              console.log("Error updating DB with address coords", error);
+            });
         })
         .catch(error => {
           /**
@@ -109,7 +110,7 @@ export class GoogleMapsPage extends Component {
           console.log("Invalid Address", error);
           this.addressError = true;
           // Force re-render
-          this.setState({lat: 0});  
+          this.setState({ lat: 0 });
         });
     });
 
@@ -123,7 +124,7 @@ export class GoogleMapsPage extends Component {
   // Updates marker's coordinates from database on an 8 second interval.
   getData = () => {
     axios
-      .get(`https://my-json-server.typicode.com/carlohormoz/demo/users/${this.id}`)
+      .get(`/api/users/${this.id}`)
       .then(response => {
         this.setState({
           lat: response.data.coords.lat,
@@ -195,7 +196,7 @@ export class GoogleMapsPage extends Component {
     if (event.target.value) {
       let radius = Number(event.target.value);
       this.setState({ radius: radius, dropdownSize: 1 });
-      axios.patch(`https://my-json-server.typicode.com/carlohormoz/demo/users/${this.id}`, {
+      axios.patch(`/api/users/${this.id}`, {
         mapRadius: radius
       });
     } else {
@@ -220,28 +221,26 @@ export class GoogleMapsPage extends Component {
     // If check in case user selects the placeholder string.
     if (event.target.value) {
       let radius = Number(event.target.value);
-      this.setState({radius: radius, dropdownSize: 1});
-      axios.patch(`https://my-json-server.typicode.com/carlohormoz/demo/users/${this.id}`, {
+      this.setState({ radius: radius, dropdownSize: 1 });
+      axios.patch(`/api/users/${this.id}`, {
         mapRadius: radius
-      })
-    }
-    else {
-      this.setState({dropdownSize: 1});
+      });
+    } else {
+      this.setState({ dropdownSize: 1 });
     }
   }
 
   // Blur is when a DOM element is un-focused. Used for the dropdown
   // to close it when the user clicks off after opening with a circle click.
   handleBlur() {
-    this.setState({dropdownSize: 1});
+    this.setState({ dropdownSize: 1 });
   }
 
   // Open the dropdown if user clicks on the circle to change radius.
   onCircleClick() {
-    this.setState({dropdownSize: radiusOptions.length + 1});
+    this.setState({ dropdownSize: radiusOptions.length + 1 });
     this.dropdownRef.current.focus();
   }
-
 
   render() {
     /**
@@ -266,25 +265,25 @@ export class GoogleMapsPage extends Component {
       console.log("AddressError");
       return this.redirect ? (
         <Redirect to="/profile" />
-      ) : ( 
-          <Dialog>
-            <DialogTitle>Please Update Address</DialogTitle>
-            <DialogActions>
-              <Button
-                action={this.handleErrorClick}
-                type={"btn btn-primary"}
-                title={"OK"}
-              />
-            </DialogActions>
-          </Dialog>
+      ) : (
+        <Dialog>
+          <DialogTitle>Please Update Address</DialogTitle>
+          <DialogActions>
+            <Button
+              action={this.handleErrorClick}
+              type={"btn btn-primary"}
+              title={"OK"}
+            />
+          </DialogActions>
+        </Dialog>
       );
     }
 
-    if (lat === 0) return <div>Loading...</div>; 
+    if (lat === 0) return <div>Loading...</div>;
     console.log(radius);
     // Pass Checks -> Render map.
     return (
-      <div className='row'>
+      <div className="row">
         <div>
           <Map
             google={this.props.google}
@@ -302,16 +301,18 @@ export class GoogleMapsPage extends Component {
 
             {/* Home Marker */}
             <Marker
-            icon = {{url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"  }}
-              position={{lat: addressLat, lng: addressLng}}
-              name={'Home'}
+              icon={{
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+              }}
+              position={{ lat: addressLat, lng: addressLng }}
+              name={"Home"}
               onMouseover={this.onMouseoverCircle}
               onMouseout={this.onMouseoutCircle}
             ></Marker>
             <Circle
-              onClick={ this.onCircleClick }
+              onClick={this.onCircleClick}
               center={{ lat: addressLat, lng: addressLng }}
-              radius={ radius }
+              radius={radius}
               fillColor="green"
             ></Circle>
             <InfoWindow marker={infoMarker} visible={showMarkerInfo}>
@@ -324,7 +325,7 @@ export class GoogleMapsPage extends Component {
             </InfoWindow>
             <InfoWindow marker={infoCircle} visible={showCircleInfo}>
               <h5>
-                {'Home Address'}
+                {"Home Address"}
                 <br />
                 <br />
                 {`${this.userInfo.address}, ${this.userInfo.zipCode}`}
@@ -332,17 +333,17 @@ export class GoogleMapsPage extends Component {
             </InfoWindow>
           </Map>
         </div>
-        <div className='col-md-3' style={{margin: '50px 0 0 0'}}>
+        <div className="col-md-3" style={{ margin: "50px 0 0 0" }}>
           <Select
             ref={this.dropdownRef}
-            style={{backgroundColor: 'grey', color: 'ghostwhite'}}
-            name={'radius'}
-            options={ radiusOptions } 
-            value={ this.state.radius }
-            placeholder={'Select Geo-Fence Radius (Meters)'}
-            handleChange={ this.handleRadiusChange }
-            size={ this.state.dropdownSize }
-            handleBlur={ this.handleBlur }
+            style={{ backgroundColor: "grey", color: "ghostwhite" }}
+            name={"radius"}
+            options={radiusOptions}
+            value={this.state.radius}
+            placeholder={"Select Geo-Fence Radius (Meters)"}
+            handleChange={this.handleRadiusChange}
+            size={this.state.dropdownSize}
+            handleBlur={this.handleBlur}
           ></Select>
         </div>
       </div>
