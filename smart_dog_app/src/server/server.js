@@ -12,7 +12,7 @@ const app = express();
 server.use(middlewares);
 server.use("/api/", router);
 server.use(express.static(path.join(__dirname, "../../build")));
-app.get("*", (req, res) => {
+server.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "../../build/index.html"));
 });
 server.listen(port, () => console.log(`Server started on port ${port}`));
