@@ -20,7 +20,7 @@ const PrivateRoute = ({ component: Component, path }) => {
     dogBreed: "",
     dogEscaped: false
   };
-  let device = "";
+  let device = "transmitter";
   let coords = {
     lat: 1,
     lng: 0
