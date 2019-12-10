@@ -27,7 +27,7 @@
       "userInfo": {
         "first": "Brandon",
         "last": "Veltre",
-        "address": "SDSU",
+        "address": "Montezuma hall",
         "city": "SAN DIEGO",
         "state": "CA",
         "zipCode": "92182",
@@ -39,14 +39,14 @@
         "dogEscaped": false
       },
       "coords": {
-        "lat": 32.7757877,
-        "lng": -117.0719025
+        "lat": 32.7737274,
+        "lng": -117.0688793
       },
       "id": 7,
-      "mapRadius": 20,
+      "mapRadius": 80,
       "addressCoords": {
-        "addressLat": 32.77572170000001,
-        "addressLng": -117.0718893
+        "addressLat": 32.7738958,
+        "addressLng": -117.0693708
       }
     },
     {

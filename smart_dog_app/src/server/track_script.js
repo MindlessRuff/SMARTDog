@@ -27,9 +27,6 @@ const nexmo = new Nexmo(
   { debug: true }
 );
 
-axios.get('/api/users/2').then(response => {
-  console.log('yay');
-})
 // Pass appID and accessKey to the ttn API.
 ttn
   .data(appID, accessKey)
@@ -71,15 +68,15 @@ ttn
           ) {
             console.log("Dog escaped");
             dogEscaped = true;
-            send(phone, dogName);
+            // send(phone, dogName);
           } else if (distance <= geofenceRadius && dogEscaped === true) {
             console.log(`${dogName} is back home.`);
             dogEscaped = false;
-            sendClear(phone, dogName);
+            // sendClear(phone, dogName);
           }
           // Update the user database with the newly received coordinates.
           axios
-            .patch(`/api/users/${id}`, {
+            .patch(`http://localhost:3000/api/users/${id}`, {
               coords: {
                 lat: receivedLat,
                 lng: receivedLng
