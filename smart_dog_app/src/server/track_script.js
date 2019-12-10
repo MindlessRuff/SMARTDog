@@ -40,7 +40,7 @@ ttn
       receivedLng = payload.payload_fields.lng;
       // Get the current userId based on the deviceId of the received payload.
       axios
-        .get(`http://localhost:3000/users?device=${deviceId}`)
+        .get(`http://localhost:3000/api/users?device=${deviceId}`)
         .then(response => {
           let id = response.data[0].id;
           let addressLat = response.data[0].addressCoords.addressLat;
@@ -76,7 +76,7 @@ ttn
           }
           // Update the user database with the newly received coordinates.
           axios
-            .patch(`http://localhost:3000/users/${id}`, {
+            .patch(`http://localhost:3000/api/users/${id}`, {
               coords: {
                 lat: receivedLat,
                 lng: receivedLng

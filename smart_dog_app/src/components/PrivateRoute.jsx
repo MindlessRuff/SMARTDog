@@ -29,7 +29,7 @@ const PrivateRoute = ({ component: Component, path }) => {
     addressLat: 0,
     addressLng: 0
   };
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -45,11 +45,11 @@ const PrivateRoute = ({ component: Component, path }) => {
   //Creates a new data entry into the database if it doesn't exist
   if (user) {
     axios
-      .get(`/users?email=${user.email}`)
+      .get(`/api/users?email=${user.email}`)
       .then(response => {
         if (!(Array.isArray(response.data) && response.data.length)) {
           axios
-            .post(`/users`, {
+            .post(`/api/users`, {
               email: user.email,
               device: device,
               userInfo: userInfo,
@@ -66,7 +66,7 @@ const PrivateRoute = ({ component: Component, path }) => {
       .catch(error => {
         console.log("error on get", error);
         axios
-          .post(`/users`, {
+          .post(`/api/users`, {
             email: user.email,
             device: device,
             userInfo: userInfo,
