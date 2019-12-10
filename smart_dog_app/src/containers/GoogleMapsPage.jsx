@@ -76,7 +76,7 @@ export class GoogleMapsPage extends Component {
   }
 
   componentDidMount() {
-    axios.get(`/users?email=${this.email}`).then(response => {
+    axios.get(`https://my-json-server.typicode.com/carlohormoz/demo/users?email=${this.email}`).then(response => {
       this.id = response.data[0].id; // Save user id for future axios requests.
       this.userInfo = response.data[0].userInfo;
       this.dogName = response.data[0].dogInfo.dogName;  
@@ -90,7 +90,7 @@ export class GoogleMapsPage extends Component {
           // Store it in the DB as well for the tracking script to detect the dog escaping.
           const { lat, lng } = response.results[0].geometry.location;
           this.setState({addressLat: lat, addressLng: lng});
-          axios.patch(`/users/${this.id}`, {
+          axios.patch(`https://my-json-server.typicode.com/carlohormoz/demo/users/${this.id}`, {
             addressCoords: {
               addressLat: lat,
               addressLng: lng
@@ -123,7 +123,7 @@ export class GoogleMapsPage extends Component {
   // Updates marker's coordinates from database on an 8 second interval.
   getData = () => {
     axios
-      .get(`/users/${this.id}`)
+      .get(`https://my-json-server.typicode.com/carlohormoz/demo/users/${this.id}`)
       .then(response => {
         this.setState({
           lat: response.data.coords.lat,
@@ -195,7 +195,7 @@ export class GoogleMapsPage extends Component {
     if (event.target.value) {
       let radius = Number(event.target.value);
       this.setState({ radius: radius, dropdownSize: 1 });
-      axios.patch(`/users/${this.id}`, {
+      axios.patch(`https://my-json-server.typicode.com/carlohormoz/demo/users/${this.id}`, {
         mapRadius: radius
       });
     } else {
@@ -221,7 +221,7 @@ export class GoogleMapsPage extends Component {
     if (event.target.value) {
       let radius = Number(event.target.value);
       this.setState({radius: radius, dropdownSize: 1});
-      axios.patch(`/users/${this.id}`, {
+      axios.patch(`https://my-json-server.typicode.com/carlohormoz/demo/users/${this.id}`, {
         mapRadius: radius
       })
     }

@@ -40,7 +40,7 @@ ttn
       receivedLng = payload.payload_fields.lng;
       // Get the current userId based on the deviceId of the received payload.
       axios
-        .get(`http://localhost:3000/users?device=${deviceId}`)
+        .get(`https://my-json-server.typicode.com/carlohormoz/demo/users?device=${deviceId}`)
         .then(response => {
           let id = response.data[0].id;
           let addressLat = response.data[0].addressCoords.addressLat;
@@ -76,7 +76,7 @@ ttn
           }
           // Update the user database with the newly received coordinates.
           axios
-            .patch(`http://localhost:3000/users/${id}`, {
+            .patch(`https://my-json-server.typicode.com/carlohormoz/demo/users/${id}`, {
               coords: {
                 lat: receivedLat,
                 lng: receivedLng
@@ -121,6 +121,35 @@ ttn
     return deg * (Math.PI / 180);
   }
 
+<<<<<<< HEAD
+  function send(userPhoneNumber, dogName) {
+    const text = `SMARTDog Alert: ${dogName} escaped!            `;
+    nexmo.message.sendSms('18382038480', userPhoneNumber, text, {
+      type: 'unicode'
+    }, (error, responseData) => {
+      if (error) {
+        console.log(error);
+      }
+      else {
+        console.log(responseData);
+      }
+    });
+  }
+
+  function sendClear(userPhoneNumber, dogName) {
+    const text = `SMARTDog Alert: ${dogName} back home safe.                `;
+    nexmo.message.sendSms('18382038480', userPhoneNumber, text, {
+      type: 'unicode'
+    }, (error, responseData) => {
+      if (error) {
+        console.log(error);
+      }
+      else {
+        console.log(responseData);
+      }
+    });
+  }
+=======
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
@@ -162,3 +191,4 @@ function sendClear(userPhoneNumber, dogName) {
     }
   );
 }
+>>>>>>> a5ff778550bc003080c169e2aa99eb1f46c2f769

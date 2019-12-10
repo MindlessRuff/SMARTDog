@@ -39,7 +39,7 @@ class SignupFormContainer extends Component {
     // Need to use arrow functions with axios calls so that 'this' variable will
     // refer to the class component instead of axios.
     axios
-      .get(`/users?email=${email}`)
+      .get(`https://my-json-server.typicode.com/carlohormoz/demo/users?email=${email}`)
       .then(response => {
         let fetchedData = response.data[0].userInfo;
         let fetchedDog = response.data[0].dogInfo;
@@ -75,7 +75,7 @@ class SignupFormContainer extends Component {
     // Insert the id of the current user into the put request, can't do it with email key.
     console.log(email, userInfo, this.id);
     axios
-      .patch(`/users/${this.id}`, {
+      .patch(`https://my-json-server.typicode.com/carlohormoz/demo/users/${this.id}`, {
         email: email,
         userInfo: userInfo,
         dogInfo: dogInfo
